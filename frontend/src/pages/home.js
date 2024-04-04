@@ -1,12 +1,11 @@
 import React from 'react';
+import Categorias from '../components/Categorias';
 
 
 
 function HomePage() {
     return (
-        <div>   
-
-        </div>
+        <Categorias />
     );
 }
 
