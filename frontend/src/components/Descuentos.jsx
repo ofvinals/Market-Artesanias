@@ -69,4 +69,4 @@ function Descuentos() {
   )
 }
 
-export default Descuentos
+export default Descuentos;
