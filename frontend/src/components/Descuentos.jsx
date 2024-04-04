@@ -51,8 +51,8 @@ function Descuentos() {
             PRODUCTOS.map((producto, idx) => (
 
 
-              <div key={idx} className=' '>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg shadow-sm w-full h-full` : `hidden`}  `} />
+              <div key={idx} className=' shadow-lg'>
+                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full h-full` : `hidden`}  `} />
                 <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-2xl text-[#5C5C5C]`} >{producto.nombre}</h3>
                 <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-2xl text-[#5C5C5C]`}>${producto.precio}</p>
               </div>

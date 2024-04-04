@@ -35,7 +35,7 @@ export default function Categorias() {
         {
           CATEGORIAS.map((categoria) => (
             <div key={categoria.nombre} className='flex flex-col items-center relative group cursor-pointer shadow-md rounded-[10px] mt-4 md:mt-0'>
-              <img src={categoria.imagen} alt={categoria.nombre} className='object-cover w-20 h-20 md:h-[356px] md:w-[228px] md:aspect-[3/4] rounded-[10px]' />
+              <img src={categoria.imagen} alt={categoria.nombre} className='object-cover w-20 h-20 md:h-[356px] md:w-[228px]  rounded-[10px]' />
               <div className='absolute inset-0 z-10 bg-black/40 group-hover:opacity-20 transition-opacity flex items-center justify-center rounded-[10px]'>
                 <h2 className='text-white'>{categoria.nombre}</h2>
               </div>
