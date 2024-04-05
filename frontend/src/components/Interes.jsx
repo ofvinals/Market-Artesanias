@@ -59,7 +59,7 @@ function Interes() {
 						},
 						'::-webkit-scrollbar': { display: 'none' },
 					}}>
-					{data.map((item) => (
+					{PRODUCTOS.map((item) => (
 						<Card
 							orientation='horizontal'
 							size='sm'
