@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { TfiArrowCircleRight, TfiArrowCircleLeft } from 'react-icons/tfi';
-import { Carousel } from '@material-tailwind/react';
 
 const PRODUCTOS = [
 	{

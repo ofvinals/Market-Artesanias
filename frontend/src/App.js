@@ -6,15 +6,16 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <Header />
-        <Homepage />
-        <Footer />      </div>
-    </Router>
-  );
+	return (
+		<Router>
+			<div className='App'>
+				<NavBar />
+				<Header />
+				<Homepage />
+				<Footer />
+			</div>
+		</Router>
+	);
 }
 
 export default App;
