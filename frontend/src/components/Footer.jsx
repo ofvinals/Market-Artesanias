@@ -3,18 +3,12 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
 	return (
-		<div className='flex justify-center flex-grow bg-orange-400 p-4 min-h-80 items-center'>
-			<div className='text-white text-xl font-semibold h-full'>
-				<Link className='' to='/home'>
-					<img
-						className='logofooter'
-						src='logo192.png'
-						width={100}
-						alt='Logo'
-					/>
-				</Link>
+		<div className='flex justify-around bg-[#E98C00] p-4 min-h-96 items-center rounded-tl-3xl rounded-tr-3xl'>
+			<div className='ms-10 text-white text-center h-full border border-solid border-white'>
+				<p className='text-2xl p-2 pb-0'>Artesanias</p>
+				<p className='text-4xl p-2 pt-0'>Market</p>
 			</div>
-			<div className='h-full w-full flex justify-around text-center'>
+			<div className='h-full w-full flex justify-around text-center '>
 				<div className='flex justify-around items-center '>
 					<ul className='text-white'>
 						<li>
@@ -37,14 +31,14 @@ function Footer() {
 						</li>
 					</ul>
 				</div>
-				<div className='text-white text-center'>
-					<h2 className='font-bold text-2xl pb-7'>Contacto</h2>
-					<div className='pb-4'>
-						<i className='fa-solid fa-phone'></i>
+				<div className='text-white'>
+					<h2 className='font-bold text-2xl pb-7 text-start'>Contacto</h2>
+					<div className='flex flex-row pb-4 text-center justify-start'>
+						<i className='fa-solid fa-phone pe-2 pt-2'></i>
 						<p className='text-xl'>+54 5464677 578922</p>
 					</div>
-					<div>
-						<i class='fa-solid fa-envelope'></i>
+					<div className='flex flex-row text-center justify-start'>
+						<i class='fa-solid fa-envelope pe-2 pt-2'></i>
 						<p className='text-xl'>artesaniasmarket@gmail.com</p>
 					</div>
 				</div>

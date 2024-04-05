@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { TfiArrowCircleRight, TfiArrowCircleLeft } from 'react-icons/tfi';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Box from '@mui/joy/Box';
+import Typography from '@mui/joy/Typography';
+import Card from '@mui/joy/Card';
 
 const PRODUCTOS = [
 	{
@@ -37,79 +41,170 @@ function Interes() {
 	};
 
 	return (
-		<section className='min-h-80 '>
-			<h2 className='w-full text-3xl my-10 font-semibold text-black'>
+		<section className='min-h-96 py-24'>
+			<h2 className='w-full text-4xl my-10 font-semibold text-[#8B5300]'>
 				Te puede interesar
 			</h2>
 			<div className='flex flex-col flex-row w-full justify-around'>
-				<div className=' flex flex-row justify-center items-center relative '>
+				<Box
+					sx={{
+						display: 'flex',
+						gap: 1,
+						py: 1,
+						overflow: 'auto',
+						width: 343,
+						scrollSnapType: 'x mandatory',
+						'& > *': {
+							scrollSnapAlign: 'center',
+						},
+						'::-webkit-scrollbar': { display: 'none' },
+					}}>
+					{data.map((item) => (
+						<Card
+							orientation='horizontal'
+							size='sm'
+							key={item.title}
+							variant='outlined'>
+							<AspectRatio ratio='1' sx={{ minWidth: 60 }}>
+								<img
+									srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+									src={`${item.src}?h=120&fit=crop&auto=format`}
+									alt={item.title}
+								/>
+							</AspectRatio>
+							<Box sx={{ whiteSpace: 'nowrap', mx: 1 }}>
+								<Typography level='title-md'>{item.title}</Typography>
+								<Typography level='body-sm'>
+									{item.description}
+								</Typography>
+							</Box>
+						</Card>
+					))}
+				</Box>
+
+				{/* <div className=' flex flex-row justify-center items-center relative '>
 					<button onClick={prevSlide}>
 						<TfiArrowCircleLeft className='absolute w-8 h-8 left-2 top-[80px]  md:top-[145px] md:-left-5 text-black' />
 					</button>
-					{
-            PRODUCTOS.map((producto, idx) => (
-
-
-              <div key={idx} className=''>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full min-h-24` : `hidden`}  `} />
-                <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-xl text-black`} >{producto.nombre}</h3>
-                <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-xl text-orange-400`}>${producto.precio}</p>
-              </div>
-
-            ))
-          }
-          {
-            PRODUCTOS.map((producto, idx) => (
-
-
-              <div key={idx} className='ps-1'>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full min-h-24` : `hidden`}  `} />
-                <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-xl text-black`} >{producto.nombre}</h3>
-                <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-xl text-orange-400`}>${producto.precio}</p>
-              </div>
-
-            ))
-          }
-          {
-            PRODUCTOS.map((producto, idx) => (
-
-
-              <div key={idx} className='ps-1'>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full min-h-24` : `hidden`}  `} />
-                <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-xl text-black`} >{producto.nombre}</h3>
-                <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-xl text-orange-400`}>${producto.precio}</p>
-              </div>
-
-            ))
-          }
-          {
-            PRODUCTOS.map((producto, idx) => (
-
-
-              <div key={idx} className=' ps-1'>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full min-h-24` : `hidden`}  `} />
-                <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-xl text-black`} >{producto.nombre}</h3>
-                <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-xl text-orange-400`}>${producto.precio}</p>
-              </div>
-
-            ))
-          }
-          {
-            PRODUCTOS.map((producto, idx) => (
-
-
-              <div key={idx} className='ps-1'>
-                <img src={producto.imagen} alt={producto.nombre} className={`${index === idx ? `rounded-lg w-full min-h-24` : `hidden`}  `} />
-                <h3 className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[200px] text-xl text-black`} >{producto.nombre}</h3>
-                <p className={`${index === idx ? `` : `hidden`}  md:absolute md:-left-[800px] md:top-[230px] font-semibold text-xl text-orange-400`}>${producto.precio}</p>
-              </div>
-
-            ))
-          }
+					{PRODUCTOS.map((producto, idx) => (
+						<div key={idx} className=''>
+							<img
+								src={producto.imagen}
+								alt={producto.nombre}
+								className={`${
+									index === idx ? `rounded-lg w-full h-56` : `hidden`
+								}  `}
+							/>
+							<h3
+								className={`${
+									index === idx ? `` : `hidden`
+								}   text-2xl text-[#563300]`}>
+								{producto.nombre}
+							</h3>
+							<p
+								className={`${
+									index === idx ? `` : `hidden`
+								}   text-2xl text-[#8B5300]`}>
+								${producto.precio}
+							</p>
+						</div>
+					))}
+					{PRODUCTOS.map((producto, idx) => (
+						<div key={idx} className='ps-1'>
+							<img
+								src={producto.imagen}
+								alt={producto.nombre}
+								className={`${
+									index === idx ? `rounded-lg w-full h-56` : `hidden`
+								}  `}
+							/>
+							<h3
+								className={`${
+									index === idx ? `` : `hidden`
+								}  text-2xl text-[#563300]`}>
+								{producto.nombre}
+							</h3>
+							<p
+								className={`${
+									index === idx ? `` : `hidden`
+								}   text-2xl text-[#8B5300]`}>
+								${producto.precio}
+							</p>
+						</div>
+					))}
+					{PRODUCTOS.map((producto, idx) => (
+						<div key={idx} className='ps-1'>
+							<img
+								src={producto.imagen}
+								alt={producto.nombre}
+								className={`${
+									index === idx ? `rounded-lg w-full h-56` : `hidden`
+								}  `}
+							/>
+							<h3
+								className={`${
+									index === idx ? `` : `hidden`
+								}  text-2xl text-[#563300]`}>
+								{producto.nombre}
+							</h3>
+							<p
+								className={`${
+									index === idx ? `` : `hidden`
+								}  text-2xl text-[#8B5300]`}>
+								${producto.precio}
+							</p>
+						</div>
+					))}
+					{PRODUCTOS.map((producto, idx) => (
+						<div key={idx} className=' ps-1'>
+							<img
+								src={producto.imagen}
+								alt={producto.nombre}
+								className={`${
+									index === idx ? `rounded-lg w-full h-56` : `hidden`
+								}  `}
+							/>
+							<h3
+								className={`${
+									index === idx ? `` : `hidden`
+								}  text-2xl text-[#563300]`}>
+								{producto.nombre}
+							</h3>
+							<p
+								className={`${
+									index === idx ? `` : `hidden`
+								}   text-2xl text-[#8B5300]`}>
+								${producto.precio}
+							</p>
+						</div>
+					))}
+					{PRODUCTOS.map((producto, idx) => (
+						<div key={idx} className='ps-1'>
+							<img
+								src={producto.imagen}
+								alt={producto.nombre}
+								className={`${
+									index === idx ? `rounded-lg w-full h-56` : `hidden`
+								}  `}
+							/>
+							<h3
+								className={`${
+									index === idx ? `` : `hidden`
+								} text-2xl text-[#563300]`}>
+								{producto.nombre}
+							</h3>
+							<p
+								className={`${
+									index === idx ? `` : `hidden`
+								}   text-2xl text-[#8B5300]`}>
+								${producto.precio}
+							</p>
+						</div>
+					))}
 					<button onClick={nextSlide}>
 						<TfiArrowCircleRight className='absolute w-8 h-8 right-2 top-[80px]  md:top-[145px] md:-right-5 text-[#5C5C5C]' />
 					</button>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);
