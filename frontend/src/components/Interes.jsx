@@ -21,6 +21,11 @@ const PRODUCTOS = [
 		precio: 27.99,
 		imagen: 'https://picsum.photos/id/225/566/290',
 	},
+	{
+		nombre: 'Tetera de cristal',
+		precio: 27.99,
+		imagen: 'https://picsum.photos/id/225/566/290',
+	},
 ];
 
 function Interes() {
@@ -52,7 +57,7 @@ function Interes() {
 						gap: 1,
 						py: 1,
 						overflow: 'auto',
-						width: 343,
+						width: 1000,
 						scrollSnapType: 'x mandatory',
 						'& > *': {
 							scrollSnapAlign: 'center',
@@ -62,21 +67,21 @@ function Interes() {
 					{PRODUCTOS.map((item) => (
 						<Card
 							orientation='horizontal'
-							size='sm'
+							size='lg'
 							key={item.title}
-							variant='outlined'>
+							variant='lined'>
 							<AspectRatio ratio='1' sx={{ minWidth: 60 }}>
 								<img
-									srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-									src={`${item.src}?h=120&fit=crop&auto=format`}
+									srcSet={`${item.imagen}?h=120&fit=crop&auto=format&dpr=2 2x`}
+									src={`${item.imagen}?h=120&fit=crop&auto=format`}
 									alt={item.title}
 								/>
 							</AspectRatio>
 							<Box sx={{ whiteSpace: 'nowrap', mx: 1 }}>
-								<Typography level='title-md'>{item.title}</Typography>
 								<Typography level='body-sm'>
-									{item.description}
+									{item.nombre}
 								</Typography>
+								<Typography level='title-md'>{item.precio}</Typography>
 							</Box>
 						</Card>
 					))}
