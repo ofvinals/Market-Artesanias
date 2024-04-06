@@ -23,7 +23,7 @@ function NavBar() {
           <Link to="/buscar" className="text-white text-xl mr-4">
             <i className="fas fa-search"></i>
           </Link>
-          <Link to="/perfil" className="text-white text-xl mr-4">
+          <Link to="/login" className="text-white text-xl mr-4">
             <i className="fas fa-user"></i>
           </Link>
         </div>
