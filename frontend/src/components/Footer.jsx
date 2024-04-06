@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
 	return (
-		<div className='flex justify-around bg-[#E98C00] p-4 min-h-96 items-center rounded-tl-3xl rounded-tr-3xl'>
-			<div className='ms-10 text-white text-center h-full border border-solid border-white'>
-				<p className='text-2xl p-2 pb-0'>Artesanias</p>
-				<p className='text-4xl p-2 pt-0'>Market</p>
-			</div>
-			<div className='h-full w-full flex justify-around text-center '>
+		<div className='flex flex-row sm:flex-col justify-around bg-[#E98C00] p-4 min-h-96 items-center rounded-tl-3xl rounded-tr-3xl'>
+			<Link className='' to='/home'>
+				<img
+					className='logofooter'
+					src='logo192.png'
+				
+					alt='Logo'
+				/>
+			</Link>
+
+			<div className='h-full w-full flex justify-around text-center flex-row'>
 				<div className='flex justify-around items-center '>
 					<ul className='text-white'>
 						<li>

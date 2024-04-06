@@ -9,6 +9,7 @@ module.exports = {
 				general: '#563300',
 				specific: '#E98C00',
 			},
+			
 		},
 	},
 	plugins: [],
