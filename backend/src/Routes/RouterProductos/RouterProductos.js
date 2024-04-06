@@ -9,7 +9,7 @@ const {
 const routerProducto = Router();
 
 routerProducto.get("/", getAllProducto);
-routerProducto.get("/:id", getByIdProducto);
+routerProducto.get("/:Id", getByIdProducto);
 routerProducto.post("/", postAddProducto);
 routerProducto.put("/", putUpdateProducto);
 

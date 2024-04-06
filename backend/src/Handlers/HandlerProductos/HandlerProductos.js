@@ -28,9 +28,9 @@ const getByIdProducto = async (req, res) => {
 
 //POST Carga el producto en la DB.
 const postAddProducto = async (req, res) => {
-    const { Email, Contraseña, Nombre, Apellido } = req.body;
+    const { Nombre, Disponible,Precio,Imagen,Descripcion } = req.body;
     try {
-        const response = await postAdd(Email, Contraseña, Nombre, Apellido);
+        const response = await postAdd(Nombre, Disponible,Precio,Imagen,Descripcion);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(500).json({error: error.mensage});
@@ -39,9 +39,9 @@ const postAddProducto = async (req, res) => {
 
 //PUT Actualiza el producto
 const putUpdateProducto = async (req, res) => {
-    const { Id, Email, Contraseña, Nombre, Apellido } = req.body;
+    const { Id, Nombre, Disponible,Precio,Imagen,Descripcion } = req.body;
     try {
-        const response = await putUpdate(Id, Email, Contraseña, Nombre, Apellido);
+        const response = await putUpdate(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
         return res.status(201).json(response);
     } catch (error) {
         return res.status(500).json({error: error.mensage});
