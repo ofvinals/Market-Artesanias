@@ -3,13 +3,8 @@ const { Product }= require("../../db");
 
 //GET todo los productos.
 const getAll = async () => {
-return [{
-    Nombre: "remera",
-    Disponible: 5,
-    Precio: 500,
-    Imagen:"skksdkmssfm",
-    Descripcion: "jshjhdsjvljzh js m bjvbjszn vjbsjvbmxb jvfbvj"
-}]
+    const producto = await Product.findAll();
+    return producto;
 };
 
 //GETBYID solo un producto.
