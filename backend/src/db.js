@@ -1,5 +1,10 @@
 require("dotenv").config();
-const { Sequelize, Op, Model, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
+const userModel = require("./Models/User");
+const storeModel = require("./Models/Store");
+const productoModel = require("./Models/Product");
+const categoryModel = require("./Models/Category");
+const comprasUsuarioModel = require("./Models/CompraUsuario");
 const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 const sequelize = new Sequelize(
@@ -18,7 +23,7 @@ try {
 }
 
 //
-const User = sequelize.define('User', {
+/*const User = sequelize.define('User', {
       // Model attributes are defined here
       firstName: {
             type: DataTypes.STRING,
@@ -30,21 +35,40 @@ const User = sequelize.define('User', {
       }
 }, {
       // Other model options go here
-});
+});*/
 
 // `sequelize.define` also returns the model
 console.log(User === sequelize.models.User); // true
 //
-//
-// //relaciones con los modelos
-//
-// // relacion uno a mucho 
-// // relacion mucho a mucho
-//
-//
-// module.exports = {
-//       sequelize: sequelize,
-//       ...sequelize.models,
-// };
-//
-module.exports = { sequelize: sequelize };
+userModel(sequelize);
+storeModel(sequelize);
+productoModel(sequelize);
+categoryModel(sequelize);
+comprasUsuarioModel(sequelize);
+
+//Me traigo los modelos
+const { User, Product, Store, Category, ComprasUsuario } = sequelize.models;
+
+//relaciones con los modelos
+
+// relacion uno a mucho 
+User.hasMany(Store);
+Store.belongsTo(User);
+
+Store.hasMany(Product);
+Product.belongsTo(Store);
+
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
+// relacion mucho a mucho
+User.belongsTo(Product, { through: ComprasUsuario });
+Product.belongsTo(User, { through: ComprasUsuario });
+
+
+module.exports = {
+      sequelize: sequelize,
+      ...sequelize.models,
+};
+
+//module.exports = { sequelize: sequelize };
