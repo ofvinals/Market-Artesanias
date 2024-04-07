@@ -1,58 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import '../css/Profile.css';
 import Swal from 'sweetalert2';
+import { updateUser, getUser } from '../hooks/useUsers';
+import { useAuth } from '../hooks/useAuth';
 
 function Profile() {
-	const { register, handleSubmit, setValue, formState: { errors },} = useForm();
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		formState: { errors },
+	} = useForm();
+	const { currentUser } = useAuth({});
 
-	// useEffect(() => {
-	// 	async function loadClase() {
-	// 		try {
-	// 			const userData = await getClase(id);
-	// 			setValue('nombre', userData.nombre);
-	// 			setValue('apellido', userData.apellido);
-	// 			setValue('genero', userData.genero);
-	// 			setValue('fechanac', userData.fechanac);
-	// 			setValue('ubicacion', userData.ubicacion)
-	// 			handleOpenModal();
-	// 		} catch (error) {
-	// 			console.error('Error al cargar los datos del usuario', error);
-	// 		}
-	// 	}
-	// 	loadClase();
-	// }, []);
+	const id = currentUser.uid;
 
-	// const onSubmit = handleSubmit(async (values) => {
-	// 	try {
-	// 		const userData = {
-	// 			nombre: values.nombre,
-	// 			apellido: values.apellido,
-	// 			genero: values.genero,
-	// 			fechanac: values.fechanac,
-	// 			ubicacion: values.ubicacion
-	// 		};
+	useEffect(() => {
+		async function loadUser() {
+			try {
+				const userData = await getUser(id);
+				setValue('nombre', userData.nombre);
+				setValue('apellido', userData.apellido);
+				setValue('genero', userData.genero);
+				setValue('fechanac', userData.fechanac);
+				setValue('ubicacion', userData.ubicacion);
+			} catch (error) {
+				console.error('Error al cargar los datos del usuario', error);
+			}
+		}
+		loadUser();
+	}, []);
 
-	// 		await updateUser(id, userData);
+	const onSubmit = handleSubmit(async (values) => {
+		try {
+			const userData = {
+				nombre: values.nombre,
+				apellido: values.apellido,
+				genero: values.genero,
+				fechanac: values.fechanac,
+				ubicacion: values.ubicacion,
+			};
 
-	// 		Swal.fire({
-	// 			icon: 'success',
-	// 			title: 'Los datos del usuario han sido editados correctamente',
-	// 			showConfirmButton: false,
-	// 			timer: 1500,
-	// 		});
-	// 		handleCloseModal();
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 		Swal.fire({
-	// 			icon: 'error',
-	// 			title: 'Error al editar los datos del usuario. Intente nuevamente!',
-	// 			showConfirmButton: false,
-	// 			timer: 1500,
-	// 		});
-	// 	}
-	// });
+			await updateUser(id, userData);
+
+			Swal.fire({
+				icon: 'success',
+				title: 'Los datos del usuario han sido editados correctamente',
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		} catch (error) {
+			console.error(error);
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al editar los datos del usuario. Intente nuevamente!',
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		}
+	});
 
 	return (
 		<section className='container'>
@@ -61,9 +68,7 @@ function Profile() {
 					Datos Personales
 				</h2>
 
-				<form id='loginForm' className='formlogin' 
-        // onSubmit={onSubmit}
-        >
+				<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
 					<label className='text-xl text-[#563300]'>Nombre</label>
 					<input
 						className='ps-4 h-16 mt-5  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
