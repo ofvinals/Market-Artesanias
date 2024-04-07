@@ -7,7 +7,7 @@ module.exports = storeModel = (sequelize) => {
         primaryKey: true,
         autoIncrement: true
     },
-    Name: {
+    Nombre: {
         type: DataTypes.STRING,
         allowNull: false
     }

@@ -7,11 +7,11 @@ module.exports = storeModel = (sequelize) => {
         primaryKey: true,
         autoIncrement: true
     },
-    Name: {
+    Nombre: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    LastName: {
+    Apellido: {
         type: DataTypes.STRING,
         allowNull: true,
     },
@@ -22,11 +22,11 @@ module.exports = storeModel = (sequelize) => {
             isEmail: true,
         },
     },
-    PasswordKey: {
+    Contraseña: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    IsActive: {
+    Activo: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,

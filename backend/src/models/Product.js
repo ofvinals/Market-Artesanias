@@ -7,7 +7,7 @@ module.exports = productoModel = (sequelize) => { //Aquí estamos exportando una
             primaryKey: true,
             autoIncrement: true
         },
-        Name: {
+        Nombre: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -15,19 +15,19 @@ module.exports = productoModel = (sequelize) => { //Aquí estamos exportando una
             type: DataTypes.ARRAY(DataTypes.TEXT),
             allowNull: false
         },
-        Stock: {
+        Disponible: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        Price: {
+        Precio: {
             type: DataTypes.DECIMAL,
             allowNull: false
         },
-        Description: {
+        Descripcion: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        IsActive: {
+        Activo: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true // Valor por defecto sera true
