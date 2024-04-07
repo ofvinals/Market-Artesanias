@@ -1,22 +1,50 @@
 require("dotenv").config();
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op, Model, DataTypes } = require("sequelize");
 const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 const sequelize = new Sequelize(
-	`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
-	{
-		logging: false,
-		native: false
-	}
+      `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
+      {
+            logging: false,
+            native: false
+      }
 );
 
-//relaciones con los modelos
+try {
+      sequelize.authenticate();
+      console.log('Connection has been established successfully.');
+} catch (error) {
+      console.error('Unable to connect to the database:', error);
+}
 
-// relacion uno a mucho 
-// relacion mucho a mucho
+//
+const User = sequelize.define('User', {
+      // Model attributes are defined here
+      firstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+      },
+      lastName: {
+            type: DataTypes.STRING
+                  // allowNull defaults to true
+      }
+}, {
+      // Other model options go here
+});
 
-
-module.exports = {
-	sequelize,
-	...sequelize.models,
-};
+// `sequelize.define` also returns the model
+console.log(User === sequelize.models.User); // true
+//
+//
+// //relaciones con los modelos
+//
+// // relacion uno a mucho 
+// // relacion mucho a mucho
+//
+//
+// module.exports = {
+//       sequelize: sequelize,
+//       ...sequelize.models,
+// };
+//
+module.exports = { sequelize: sequelize };
