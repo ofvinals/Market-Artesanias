@@ -3,8 +3,16 @@ const bcrypt = require("bcryptjs");
 
 //GET todas las usuario.
 const getAll = async () => {
-    const usuario = await Usuario.findAll();
+    const usuario = await User.findAll();
     return usuario;
+};
+
+//GET solo un usuario.
+const controllerByEmailUser = async (Email) => {
+	const user = await User.findOne({
+		where: {Email}
+	});
+	return user;
 };
 
 //POST Carga la usuario en la DB.
@@ -41,5 +49,6 @@ const postAdd = async (Nombre, Apellido, Email, Contraseña) => {
 
 module.exports = {
     getAll,
-    postAdd
+    postAdd,
+    controllerByEmailUser
 }
