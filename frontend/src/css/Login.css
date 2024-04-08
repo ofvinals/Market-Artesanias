@@ -1,0 +1,70 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100% !important;
+	min-width: 100%;
+	padding: 25px;
+}
+.container-login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	width: 100%;
+	max-width: 504px;
+}
+.imglogin {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 55px;
+	margin-right: 30px;
+}
+.formlogin {
+	width: 100% !important;
+	max-width: 504px !important;
+}
+.linkregister:hover {
+	text-decoration: underline;
+	opacity: 0.5;
+}
+.recpassword:hover {
+	text-decoration: underline;
+	opacity: 0.5;
+}
+.btnlogin:hover {
+	background-color: white !important;
+	color: #e98c00 !important;
+	border: 2px solid #e98c00 !important;
+}
+.btnloginsocial:hover {
+	background-color: #e98c00 !important;
+	color: white !important;
+}
+.error-message {
+	background-color: red;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px !important;
+}
+
+@media (min-width: 895px) {
+	.container {
+		flex-direction: row;
+		padding: 55px;
+		align-items: center;
+	}
+	.imglogin {
+		margin-left: 25px;
+	}
+}
+@media (min-width: 1200px) {
+	.container {
+		padding: 101px;
+	}
+}
