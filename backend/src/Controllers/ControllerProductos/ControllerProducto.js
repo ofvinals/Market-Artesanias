@@ -1,4 +1,4 @@
-const { Product }= require("../../db");
+const { Product, Store, Category }= require("../../db");
 
 
 //GET todo los productos.
@@ -26,8 +26,8 @@ const postAdd = async (Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, Ca
 	});
     
     console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
-    console.log(producto)
 	await producto.setStore(StoreId);
+    console.log(producto)
 	await producto.setCategory(CategoryId);
 	return producto;
 }
