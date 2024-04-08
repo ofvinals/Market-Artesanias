@@ -1,8 +1,7 @@
 import React from 'react';
-// import { TfiArrowCircleRight, TfiArrowCircleLeft } from 'react-icons/tfi';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-
+import '../css/Interes.css'
 const PRODUCTOS = [
 	{
 		nombre: 'Taza de cafe 1',
@@ -37,62 +36,39 @@ const PRODUCTOS = [
 ];
 
 function Interes() {
-	// const [index, setIndex] = useState(0);
-	// const nextSlide = () => {
-	// 	if (index < PRODUCTOS.length - 1) {
-	// 		setIndex(index + 1);
-	// 	} else {
-	// 		setIndex(0);
-	// 	}
-	// };
-	// const prevSlide = () => {
-	// 	if (index > 0) {
-	// 		setIndex(index - 1);
-	// 	} else {
-	// 		setIndex(PRODUCTOS.length - 1);
-	// 	}
-	// };
-
 	return (
-		<section className='min-h-96 py-24'>
+		<section className='py-16'>
 			<h2 className='w-full text-4xl my-10 font-semibold text-[#8B5300]'>
 				Te puede interesar
 			</h2>
 
-			<div className=' relative '>
-				{/* <button onClick={prevSlide}>
-						<TfiArrowCircleLeft className='absolute w-8 h-8 left-2 top-[80px]  md:top-[145px] md:-left-5 text-black' />
-					</button> */}
+			<div className='containterinteres'>
 				<Carousel
 					showArrows={true}
 					showStatus={false}
 					showIndicators={true}
-					infiniteLoop={false}
+					infiniteLoop={true}
 					emulateTouch={true}
 					showThumbs={false}
 					centerMode={true}
-					centerSlidePercentage={100 / 5}
+					centerSlidePercentage={100 / 4}
 					>
 					{PRODUCTOS.map((producto, idx) => (
-						<div key={idx} className='w-full md:w-52 h-80'>
+						<div key={idx} className='containerprodint'>
 							<img
 								src={producto.imagen}
 								alt={producto.nombre}
-								className='h-52 '
+								className='imginteres'
 							/>
-							<h3 className='text-xl text-[#563300]'>
+							<h3 className='text-xl textinteres text-[#563300]'>
 								{producto.nombre}
 							</h3>
-							<p className='text-2xl font-semibold text-[#E98C00]'>
+							<p className='text-2xl textinteres font-semibold text-[#E98C00]'>
 								${producto.precio}
 							</p>
 						</div>
 					))}
 				</Carousel>
-
-				{/* <button onClick={nextSlide}>
-						<TfiArrowCircleRight className='absolute w-8 h-8 right-2 top-[80px]  md:top-[145px] md:-right-5 text-[#5C5C5C]' />
-					</button> */}
 			</div>
 		</section>
 	);
