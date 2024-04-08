@@ -1,0 +1,3 @@
+### Recuperar todas las películas
+GET 127.0.0.1:3657/usuario1
+

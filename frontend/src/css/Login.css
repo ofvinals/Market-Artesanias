@@ -26,6 +26,32 @@
 	width: 100% !important;
 	max-width: 504px !important;
 }
+.linkregister:hover {
+	text-decoration: underline;
+	opacity: 0.5;
+}
+.recpassword:hover {
+	text-decoration: underline;
+	opacity: 0.5;
+}
+.btnlogin:hover {
+	background-color: white !important;
+	color: #e98c00 !important;
+	border: 2px solid #e98c00 !important;
+}
+.btnloginsocial:hover {
+	background-color: #e98c00 !important;
+	color: white !important;
+}
+.error-message {
+	background-color: red;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px !important;
+}
 
 @media (min-width: 895px) {
 	.container {

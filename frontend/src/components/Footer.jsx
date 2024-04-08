@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import '../css/Footer.css'
 function Footer() {
 	return (
-		<div className='flex flex-row sm:flex-col justify-around bg-[#E98C00] p-4 min-h-96 items-center rounded-tl-3xl rounded-tr-3xl'>
-			<Link className='' to='/home'>
-				<img
-					className='logofooter'
-					src='logo192.png'
-				
-					alt='Logo'
-				/>
-			</Link>
+		<>
+			<div className='container-footer bg-[#E98C00] min-h-96 rounded-tl-3xl rounded-tr-3xl'>
+				<Link className='w-3/12' to='/home'>
+					<img className='' src='logo.jpg' alt='Logo' />
+				</Link>
 
-			<div className='h-full w-full flex justify-around text-center flex-row'>
-				<div className='flex justify-around items-center '>
+				<div className='container-contact '>
 					<ul className='text-white'>
 						<li>
 							<h3 className='font-bold text-2xl  pb-7'>Acerca de</h3>
@@ -36,7 +31,7 @@ function Footer() {
 						</li>
 					</ul>
 				</div>
-				<div className='text-white'>
+				<div className='text-white flex flex-col text-center items-center pt-10'>
 					<h2 className='font-bold text-2xl pb-7 text-start'>Contacto</h2>
 					<div className='flex flex-row pb-4 text-center justify-start'>
 						<i className='fa-solid fa-phone pe-2 pt-2'></i>
@@ -48,7 +43,7 @@ function Footer() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
