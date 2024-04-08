@@ -1,0 +1,23 @@
+.containerprodint{
+margin-bottom: 30px;
+width: 169px!important;
+
+}
+.imginteres{
+   padding-left: 15px!important;
+   width: 169px!important;
+   height: 204px;
+}
+.textinteres{
+   padding-left: 15px;
+   text-align: start;
+}
+.slide{
+   width: 169px!important;
+}
+.control-arrow{
+   background-color: #563300!important;
+   height: 50px;
+   border-radius: 60px;
+   margin-top: 102px!important;
+}
