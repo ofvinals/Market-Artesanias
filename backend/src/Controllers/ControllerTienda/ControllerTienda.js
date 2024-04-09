@@ -1,6 +1,14 @@
 const { Store } = require("../../db");
 
-//POST Carga la usuario en la DB.
+//GET trae solo la tiena del vendedor en la DB.
+const get = async (UserId) => {
+    const tienda = await Store.findAll({
+        where: { UserId }
+    });
+	return tienda;
+};
+
+//POST Carga la tienda en la DB.
 const postAdd = async (UserId, Nombre, Imagen) => {
     if (!Nombre ) {
         throw new Error("Todos los campos son obligatorios");
@@ -12,6 +20,20 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 	return tienda;
 };
 
+//PUT actualiza la tieda en la DB.
+const update = async (Id, Nombre, Imagen) => {
+    const tienda = await Store.findByPk(Id);
+	if (!tienda) throw new Error("El Tienda no existe.");
+    console.log(tienda)
+    console.log(Nombre, Imagen)
+
+    await Store.update({ Nombre, Imagen }, {where: {Id}});
+
+	return "Listo!!";
+};
+
 module.exports = {
-    postAdd
+    get,
+    postAdd,
+    update
 }

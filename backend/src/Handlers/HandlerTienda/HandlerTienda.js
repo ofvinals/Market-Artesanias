@@ -1,5 +1,4 @@
-const { postAdd } = require("../../Controllers/ControllerTienda/ControllerTienda");
-const { Store } = require("../../db");
+const { postAdd, update, get } = require("../../Controllers/ControllerTienda/ControllerTienda");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
@@ -25,9 +24,7 @@ const getByStore = async (req, res) => {
 
 		UserId = tokenized.userId;
 
-        const tienda = await Store.findAll({
-            where: { UserId }
-        });
+        const tienda = await get(UserId);
         return  res.status(201).json(tienda);
 	} catch (error) {
 		return res.status(401).json({ message: 'Token inválido' });
@@ -59,7 +56,20 @@ const postAddTienda = async (req, res) => {
     }
 };
 
+//PUT Carga la Tienda en la DB.
+const putTienda = async (req, res) => {
+    const { Id, Nombre, Imagen } = req.body;
+    
+	try {
+        const response = await update(Id ,Nombre, Imagen);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json({error: error.mensage});
+    }
+};
+
 module.exports = {
     postAddTienda,
-    getByStore
+    getByStore,
+    putTienda
 }

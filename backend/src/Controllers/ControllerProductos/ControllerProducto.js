@@ -41,7 +41,7 @@ const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, Ca
 
 	if (!producto) throw new Error("El Producto no existe.");
 
-    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId});
+    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId},{where: {Id}});
 
 	return "Listo!!";
 };
