@@ -4,10 +4,8 @@ import { useForm } from 'react-hook-form';
 import '../css/Login.css';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
-import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { startGoogleAuth, startFacebookAuth } from '../redux/Actions/auth';
-import { types } from '../redux/Actions/authTypes';
 
 function Login() {
 	const {
@@ -71,14 +69,8 @@ function Login() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
-			const { JWT } = await auth(values);
-			// const { displayName, uid } = jwt_decode(JWT);
-			// dispatch({
-			// 	type: types.basicAuth,
-			// 	payload: { JWT, displayName, uid },
-			// });
+			await auth(values);
 			navigate('/store');
-
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -140,9 +132,9 @@ function Login() {
 									message: 'La contraseña es requerida.',
 								},
 								minLength: {
-									value: 7,
+									value: 8,
 									message:
-										'La contraseña debe ser mayor a 7 caracteres.',
+										'La contraseña debe ser mayor a 8 caracteres.',
 								},
 							})}
 						/>
