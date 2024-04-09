@@ -10,6 +10,9 @@ module.exports = storeModel = (sequelize) => {
     Nombre: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    Imagen: {
+        type: DataTypes.STRING
     }
   });
   return Store;

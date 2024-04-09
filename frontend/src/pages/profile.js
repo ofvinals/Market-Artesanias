@@ -30,7 +30,7 @@ function Profile() {
 			}
 		}
 		loadUser();
-	}, []);
+	}, [id, setValue]);
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {

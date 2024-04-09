@@ -17,7 +17,6 @@ function Login() {
 	} = useForm();
 	const [showPassword, setShowPassword] = useState(false);
 	const toggleShowPassword = () => setShowPassword(!showPassword);
-	const [formSubmitted, setFormSubmitted] = useState(false);
 	const { auth } = useAuth();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -71,16 +70,13 @@ function Login() {
 	};
 
 	const onSubmit = handleSubmit(async (values) => {
-		setFormSubmitted(true);
 		try {
-			const { JWT } = await auth({
-				values,
-			});
-			const { displayName: displayName, uid: uid } = jwt_decode(JWT);
-			dispatch({
-				type: types.basicAuth,
-				payload: { JWT, displayName, uid },
-			});
+			const { JWT } = await auth(values);
+			// const { displayName, uid } = jwt_decode(JWT);
+			// dispatch({
+			// 	type: types.basicAuth,
+			// 	payload: { JWT, displayName, uid },
+			// });
 			navigate('/store');
 
 			Swal.fire({
@@ -118,9 +114,7 @@ function Login() {
 						placeholder='Mail'
 						className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
 						type='email'
-						id='email'
-						name='email'
-						{...register('email', {
+						{...register('Email', {
 							required: {
 								value: true,
 								message: 'El email es requerido.',
@@ -131,17 +125,16 @@ function Login() {
 							},
 						})}
 					/>
-					{formSubmitted && errors.email && (
+					{errors.email && (
 						<span className='error-message'>{errors.email.message}</span>
 					)}
 
-					<div className='w-full h-16 flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 p-2'>
+					<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 p-2'>
 						<input
 							placeholder='Contraseña'
 							className=' text-xl w-full'
 							type={showPassword ? 'text' : 'password'}
-							autoComplete='current-password'
-							{...register('password', {
+							{...register('Contraseña', {
 								required: {
 									value: true,
 									message: 'La contraseña es requerida.',
@@ -164,7 +157,7 @@ function Login() {
 								}`}></i>
 						</button>
 					</div>
-					{formSubmitted && errors.password && (
+					{errors.password && (
 						<span className='error-message'>
 							{errors.password.message}
 						</span>

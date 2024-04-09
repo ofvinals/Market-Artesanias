@@ -9,11 +9,12 @@ const getAll = async () => {
 
 //GETBYID solo un producto.
 const getById = async (Id) => {
-    console.log(Id)
+    const producto = await Product.findByPk(Id);
+    return producto;
 };
 
 //POST Carga el producto en la DB.
-const postAdd = async (Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId) => {
+const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero = null) => {
     if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
         throw new Error("All fields are required");
 	}
@@ -22,7 +23,8 @@ const postAdd = async (Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, Ca
         Disponible,
         Precio,
         Imagen,
-        Descripcion
+        Descripcion,
+        Genero
 	});
     
     console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
@@ -33,8 +35,15 @@ const postAdd = async (Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, Ca
 }
 
 //PUT Actualiza el producto
-const putUpdate = async (Id, Nombre, Disponible,Precio,Imagen,Descripcion) => {
-    console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion)
+const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId) => {
+    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
+    const producto = await Product.findByPk(Id);
+
+	if (!producto) throw new Error("El Producto no existe.");
+
+    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId});
+
+	return "Listo!!";
 };
 
 module.exports = {

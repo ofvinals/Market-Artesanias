@@ -25,8 +25,8 @@ try {
 
 
 userModel(sequelize);
-storeModel(sequelize);
 productoModel(sequelize);
+storeModel(sequelize);
 categoryModel(sequelize);
 comprasUsuarioModel(sequelize);
 
@@ -45,9 +45,16 @@ Product.belongsTo(Store);
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
+User.hasMany(ComprasUsuario);
+ComprasUsuario.belongsTo(User);
+
+Product.hasMany(ComprasUsuario);
+ComprasUsuario.belongsTo(Product);
+
+
 // relacion mucho a mucho
-User.belongsTo(Product, { through: ComprasUsuario });
-Product.belongsTo(User, { through: ComprasUsuario });
+//User.belongsTo(Product, { through: ComprasUsuario });
+//Product.belongsTo(User, { through: ComprasUsuario });
 
 
 module.exports = {

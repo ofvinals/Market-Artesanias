@@ -34,6 +34,7 @@ export const startFacebookAuth = () => {
 	return async (dispatch) => {
 		try {
 			const provider = new FacebookAuthProvider();
+			console.log(provider)
 			const  userCredential  = await signInWithPopup(auth, provider);
 			console.log(userCredential)
 			const user = userCredential.user;
