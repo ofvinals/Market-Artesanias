@@ -31,6 +31,9 @@ module.exports = productoModel = (sequelize) => { //Aquí estamos exportando una
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true // Valor por defecto sera true
+        },
+        Genero: {
+            type: DataTypes.STRING
         }
     });
 
