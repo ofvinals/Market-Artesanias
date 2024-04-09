@@ -8,8 +8,10 @@ export const useAuth = () => {
 	const navigate = useNavigate();
 
 	const auth = async (values) => {
+		console.log(values)
 		try {
-			const res = await apiURL.post('/api/login', values);
+			// const { email, contraseña } = values; // Acceder a las claves correctas
+			const res = await apiURL.post('/Login', values);
 			if (res.status === 200) {
 				localStorage.setItem('token', res.data.token);
 				setCurrentUser(res.data);
@@ -31,5 +33,7 @@ export const useAuth = () => {
 	return {
 		auth,
 		logout,
+		currentUser,
+		errors
 	};
 };
