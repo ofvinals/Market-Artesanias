@@ -34,8 +34,15 @@ const postAdd = async (Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, Ca
 }
 
 //PUT Actualiza el producto
-const putUpdate = async (Id, Nombre, Disponible,Precio,Imagen,Descripcion) => {
-    console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion)
+const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId) => {
+    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
+    const producto = await Product.findByPk(Id);
+
+	if (!producto) throw new Error("El Producto no existe.");
+
+    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId});
+
+	return "Listo!!";
 };
 
 module.exports = {

@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const generaJsonWebToken = require('../../Jwt/GenerateJwt');
+const { Store } = require("../../db");
 const {
 	controllerByEmailUser,
 } = require('../../Controllers/ControllerUsuarios/ControllerUsuarios');
@@ -14,6 +15,8 @@ const loginNormal = async (req, res) => {
 			console.log('no ahi usuario');
 			return res.status(400).json({ error: 'No Hay Usuario Con Ese Email' });
 		}
+
+		const store = await Store.findByPk(user.Id);
 
 		if (!user.Activo) {
 			console.log('no esta activo');
@@ -37,7 +40,7 @@ const loginNormal = async (req, res) => {
 			user.Id,
 			user.Email,
 			user.Admin,
-			1
+			tienda.Id
 		);
 		console.log(user);
 		return res

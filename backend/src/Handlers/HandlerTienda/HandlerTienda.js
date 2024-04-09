@@ -10,7 +10,7 @@ const getByStore = async (req, res) => {
 		
 
 	const token = req.headers.authorization;
-    console.log(token)
+    //console.log(token)
 	
 	if (!token) {
 		return res.status(401).json({ message: 'Token no proporcionado' });
@@ -20,7 +20,7 @@ const getByStore = async (req, res) => {
 	let UserId;
 	try {
 		const tokenParts = token.split('Bearer').pop().trim();
-        
+
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		UserId = tokenized.userId;
