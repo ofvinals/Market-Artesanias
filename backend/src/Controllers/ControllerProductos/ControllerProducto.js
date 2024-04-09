@@ -9,7 +9,8 @@ const getAll = async () => {
 
 //GETBYID solo un producto.
 const getById = async (Id) => {
-    console.log(Id)
+    const producto = await Product.findByPk(Id);
+    return producto;
 };
 
 //POST Carga el producto en la DB.
