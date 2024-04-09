@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize } = require("sequelize");
 const userModel = require("./Models/User");
 const storeModel = require("./Models/Store");
 const productoModel = require("./Models/Product");
@@ -9,6 +9,7 @@ const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 const sequelize = new Sequelize(
       `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
+      // `mariadb://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
       {
             logging: false,
             native: false

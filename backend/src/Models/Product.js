@@ -12,7 +12,8 @@ module.exports = productoModel = (sequelize) => { //Aquí estamos exportando una
             allowNull: false
         },
         Imagen: {
-            type: DataTypes.ARRAY(DataTypes.TEXT),
+            // type: DataTypes.ARRAY(DataTypes.TEXT),
+            type: DataTypes.STRING,
             allowNull: false
         },
         Disponible: {
