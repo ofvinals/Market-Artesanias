@@ -3,7 +3,7 @@ import { apiURL } from '../api/apiURL.js';
 export const getUser = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/api/users/${id}`, {
+		const res = await apiURL.get(`/Registro/${id}`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -15,7 +15,7 @@ export const getUser = async (id) => {
 export const getUsers = async () => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/api/users`, {
+		const res = await apiURL.get(`/Registro`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -27,7 +27,7 @@ export const getUsers = async () => {
 export const updateUser = async (id, values) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(`/api/users/${id}`, values, {
+		const res = await apiURL.put(`/Registro/${id}`, values, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -39,7 +39,7 @@ export const updateUser = async (id, values) => {
 export const deleteUser = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.delete(`/api/users/${id}`, {
+		const res = await apiURL.delete(`/Registro/${id}`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
