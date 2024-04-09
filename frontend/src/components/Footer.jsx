@@ -6,7 +6,7 @@ function Footer() {
 	return (
 		<>
 			<div className='container-footer bg-[#E98C00] min-h-96 rounded-tl-3xl rounded-tr-3xl'>
-				<Link className='' to='/home'>
+				<Link className='mt-10' to='/home'>
 					<img className='imglogo' src='logo.jpg' alt='Logo' />
 				</Link>
 				<div className='container-link'>

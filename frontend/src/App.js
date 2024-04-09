@@ -12,6 +12,7 @@ import Search from './pages/search';
 import Categories from './pages/categories';
 
 function App() {
+	
 	return (
 		<>
 				<Routes>
