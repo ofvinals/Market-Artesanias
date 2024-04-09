@@ -42,7 +42,7 @@ function Footer() {
 							<p className='text-xl'>+54 5464677 578922</p>
 						</div>
 						<div className='flex flex-row text-center justify-start text-wrap'>
-							<i class='fa-solid fa-envelope pe-2 pt-2'></i>
+							<i className='fa-solid fa-envelope pe-2 pt-2'></i>
 							<p className='text-xl'>artesanias@gmail.com</p>
 						</div>
 					</div>

@@ -70,15 +70,13 @@ function Login() {
 	};
 
 	const onSubmit = handleSubmit(async (values) => {
-			try {
-			const { JWT } = await auth({
-				values,
-			});
-			const { displayName, uid } = jwt_decode(JWT);
-			dispatch({
-				type: types.basicAuth,
-				payload: { JWT, displayName, uid },
-			});
+		try {
+			const { JWT } = await auth(values);
+			// const { displayName, uid } = jwt_decode(JWT);
+			// dispatch({
+			// 	type: types.basicAuth,
+			// 	payload: { JWT, displayName, uid },
+			// });
 			navigate('/store');
 
 			Swal.fire({
@@ -116,9 +114,7 @@ function Login() {
 						placeholder='Mail'
 						className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
 						type='email'
-						id='email'
-						name='email'
-						{...register('email', {
+						{...register('Email', {
 							required: {
 								value: true,
 								message: 'El email es requerido.',
@@ -129,7 +125,7 @@ function Login() {
 							},
 						})}
 					/>
-					{ errors.email && (
+					{errors.email && (
 						<span className='error-message'>{errors.email.message}</span>
 					)}
 
@@ -138,8 +134,7 @@ function Login() {
 							placeholder='Contraseña'
 							className=' text-xl w-full'
 							type={showPassword ? 'text' : 'password'}
-							autoComplete='current-password'
-							{...register('password', {
+							{...register('Contraseña', {
 								required: {
 									value: true,
 									message: 'La contraseña es requerida.',
