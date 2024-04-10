@@ -19,7 +19,9 @@ const getAll = async () => {
 
 //GETBYID solo un producto.
 const getById = async (Id) => {
-    const producto = await Product.findByPk(Id);
+    const producto = await Product.findByPk(Id,{
+        include: {model: Category, attributes: ["Id","Nombre"]}
+    });
     return producto;
 };
 
