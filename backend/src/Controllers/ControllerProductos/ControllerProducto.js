@@ -18,6 +18,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
     if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
         throw new Error("All fields are required");
 	}
+    console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 	const producto = await Product.create({
         Nombre, 
         Disponible,
@@ -27,7 +28,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
         Genero
 	});
     
-    console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
+    
 	await producto.setStore(StoreId);
     console.log(producto)
 	await producto.setCategory(CategoryId);
@@ -35,13 +36,13 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
 }
 
 //PUT Actualiza el producto
-const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId) => {
+const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId, Genero = null) => {
     //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
     const producto = await Product.findByPk(Id);
 
 	if (!producto) throw new Error("El Producto no existe.");
 
-    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId},{where: {Id}});
+    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, Genero, CategoryId},{where: {Id}});
 
 	return "Listo!!";
 };

@@ -9,7 +9,6 @@ const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 const sequelize = new Sequelize(
       `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
-      // `mariadb://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
       {
             logging: false,
             native: false
