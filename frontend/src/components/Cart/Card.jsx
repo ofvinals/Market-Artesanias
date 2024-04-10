@@ -41,24 +41,24 @@ function Card() {
 
     return (
         <section className='flex flex-col mt-[49px]'>
-            <h1 className='text-4xl mb-4 text-[#9AA0A6]'>Confirmacion de compra</h1>
+            <h1 className=' text-3tl mb-4 text-general'>Confirmación de compra</h1>
             <div className='flex flex-wrap gap-8'>
 
                 {
                     products.map((product, idx) => (
-                        <div key={idx} className='bg-[#ECECEC] border border-[#A9A9A9] rounded-lg flex flex-row md:p-4 justify-between md:w-[504px] md:h-[198px]'>
+                        <div key={idx} className='bg-secondary border rounded-lg flex flex-row md:p-4 justify-between md:w-[504px] md:h-[198px]'>
                             <div className='flex flex-row '>
                                 <div className='flex flex-col '>
-                                    <h3 className='font-bold text-[20px] text-[#A9A9A9]'>{product.nombre}</h3>
-                                    <p className='mb-4 text-[16px] text-[#A9A9A9]'>{product.description}</p>
-                                    <p className='font-bold text-[20px] text-[#A9A9A9]'>${product.price}</p>
-                                    <MdDelete className='text-[#A9A9A9] size-8  cursor-pointer hover:text-red-500 mt-8' />
+                                    <h3 className='font-bold text-xl text-general'>{product.nombre}</h3>
+                                    <p className='mb-4 text-general'>{product.description}</p>
+                                    <p className='font-bold text-xl text-specific'>${product.price}</p>
+                                    <MdDelete className='text-general size-8  cursor-pointer hover:text-red-500 mt-8' />
                                 </div>
                                 <div className='flex flex-row gap-6 items-end '>
-                                    <AiOutlineMinus onClick={minus} className='text-[#A9A9A9] cursor-pointer' />
-                                    <input type="text" placeholder={product.stok} className='text-[#A9A9A9] font-bold border border-[#A9A9A9] rounded-lg w-7 pl-2' />
+                                    <AiOutlineMinus onClick={minus} className='text-general cursor-pointer size-6' />
+                                    <input type="text" placeholder={product.stok} className='text-general font-bold border border-general rounded-lg w-[49px] h-[36px] pl-4' />
                                     
-                                    <AiOutlinePlus onClick={plus} className='text-[#A9A9A9] cursor-pointer' />
+                                    <AiOutlinePlus onClick={plus} className='text-general cursor-pointer size-6' />
                                 </div>
                             </div>
                             <div>
