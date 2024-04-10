@@ -1,9 +1,19 @@
 const { Product, Store, Category }= require("../../db");
+const { Op } =  require("sequelize");
 
 
 //GET todo los productos.
 const getAll = async () => {
-    const producto = await Product.findAll();
+    const producto = await Product.findAll({
+        where: {
+            Disponible: {
+                [Op.gt]: 0 // Filtrar los libros cuya disponibilidad sea mayor que 0
+            },
+			Activo: true
+        },
+        include:  { model: Category, attributes: ["Id", "Nombre"] }
+    
+    });
     return producto;
 };
 

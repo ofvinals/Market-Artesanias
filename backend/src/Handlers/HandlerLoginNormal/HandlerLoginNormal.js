@@ -40,7 +40,7 @@ const loginNormal = async (req, res) => {
 			user.Id,
 			user.Email,
 			user.Admin,
-			store.Id
+			store?.Id
 		);
 		console.log(user);
 		return res

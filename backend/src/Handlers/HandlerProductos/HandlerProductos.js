@@ -7,9 +7,21 @@ const {
 
 //GET todo los productos.
 const getAllProducto = async (req, res) => {
+    const { Nombre } = req.query;
     try {
-        const response = await getAll();
-        return  res.status(200).json(response);
+        const responseDb = await getAll();
+        if (Nombre) {
+            const response = responseDb.filter((e) =>
+              e.Nombre.toLowerCase().includes(Nombre.toLowerCase())
+            );
+            if (response.length > 0) {
+              return res.status(200).json(response);
+            } else {
+              // Si no se encontraron libros con el nombre dado, devolvemos un array vacío
+              return res.status(200).json([]);
+            }
+        }
+        return  res.status(200).json(responseDb);
     } catch (error) {
         return  res.status(500).json({error: error.mensage});
     }
