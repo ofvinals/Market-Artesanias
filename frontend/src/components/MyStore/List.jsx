@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
 
 const products = [
-	// {
-	// 	nombre: 'Vestido Vintage',
-	// 	category: 'Pasteleria',
-	// 	date: "16/02/2024",
-	// 	image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-	// 	stok: 0,
-	// },
-	// {
-	// 	nombre: 'Vestido Vintage',
-	// 	category: 'Muebles',
-	// 	date: "10/02/2024",
-	// 	image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-	// 	stok: 0,
-	// },
-	// {
-	// 	nombre: 'Vestido Vintage',
-	// 	category: 'Vestimenta',
-	// 	date: "16/02/2023",
-	// 	image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-	// 	stok: 0,
-	// },
-	// {
-	// 	nombre: 'Vestido Vintage',
-	// 	category: 'Pasteleria',
-	// 	date: "16/01/2024",
-	// 	image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-	// 	stok: 0,
-	// },
-	// {
-	// 	nombre: 'Vestido Vintage',
-	// 	category: 'Vestimenta',
-	// 	date: "22/02/2024",
-	// 	image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-	// 	stok: 0,
-	// },
+	{
+		nombre: 'Vestido Vintage',
+		category: 'Pasteleria',
+		date: "16/02/2024",
+		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		stok: 0,
+	},
+	{
+		nombre: 'Vestido Vintage',
+		category: 'Muebles',
+		date: "10/02/2024",
+		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		stok: 0,
+	},
+	{
+		nombre: 'Vestido Vintage',
+		category: 'Vestimenta',
+		date: "16/02/2023",
+		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		stok: 0,
+	},
+	{
+		nombre: 'Vestido Vintage',
+		category: 'Pasteleria',
+		date: "16/01/2024",
+		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		stok: 0,
+	},
+	{
+		nombre: 'Vestido Vintage',
+		category: 'Vestimenta',
+		date: "22/02/2024",
+		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		stok: 0,
+	},
 ];
 
 export const List = () => {

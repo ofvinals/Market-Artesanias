@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/Navbar.jsx';
 
 function Register() {
   const {
