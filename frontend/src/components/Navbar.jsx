@@ -20,7 +20,7 @@ function NavBar() {
         <div className="flex justify-center flex-grow">
           <ul className="flex space-x-20">
             <li><Link to="/productos" className="text-white">Productos</Link></li>
-            <li><Link to="/mi-tienda" className="text-white">Mi Tienda</Link></li>
+            <li><Link to="/mistore" className="text-white">Mi Tienda</Link></li>
             <li><Link to="/nosotros" className="text-white">Nosotros</Link></li>
             <li><Link to="/contacto" className="text-white">Contacto</Link></li>
             <li><Link to="/login" className="text-white">Inicia Sesión</Link></li>
