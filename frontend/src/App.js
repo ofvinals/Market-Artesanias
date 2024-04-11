@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Store from './pages/store';
 import Detail from './pages/detail';
+import MyStore from './pages/myStore'
 import Profile from './pages/profile';
 import AboutUs from './pages/aboutUs';
 import Cart from './pages/cart';
@@ -20,6 +21,7 @@ function App() {
 					<Route path='/register' element={<Register />} />
 					<Route path='/' element={<Homepage />} />
 					<Route path='/store' element={<Store />} />
+					<Route path='/mistore' element={<MyStore />} />
 					<Route path='/store/:id' element={<Detail />} />
 					<Route path='/profile' element={<Profile />} />
 					<Route path='/aboutUs' element={<AboutUs />} />

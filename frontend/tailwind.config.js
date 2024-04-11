@@ -16,7 +16,9 @@ module.exports = {
 				'3tl': '40px',
 				'tlv': '32px',
 			},
-			
+			backgroundImage: {
+				'portada': "url('/public/fotoportada.jpg')",
+			 }
 		},
 	},
 	plugins: [],

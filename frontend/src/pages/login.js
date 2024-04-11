@@ -80,7 +80,7 @@ function Login() {
 				type: types.login,
 				payload: { Email, userId },
 			});
-			navigate('/profile');
+			navigate('/store');
 
 			Swal.fire({
 				icon: 'success',
@@ -104,7 +104,7 @@ function Login() {
 		<>
 			<NavBar />
 			<section className='container'>
-				<div className='container-login'>
+				<div className='flex flex-col justify-center items-start w-full max-w-[504px]'>
 					<h2 className='text-5xl font-semibold text-[#8B5300] mb-3'>
 						Ingresar
 					</h2>
@@ -114,7 +114,7 @@ function Login() {
 							crea una cuenta
 						</Link>
 					</p>
-					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
+					<form id='loginForm' className='w-full max-w-[504px]' onSubmit={onSubmit}>
 						<input
 							placeholder='Mail'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
@@ -131,7 +131,7 @@ function Login() {
 							})}
 						/>
 						{errors.Email && (
-							<span className='error-message'>
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 								{errors.Email.message}
 							</span>
 						)}
@@ -165,7 +165,7 @@ function Login() {
 							</button>
 						</div>
 						{errors.Contraseña && (
-							<span className='error-message'>
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 								{errors.Contraseña.message}
 							</span>
 						)}
