@@ -21,17 +21,15 @@ function NavBar() {
           <ul className="flex space-x-20">
             <li><Link to="/productos" className="text-white">Productos</Link></li>
             <li><Link to="/mi-tienda" className="text-white">Mi Tienda</Link></li>
-            <li><Link to="/nosotros" className="text-white">Nosotros</Link></li>
+            <li><Link to="/aboutUs" className="text-white">Nosotros</Link></li>
             <li><Link to="/contacto" className="text-white">Contacto</Link></li>
-            <li><Link to="/login" className="text-white">Inicia Sesión</Link></li>
-            <li><Link to="/register" className="text-white">Registrate</Link></li>
           </ul>
         </div>
         <div className="flex items-center">
-          <Link to="/carrito" className="text-white text-xl mr-4">
+          <Link to="/cart" className="text-white text-xl mr-4">
             <i className="fas fa-shopping-cart"></i>
           </Link>
-          <Link to="/buscar" className="text-white text-xl mr-4">
+          <Link to="/search" className="text-white text-xl mr-4">
             <i className="fas fa-search"></i>
           </Link>
           <Link to="/login" className="text-white text-xl mr-4">

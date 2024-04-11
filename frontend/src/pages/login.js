@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 
 function Login() {
 	const {

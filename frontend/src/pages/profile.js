@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import '../css/Profile.css';
 import Swal from 'sweetalert2';
 import { updateUser, getUser } from '../hooks/useUsers';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 import { useSelector } from 'react-redux';
 
 function Profile() {

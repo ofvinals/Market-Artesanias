@@ -12,7 +12,7 @@ function Header() {
             <h1 className="text-2xl font-inter text-white mb-8">
               El espacio ideal para artistas que quieran comercializar sus productos de manera fácil y eficaz.
             </h1><br></br>
-            <div className="flex justify-center items-center max-w-3xl mx-auto bg-white  overflow-hidden">
+            <div className="flex justify-center items-center max-w-3xl mx-auto bg-white  overflow-hidden rounded-lg">
               <input
                 type="text"
                 className="flex-1 px-4 py-2"
