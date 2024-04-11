@@ -21,7 +21,7 @@ function App() {
 					<Route path='/register' element={<Register />} />
 					<Route path='/' element={<Homepage />} />
 					<Route path='/store' element={<Store />} />
-					<Route path='/mistore' element={<MyStore />} />
+					<Route path='/mi-tienda' element={<MyStore />} />
 					<Route path='/store/:id' element={<Detail />} />
 					<Route path='/profile' element={<Profile />} />
 					<Route path='/aboutUs' element={<AboutUs />} />
