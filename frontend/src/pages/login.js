@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/Navbar.jsx';
 
 function Login() {
 	const {
@@ -24,7 +24,7 @@ function Login() {
 	const handleGoogleAuth = async () => {
 		try {
 			await dispatch(startGoogleAuth());
-			navigate('/store');
+			navigate('/mistore');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -80,7 +80,7 @@ function Login() {
 				type: types.login,
 				payload: { Email, userId },
 			});
-			navigate('/store');
+			navigate('/mistore');
 
 			Swal.fire({
 				icon: 'success',
