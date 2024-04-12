@@ -52,7 +52,9 @@
 	padding-left: 20px;
 	padding-right: 20px !important;
 }
-
+.inputlogin{
+	border: 0px none!important;
+}
 @media (min-width: 895px) {
 	.container {
 		flex-direction: row;
