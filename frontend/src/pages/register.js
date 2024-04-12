@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/Navbar.jsx';
 
 function Register() {
   const {
@@ -10,11 +10,11 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [showPassword, setShowPassword] = useState(false);
-  const toggleShowPassword = () => setShowPassword(!showPassword);
 
-  const onSubmit = handleSubmit(async (values) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
+      // Aquí iría tu lógica para enviar los datos del formulario al servidor
+      console.log(data);
       Swal.fire({
         icon: 'success',
         title: 'Registro exitoso!',
@@ -32,27 +32,23 @@ function Register() {
       });
     }
   });
+
   return (
     <main>
       <NavBar />
       <section className='container'>
         <div className='container-register'>
           <h2 className='text-5xl font-semibold text-[#8B5300] mb-3'>
-            Registrate
-          </h2><br></br>
+            Regístrate
+          </h2>
           <form id='registerForm' className='formregister' onSubmit={onSubmit}>
             <div className="flex mb-7">
               <input
                 placeholder='Nombre'
                 className='ps-4 h-16 text-xl border-2 border-[#8B5300] mr-2 rounded-xl p-2 w-1/2'
                 type='text'
-                id='firstname'
-                name='firstname'
                 {...register('firstname', {
-                  required: {
-                    value: true,
-                    message: 'El nombre es requerido',
-                  },
+                  required: 'El nombre es requerido',
                 })}
               />
               {errors.firstname && (
@@ -62,13 +58,8 @@ function Register() {
                 placeholder='Apellido'
                 className='ps-4 h-16 text-xl border-2 border-[#8B5300] ml-2 rounded-xl p-2 w-1/2'
                 type='text'
-                id='lastname'
-                name='lastname'
                 {...register('lastname', {
-                  required: {
-                    value: true,
-                    message: 'El apellido es requerido',
-                  },
+                  required: 'El apellido es requerido',
                 })}
               />
               {errors.lastname && (
@@ -79,13 +70,8 @@ function Register() {
               placeholder='Email'
               className='ps-4 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
               type='email'
-              id='email'
-              name='email'
               {...register('email', {
-                required: {
-                  value: true,
-                  message: 'El correo electrónico es requerido',
-                },
+                required: 'El correo electrónico es requerido',
                 pattern: {
                   value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
                   message: 'Correo electrónico no válido',
@@ -96,60 +82,43 @@ function Register() {
               <span className='error-message'>{errors.email.message}</span>
             )}
 
-            <div
-              className='w-full h-16 flex flex-row items-center border-2 border-[#8B5300] rounded-xl mb-9 p-2'
-              controlId='inputpassword'>
-              <input
-                placeholder='Contraseña'
-                className=' text-xl w-full'
-                type={showPassword ? 'text' : 'password'}
-                autoComplete='new-password'
-                {...register('password', {
-                  required: {
-                    value: true,
-                    message: 'La contraseña es requerida',
-                  },
-                  minLength: {
-                    value: 8,
-                    message: 'La contraseña debe tener al menos 8 caracteres',
-                  },
-                })}
-              />
-              <button
-                type='button'
-                onClick={toggleShowPassword}
-                id='vercontrasena'
-                className='btncontrasena'>
-                <i className={`far ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-              </button>
-              {errors.password && (
-                <span className='error-message'>
-                  {errors.password.message}
-                </span>
-              )}
-            </div>
-            <div className='mb-9'>
-              <button
-                className='bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
-                type='submit'>
-                Crear Cuenta
-              </button><br></br><br></br>
-              <p className='text-xl text-[#8B5300] mb-9'>
-                ¿Ya tienes una cuenta?
-                <Link to='/login' className='underline ms-1'>
-                  Inicia sesión
-                </Link>
-              </p>
-            </div>
+            <input
+              placeholder='Contraseña'
+              className='ps-4 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+              type='password'
+              {...register('password', {
+                required: 'La contraseña es requerida',
+                minLength: {
+                  value: 8,
+                  message: 'La contraseña debe tener al menos 8 caracteres',
+                },
+              })}
+            />
+            {errors.password && (
+              <span className='error-message'>{errors.password.message}</span>
+            )}
+
+            <button
+              className='bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
+              type='submit'>
+              Crear Cuenta
+            </button>
           </form>
+
+          <p className='text-xl text-[#8B5300] mt-4'>
+            ¿Ya tienes una cuenta?
+            <Link to='/login' className='underline ms-1'>
+              Inicia sesión
+            </Link>
+          </p>
         </div>
         <div className='imglogin'>
           <img src='/lupa.png' alt='register' className=''></img>
         </div>
-
       </section>
     </main>
   );
 }
 
 export default Register;
+

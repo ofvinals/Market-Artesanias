@@ -7,6 +7,7 @@ const categoryModel = require("./Models/Category");
 const comprasUsuarioModel = require("./Models/CompraUsuario");
 const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
+console.log(`${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`);
 const sequelize = new Sequelize(
       `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
       {
