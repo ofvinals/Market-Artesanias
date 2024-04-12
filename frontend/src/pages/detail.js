@@ -18,4 +18,4 @@ function detail() {
   )
 }
 
-export default detail
+export default detail;
