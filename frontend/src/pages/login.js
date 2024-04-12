@@ -24,7 +24,7 @@ function Login() {
 	const handleGoogleAuth = async () => {
 		try {
 			await dispatch(startGoogleAuth());
-			navigate('/mistore');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -48,7 +48,7 @@ function Login() {
 	const handleFacebookAuth = async () => {
 		try {
 			await dispatch(startFacebookAuth());
-			navigate('/store');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -80,7 +80,7 @@ function Login() {
 				type: types.login,
 				payload: { Email, userId },
 			});
-			navigate('/mistore');
+			navigate('/mi-tienda');
 
 			Swal.fire({
 				icon: 'success',
