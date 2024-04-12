@@ -4,17 +4,45 @@ const { Op } =  require("sequelize");
 
 //GET todo los productos.
 const getAll = async () => {
-    const producto = await Product.findAll({
+    const productos = await Product.findAll({
         where: {
             Disponible: {
-                [Op.gt]: 0 // Filtrar los libros cuya disponibilidad sea mayor que 0
-            },
-			Activo: true
+                [Op.gt]: 0 // Filtrar los productos cuya disponibilidad sea mayor que 0
+            }
         },
-        include:  { model: Category, attributes: ["Id", "Nombre"] }
-    
+        include: [
+            {
+                model: Store, // Supongo que el nombre del modelo de la tienda es 'Tienda'
+                where: {
+                    Activo: true // Filtrar las tiendas activas
+                },
+                required: true // Esto asegura que solo se devuelvan los productos que tienen una tienda activa asociada
+            },
+            {
+                model: Category,
+                attributes: ["Id", "Nombre"]
+            }
+        ]
     });
-    return producto;
+
+    return productos;
+};
+
+//GET todo los productos del vendedor.
+const getAllVendedor = async (StoreId) => {
+    console.log(StoreId)
+    const productos = await Product.findAll({
+        where: {
+            StoreId
+        },
+        include: 
+            {
+                model: Category,
+                attributes: ["Id", "Nombre"]
+            }
+    });
+
+    return productos;
 };
 
 //GETBYID solo un producto.
@@ -63,5 +91,6 @@ module.exports = {
     getAll,
     getById,
     postAdd,
-    putUpdate
+    putUpdate,
+    getAllVendedor
 }

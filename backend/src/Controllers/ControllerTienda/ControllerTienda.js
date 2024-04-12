@@ -1,4 +1,4 @@
-const { Store } = require("../../db");
+const { Store, User } = require("../../db");
 
 //GET trae solo la tiena del vendedor en la DB.
 const get = async (UserId) => {
@@ -15,6 +15,7 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 	}
 
 	const tienda = await Store.create({Nombre, Imagen, UserId});
+    await User.Update({Vendedor: true},{where: {Id: UserId}});
     
     console.log(tienda)
 	return tienda;
