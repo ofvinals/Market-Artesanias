@@ -1,8 +1,8 @@
-const { Router } = require("express");
-const loginNormal = require("../../Handlers/HandlerLoginNormal/HandlerLoginNormal");
+const { Router } = require('express');
+const loginNormal = require('../../Handlers/HandlerLoginNormal/HandlerLoginNormal');
 
 const routerLoginNormal = Router();
 
-routerLoginNormal.post("/", loginNormal);
+routerLoginNormal.post('/', loginNormal);
 
 module.exports = routerLoginNormal;

@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const routes = require("./Routes/index.js");
+const cors = require('cors');
 
 
 const server = express();
@@ -22,6 +23,16 @@ server.use((req, res, next) => {
       res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
       next();
 });
+
+server.use(
+	cors({
+		origin: [
+			'*',
+			'http://localhost:3001',
+		],
+		credentials: true,
+	})
+);
 
 server.use("/", routes);
 

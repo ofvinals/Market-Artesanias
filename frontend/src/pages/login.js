@@ -6,8 +6,8 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
-import { startGoogleAuth, startFacebookAuth } from '../redux/Actions/auth';
 import { types } from '../redux/Actions/authTypes';
+import NavBar from '../components/Navbar.jsx';
 
 function Login() {
 	const {
@@ -17,15 +17,14 @@ function Login() {
 	} = useForm();
 	const [showPassword, setShowPassword] = useState(false);
 	const toggleShowPassword = () => setShowPassword(!showPassword);
-	const [formSubmitted, setFormSubmitted] = useState(false);
-	const { auth } = useAuth();
+	const { auth, startGoogleAuth, startFacebookAuth } = useAuth();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleGoogleAuth = async () => {
 		try {
 			await dispatch(startGoogleAuth());
-			navigate('/store');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -49,7 +48,7 @@ function Login() {
 	const handleFacebookAuth = async () => {
 		try {
 			await dispatch(startFacebookAuth());
-			navigate('/store');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -71,17 +70,17 @@ function Login() {
 	};
 
 	const onSubmit = handleSubmit(async (values) => {
-		setFormSubmitted(true);
 		try {
-			const { JWT } = await auth({
-				values,
-			});
-			const { displayName: displayName, uid: uid } = jwt_decode(JWT);
+			const res = await auth(values);
+			const { accesoWJT } = res.data;
+			const decodedToken = jwt_decode(accesoWJT);
+			console.log(decodedToken);
+			const { Email, userId } = decodedToken;
 			dispatch({
-				type: types.basicAuth,
-				payload: { JWT, displayName, uid },
+				type: types.login,
+				payload: { Email, userId },
 			});
-			navigate('/store');
+			navigate('/mi-tienda');
 
 			Swal.fire({
 				icon: 'success',
@@ -102,110 +101,112 @@ function Login() {
 	});
 
 	return (
-		<section className='container'>
-			<div className='container-login'>
-				<h2 className='text-5xl font-semibold text-[#8B5300] mb-3'>
-					Ingresar
-				</h2>
-				<p className='text-xl text-[#8B5300] mb-9'>
-					Inicia sesion o
-					<Link to='/register' className=' linkregister underline ms-1'>
-						crea una cuenta
-					</Link>
-				</p>
-				<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
-					<input
-						placeholder='Mail'
-						className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
-						type='email'
-						id='email'
-						name='email'
-						{...register('email', {
-							required: {
-								value: true,
-								message: 'El email es requerido.',
-							},
-							pattern: {
-								value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-								message: 'Email no válido.',
-							},
-						})}
-					/>
-					{formSubmitted && errors.email && (
-						<span className='error-message'>{errors.email.message}</span>
-					)}
-
-					<div className='w-full h-16 flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 p-2'>
+		<>
+			<NavBar />
+			<section className='container'>
+				<div className='flex flex-col justify-center items-start w-full max-w-[504px]'>
+					<h2 className='text-5xl font-semibold text-[#8B5300] mb-3'>
+						Ingresar
+					</h2>
+					<p className='text-xl text-[#8B5300] mb-9'>
+						Inicia sesion o
+						<Link to='/register' className=' linkregister underline ms-1'>
+							crea una cuenta
+						</Link>
+					</p>
+					<form id='loginForm' className='w-full max-w-[504px]' onSubmit={onSubmit}>
 						<input
-							placeholder='Contraseña'
-							className=' text-xl w-full'
-							type={showPassword ? 'text' : 'password'}
-							autoComplete='current-password'
-							{...register('password', {
+							placeholder='Mail'
+							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
+							type='email'
+							{...register('Email', {
 								required: {
 									value: true,
-									message: 'La contraseña es requerida.',
+									message: 'El email es requerido.',
 								},
-								minLength: {
-									value: 7,
-									message:
-										'La contraseña debe ser mayor a 7 caracteres.',
+								pattern: {
+									value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+									message: 'Email no válido.',
 								},
 							})}
 						/>
-						<button
-							type='button'
-							onClick={toggleShowPassword}
-							id='vercontrasena'
-							className='btncontrasena'>
-							<i
-								className={`far ${
-									showPassword ? 'fa-eye-slash' : 'fa-eye'
-								}`}></i>
-						</button>
-					</div>
-					{formSubmitted && errors.password && (
-						<span className='error-message'>
-							{errors.password.message}
-						</span>
-					)}
+						{errors.Email && (
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+								{errors.Email.message}
+							</span>
+						)}
 
-					<div className='my-7 recpassword'>
-						<Link className='text-xl text-[#8B5300]' to='/'>
-							¿ Olvidaste tu contraseña ?
-						</Link>
-					</div>
+						<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 px-2'>
+							<input
+								placeholder='Contraseña'
+								className='inputlogin text-xl w-full h-full'
+								type={showPassword ? 'text' : 'password'}
+								{...register('Contraseña', {
+									required: {
+										value: true,
+										message: 'La contraseña es requerida.',
+									},
+									minLength: {
+										value: 8,
+										message:
+											'La contraseña debe ser mayor a 8 caracteres.',
+									},
+								})}
+							/>
+							<button
+								type='button'
+								onClick={toggleShowPassword}
+								id='vercontrasena'
+								className='btncontrasena'>
+								<i
+									className={`far ${
+										showPassword ? 'fa-eye-slash' : 'fa-eye'
+									}`}></i>
+							</button>
+						</div>
+						{errors.Contraseña && (
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+								{errors.Contraseña.message}
+							</span>
+						)}
 
-					<div className='mb-9'>
-						<button
-							className='btnlogin bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
-							type='submit'>
-							Continuar
-						</button>
-					</div>
+						<div className='my-7 recpassword'>
+							<Link className='text-xl text-[#8B5300]' to='/'>
+								¿ Olvidaste tu contraseña ?
+							</Link>
+						</div>
 
-					<p className='mb-9  text-center text-xl'>O</p>
-					<div className='flex flex-col'>
-						<button
-							className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 mb-9 rounded-xl'
-							onClick={handleGoogleAuth}>
-							GMail
-						</button>
-						<button
-							className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 rounded-xl'
-							onClick={handleFacebookAuth}>
-							Facebook
-						</button>
-					</div>
-				</form>
-			</div>
-			<div className='imglogin'>
-				<img
-					src='/blue magnifying glass with resume sheet.svg'
-					alt='login'
-					className=''></img>
-			</div>
-		</section>
+						<div className='mb-9'>
+							<button
+								className='btnlogin bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
+								type='submit'>
+								Continuar
+							</button>
+						</div>
+
+						<p className='mb-9  text-center text-xl'>O</p>
+						<div className='flex flex-col'>
+							<button
+								className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 mb-9 rounded-xl'
+								onClick={handleGoogleAuth}>
+								GMail
+							</button>
+							<button
+								className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 rounded-xl'
+								onClick={handleFacebookAuth}>
+								Facebook
+							</button>
+						</div>
+					</form>
+				</div>
+				<div className='imglogin'>
+					<img
+						src='/blue magnifying glass with resume sheet.svg'
+						alt='login'
+						className=''></img>
+				</div>
+			</section>
+		</>
 	);
 }
 
