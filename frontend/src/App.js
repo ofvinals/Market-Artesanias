@@ -11,6 +11,7 @@ import AboutUs from './pages/aboutUs';
 import Cart from './pages/cart';
 import Search from './pages/search';
 import Categories from './pages/categories';
+import Dashboard from './pages/dashboard';
 
 function App() {
 	
@@ -28,6 +29,7 @@ function App() {
 					<Route path='/cart' element={<Cart />} />
 					<Route path='/search' element={<Search />} />
 					<Route path='/categories' element={<Categories />} />
+					<Route path='/dashboard' element={<Dashboard />} />
 				</Routes>
 		</>
 	);

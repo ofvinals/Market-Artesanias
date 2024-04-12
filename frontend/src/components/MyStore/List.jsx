@@ -47,8 +47,8 @@ export const List = () => {
 
 	return (
 		<>
-			<div className='mt-24 flex flex-row items-start justify-center'>
-				<div className='w-6/12 ms-10'>
+			<div className='mt-24 flex flex-col sm:flex-row items-center sm:items-start justify-center '>
+				<div className='w-6/12 ms-3 flex flex-col'>
 					<h1 className='text-xl font-bold text-specific mb-8'>
 						Productos Vendidos
 					</h1>
@@ -57,7 +57,7 @@ export const List = () => {
 						productsToShow.map((product, idx) => (
 							<div
 								key={idx}
-								className='bg-white flex flex-col items-start justify-around w-full h-[150px] my-5'>
+								className='bg-white flex flex-col items-start justify-around w-full max-w-[400px] h-[150px] my-5'>
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
@@ -89,7 +89,7 @@ export const List = () => {
 						</p>
 					)}
 					{!showMore && products.length > 4 && (
-						<div className='flex justify-end'>
+						<div className='flex justify-end max-w-[400px]'>
 							<a href='/'>
 								<button
 									onClick={toggleShowMore}
@@ -101,7 +101,7 @@ export const List = () => {
 					)}
 				</div>
 
-				<div className='w-6/12 ms-10'>
+				<div className='w-6/12 ms-7 me-3 flex flex-col mt-10 sm:mt-0'>
 					<h2 className='text-xl font-bold text-specific mb-8'>
 						Productos Comprados
 					</h2>
@@ -110,7 +110,7 @@ export const List = () => {
 						productsToShow.map((product, idx) => (
 							<div
 								key={idx}
-								className='bg-white flex flex-col items-start justify-around w-full h-[150px] my-5'>
+								className='bg-white flex flex-col items-start justify-around w-full max-w-[400px] h-[150px] my-5'>
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
@@ -142,7 +142,7 @@ export const List = () => {
 						</p>
 					)}
 					{!showMore && products.length > 4 && (
-						<div className='flex justify-end'>
+						<div className='flex justify-end max-w-[400px]'>
 							<a href='/'>
 								<button
 									onClick={toggleShowMore}
