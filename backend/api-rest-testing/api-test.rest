@@ -1,0 +1,17 @@
+# Crear un nuevo Producto
+http://localhost:3001
+-v
+Content-Type: application/json
+User-Agent: VRC
+POST /Producto
+{
+      "Nombre": "Maceta",
+      "Imagen": "https://url.com.ar",
+      "Disponible": 1,
+      "Precio": 13.55,
+      "Descripcion": "Un recipiente para plantar flores",
+      "Activo": true,
+      "StoreId": 1,
+      "CategoryId": 1
+}
+
