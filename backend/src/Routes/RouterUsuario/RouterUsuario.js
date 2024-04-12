@@ -5,6 +5,6 @@ const routerUsuario = Router();
 
 routerUsuario.get("/", getAllUsuario);
 routerUsuario.post("/", postAddUsuario);
-routerUsuario.put("/", putEditUsuario);
+// routerUsuario.put("/", putEditUsuario);
 
 module.exports = routerUsuario;
