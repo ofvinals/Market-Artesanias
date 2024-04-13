@@ -40,7 +40,7 @@
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 /backend/build/
 # dotenv environment variable files
-# /backend/.env
+/backend/.env
 /backend/.env.development.local
 /backend/.env.test.local
 /backend/.env.production.local
