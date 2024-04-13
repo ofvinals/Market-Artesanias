@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/Navbar.jsx';
 
 function Login() {
 	const {
@@ -24,7 +24,7 @@ function Login() {
 	const handleGoogleAuth = async () => {
 		try {
 			await dispatch(startGoogleAuth());
-			navigate('/store');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -48,7 +48,7 @@ function Login() {
 	const handleFacebookAuth = async () => {
 		try {
 			await dispatch(startFacebookAuth());
-			navigate('/store');
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -72,16 +72,20 @@ function Login() {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
+			console.log(res);
 			const { accesoWJT } = res.data;
 			const decodedToken = jwt_decode(accesoWJT);
 			console.log(decodedToken);
-			const { Email, userId } = decodedToken;
+			const { Email, userId, Admin } = decodedToken;
 			dispatch({
 				type: types.login,
-				payload: { Email, userId },
+				payload: { Email, userId, Admin },
 			});
-			navigate('/profile');
-
+			if (Admin) {
+				navigate('/dashboard');
+			} else {
+				navigate('/mi-tienda');
+			}
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -104,7 +108,7 @@ function Login() {
 		<>
 			<NavBar />
 			<section className='container'>
-				<div className='container-login'>
+				<div className='flex flex-col justify-center items-start w-full max-w-[504px]'>
 					<h2 className='text-5xl font-semibold text-[#8B5300] mb-3'>
 						Ingresar
 					</h2>
@@ -114,7 +118,10 @@ function Login() {
 							crea una cuenta
 						</Link>
 					</p>
-					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
+					<form
+						id='loginForm'
+						className='w-full max-w-[504px]'
+						onSubmit={onSubmit}>
 						<input
 							placeholder='Mail'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
@@ -131,7 +138,7 @@ function Login() {
 							})}
 						/>
 						{errors.Email && (
-							<span className='error-message'>
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 								{errors.Email.message}
 							</span>
 						)}
@@ -165,7 +172,7 @@ function Login() {
 							</button>
 						</div>
 						{errors.Contraseña && (
-							<span className='error-message'>
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 								{errors.Contraseña.message}
 							</span>
 						)}

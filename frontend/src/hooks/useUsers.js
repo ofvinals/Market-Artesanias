@@ -48,4 +48,20 @@ export const deleteUser = async (id) => {
 	}
 };
 
-
+export const disableUser = async (id) => {
+	try {
+		const token = localStorage.getItem('token');
+		const res = await apiURL.put(
+			`/Registro/${id}`,
+			{
+				Activo: false, 
+			},
+			{
+				headers: { 'x-token': token },
+			}
+		);
+		return res.data;
+	} catch (error) {
+		console.error(error);
+	}
+};

@@ -1,36 +1,3 @@
-### Recuperar todos los productos
-GET http://localhost:3001/Producto
-
 ### Recuperar todas las películas
-GET http://localhost:3001/Producto/1
-
-### Crear un nuevo Producto
-POST http://localhost:3001/Producto
-Content-Type: application/json
-
-{
-      "Nombre": "Maceta",
-      "Imagen": "https://url.com.ar",
-      "Disponible": 1,
-      "Precio": 13.55,
-      "Descripcion": "Un recipiente para plantar flores",
-      "Activo": true,
-      "StoreId": 1,
-      "CategoryId": 1,
-}
-
-
-### Recuperar todas las categorias
-GET http://localhost:3001/Categoria
-Content-Type: application/json
-
-
-### Crear una nueva categoria (recurso / registro en db)
-POST http://localhost:3001/Categoria
-Content-Type: application/json
-
-{
-      "Nombre": "ARMAS"
-}
-
+GET 127.0.0.1:3657/usuario1
 

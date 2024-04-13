@@ -1,0 +1,60 @@
+# Global definitions.
+// Default host.
+http://localhost:3001
+# -v
+-s
+-i
+Accept: application/json
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+User-Agent: VRC
+--
+
+#
+# Recuperar todos los productos
+#
+--
+GET /Producto
+
+#
+# Recuperar todas las películas
+#
+--
+GET /Producto/1
+
+# Crear un nuevo Producto (Corregir)
+# --
+# POST /Producto
+# {
+#       "Nombre": "Maceta",
+#       "Imagen": "https://url.com.ar",
+#       "Disponible": 1,
+#       "Precio": 13.55,
+#       "Descripcion": "Un recipiente para plantar flores",
+#       "Activo": true,
+#       "Genero": "Femenino",
+#       "StoreId": 1,
+#       "CategoryId": 1,
+# }
+
+### Recuperar todas las categorias
+--
+GET /Categoria
+
+
+### Crear una nueva categoria (recurso / registro en db)
+--
+POST /Categoria
+{
+      "Nombre": "Accesorios"
+}
+
+# Crear nuevo usuario ( Registro )
+--
+POST /Registro
+{
+      "Nombre": "Javier",
+      "Apellido": "Pignataro",
+      "Email": "jgp.workmail@gmail.com",
+      "Contraseña": "123456789"
+}

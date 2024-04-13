@@ -1,8 +1,8 @@
 import { types } from '../Actions/authTypes';
 
-export const login = (userId, Email) => ({
+export const login = (userId, Email, Admin) => ({
 	type: types.login,
-	payload: { userId, Email },
+	payload: { userId, Email, Admin },
 });
 
 export const logout = () => ({
