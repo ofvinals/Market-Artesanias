@@ -55,6 +55,19 @@ POST /Registro
 {
       "Nombre": "Javier",
       "Apellido": "Pignataro",
-      "Email": "jgp.workmail@gmail.com",
+      "Email": "mail@gmail.com",
       "Contraseña": "123456789"
 }
+
+# Loguear un usuario
+--
+POST /Login
+{
+      "Email": "mail@gmail.com",
+      "Contraseña": "123456789"
+}
+
+# Obtener usuarios
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzAzNjQ1NywiZXhwIjoxNzEzMTIyODU3fQ.hgx2H_3xUaME_rK9n33VKc_TYmHd_rrb-jXt7oqiW1s
+GET /Usuario
