@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import { FreeMode, Pagination, Navigation } from 'swiper/modules'
-import { TfiArrowCircleRight, TfiArrowCircleLeft } from "react-icons/tfi";
+import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
@@ -73,14 +72,14 @@ const OTROSPRODUCTOS = [
 ]
 
 function OthersProducts() {
-    const swiper = useSwiper()
+    // const swiper = useSwiper()
 
-    const nextSlide = () =>{
-        swiper.slideNext()
-    }
-    const prevSlide = () =>{
-        swiper.slidePrev()
-    }
+    // const nextSlide = () =>{
+    //     swiper.slideNext()
+    // }
+    // const prevSlide = () =>{
+    //     swiper.slidePrev()
+    // }
 
 
 
