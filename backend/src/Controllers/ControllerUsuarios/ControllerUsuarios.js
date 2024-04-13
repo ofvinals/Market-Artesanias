@@ -16,8 +16,15 @@ const controllerByEmailUser = async (Email) => {
 
 const editUsuario = async () => {}
 
+const getById = async (Id) => {
+      const usuario = await User.findByPk(1);
+      return usuario;
+};
+
+
 module.exports = {
       getAll,
       controllerByEmailUser,
-      editUsuario
+      editUsuario,
+      getById
 }

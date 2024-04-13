@@ -69,5 +69,11 @@ POST /Login
 
 # Obtener usuarios
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzAzNjQ1NywiZXhwIjoxNzEzMTIyODU3fQ.hgx2H_3xUaME_rK9n33VKc_TYmHd_rrb-jXt7oqiW1s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA0MzIwMywiZXhwIjoxNzEzMTI5NjAzfQ.mVxJsDRuji521Pvdmfd9-G8CtdmkuiBooPfy6YrsnfM
 GET /Usuario
+
+# Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
+
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA0MzIwMywiZXhwIjoxNzEzMTI5NjAzfQ.mVxJsDRuji521Pvdmfd9-G8CtdmkuiBooPfy6YrsnfM
+GET /Usuario/1
