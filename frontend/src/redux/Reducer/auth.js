@@ -13,6 +13,7 @@ export const authReducer = (state = initialState, action) => {
 			console.log('Recibida acción de inicio de sesión:', action);
 			console.log('Estado anterior:', state);
 			const newState = {
+				...state,
 				id: action.payload.userId,
 				email: action.payload.Email,
 				isLoggedIn: true,
