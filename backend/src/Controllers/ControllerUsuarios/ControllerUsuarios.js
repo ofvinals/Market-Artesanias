@@ -17,14 +17,36 @@ const controllerByEmailUser = async (Email) => {
 const editUsuario = async () => {}
 
 const getById = async (Id) => {
-      const usuario = await User.findByPk(1);
+      const usuario = await User.findByPk(Id);
       return usuario;
 };
+
+
+const updateById = async ( fields ) => {
+
+      // Existe el usuario con Id
+      const usuario = await User.findByPk(fields.Id);
+      // console.log( fields );
+      // console.log( usuario );
+
+      if (!usuario) throw new Error("El Usuario no existe.");
+
+      await usuario.update({
+            Nombre: fields.Nombre,
+            Apellido: fields.Apellido,
+            Genero: fields.Genero,
+            FechaNacimiento: fields.FechaNacimiento,
+            Ubicacion: fields.Ubicacion
+      });
+
+      return "Usuario Actualizado!!";
+}
 
 
 module.exports = {
       getAll,
       controllerByEmailUser,
       editUsuario,
-      getById
+      getById,
+      updateById,
 }

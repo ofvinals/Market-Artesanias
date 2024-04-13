@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getAllUsuario, putEditUsuario, getUsuarioById } = require("../../Handlers/HandlerUsuario/HanlderUsuario.js");
+const { getAllUsuario, patchEditUsuario, getUsuarioById } = require("../../Handlers/HandlerUsuario/HanlderUsuario.js");
 const jwt = require( "jsonwebtoken" );
 const { JWT_SECRET } = process.env;
 
@@ -7,7 +7,7 @@ const routerUsuario = Router();
 
 routerUsuario.get("/", validateToken, getAllUsuario);
 routerUsuario.get("/:Id", validateToken, getUsuarioById);
-routerUsuario.put("/", putEditUsuario);
+routerUsuario.patch("/:Id", validateToken, patchEditUsuario);
 
 function validateToken( req, res, next )
 {

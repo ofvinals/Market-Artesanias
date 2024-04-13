@@ -49,9 +49,9 @@ POST /Categoria
       "Nombre": "Accesorios"
 }
 
-# Crear nuevo usuario ( Registro )
+# Crear nuevo usuario  ( Registro )
 --
-POST /Registro
+POST /Registro # (Javier)
 {
       "Nombre": "Javier",
       "Apellido": "Pignataro",
@@ -59,21 +59,42 @@ POST /Registro
       "Contraseña": "123456789"
 }
 
+# Crear nuevo usuario  ( Registro )
+--
+POST /Registro # (Michael Jackson)
+{
+      "Nombre": "Michael",
+      "Apellido": "Jackson",
+      "Email": "mail2@gmail.com",
+      "Contraseña": "123456789"
+}
+
 # Loguear un usuario
 --
-POST /Login
+POST /Login # (Javier)
 {
-      "Email": "mail@gmail.com",
+      "Email": "mail2@gmail.com",
       "Contraseña": "123456789"
 }
 
 # Obtener usuarios
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA0MzIwMywiZXhwIjoxNzEzMTI5NjAzfQ.mVxJsDRuji521Pvdmfd9-G8CtdmkuiBooPfy6YrsnfM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA1MDc5OCwiZXhwIjoxNzEzMTM3MTk4fQ.PqKUGEGqKMJlQTSg-zh5FGFh6u32CKOEadhqIzWpL7o
 GET /Usuario
 
 # Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
-
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA0MzIwMywiZXhwIjoxNzEzMTI5NjAzfQ.mVxJsDRuji521Pvdmfd9-G8CtdmkuiBooPfy6YrsnfM
-GET /Usuario/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
+GET /Usuario/2
+
+# Editar / Modificar un usuario Por ID
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
+PATCH /Usuario/2
+{
+      "Nombre": "Hector",
+      "Apellido": "Soler",
+      "Genero": "Masculino",
+      "FechaNacimiento": "2024-04-13T22:17:12.837Z",
+      "Ubicacion": "Buenos Aires, Argentina"
+}

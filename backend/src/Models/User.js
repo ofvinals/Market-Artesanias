@@ -50,6 +50,11 @@ module.exports = storeModel = (sequelize) => {
                   type: DataTypes.STRING,
                   allowNull: true,
                   defaultValue: ""
+            },
+            FechaNacimiento: {
+                  type: DataTypes.DATE,
+                  allowNull: true,
+                  defaultValue: null
             }
       });
       return User;
