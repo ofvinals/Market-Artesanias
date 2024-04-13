@@ -8,7 +8,6 @@ import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
 import NavBar from '../components/Navbar.jsx';
-import { useSelector } from 'react-redux';
 
 function Login() {
 	const {
@@ -21,7 +20,6 @@ function Login() {
 	const { auth, startGoogleAuth, startFacebookAuth } = useAuth();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 	const handleGoogleAuth = async () => {
 		try {
@@ -73,10 +71,6 @@ function Login() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
-			if (isLoggedIn) {
-				navigate('/mi-tienda');
-				return;
-			}
 			const res = await auth(values);
 			console.log(res);
 			const { accesoWJT } = res.data;

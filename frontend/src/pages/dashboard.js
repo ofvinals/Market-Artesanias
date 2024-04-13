@@ -9,18 +9,18 @@ function Dashboard() {
 	const admin = useSelector((state) => state.auth.admin);
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!admin) {
-			navigate('/');
-			Swal.fire({
-				icon: 'error',
-				title: 'Ingreso rechazado',
-				text: 'No tiene autorizacion para ingresar!',
-				showConfirmButton: false,
-				timer: 3000,
-			});
-		}
-	}, [admin, navigate]);
+	// useEffect(() => {
+	// 	if (!admin) {
+	// 		navigate('/');
+	// 		Swal.fire({
+	// 			icon: 'error',
+	// 			title: 'Ingreso rechazado',
+	// 			text: 'No tiene autorizacion para ingresar!',
+	// 			showConfirmButton: false,
+	// 			timer: 3000,
+	// 		});
+	// 	}
+	// }, [admin, navigate]);
 
 	return (
 		<>
