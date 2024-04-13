@@ -40,7 +40,7 @@ export const Table = ({ columns, data, actions }) => {
 						className=' flex items-center justify-center '
 						onClick={() => action.onClick(row)}>
 						<span
-							className='text-red-700 m-1 text-3xl hover:opacity-50'>
+							className='text-red-700 ms-3 text-center text-2xl hover:opacity-50'>
 							{action.icon}
 						</span>
 				

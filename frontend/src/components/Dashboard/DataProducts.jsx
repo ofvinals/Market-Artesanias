@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getProducts, deleteProduct } from '../../hooks/useUsers';
-import { FaCalendarTimes } from 'react-icons/fa';
+import { getProducts, deleteProduct } from '../../hooks/useProducts';
+import { FaTrashAlt } from "react-icons/fa";
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -9,17 +10,18 @@ import Swal from 'sweetalert2';
 export const DataProducts = () => {
 	const [data, setData] = useState([]);
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const products = await getProducts();
-	// 			setData(products);
-	// 		} catch (error) {
-	// 			console.error('Error al obtener productos', error);
-	// 		}
-	// 	};
-	// 	fetchData();
-	// }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const products = await getProducts();
+				console.log(products)
+				setData(products);
+			} catch (error) {
+				console.error('Error al obtener productos', error);
+			}
+		};
+		fetchData();
+	}, []);
 
 	const columns = useMemo(
 		() => [
@@ -60,14 +62,14 @@ export const DataProducts = () => {
 	const actions = [
 		{
 			text: 'Eliminar',
-			icon: <FaCalendarTimes />,
+			icon: <FaTrashAlt />,
 			onClick: (row) => {
-				deleteProduct(row.original._id);
+				delProduct(row.original._id);
 			},
 		},
 	];
 
-	async function deleteProduct(id) {
+	async function delProduct(id) {
 		const result = await Swal.fire({
 			title: 'Confirmas la eliminacion del producto?',
 			icon: 'warning',

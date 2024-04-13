@@ -102,7 +102,7 @@ export const Products = () => {
 					currentProducts.map((product, idx) => (
 						<div
 							key={idx}
-							className='bg-white shadow-lg rounded-xl border-[#D9D9D9] border-2 flex flex-col items-center justify-between w-full max-w-[296px] h-[261px]'>
+							className='bg-white shadow-lg rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
 							<div className='flex flex-col h-[261px]'>
 								<div>
 									<a href="/"><img

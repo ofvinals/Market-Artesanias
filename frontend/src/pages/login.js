@@ -8,6 +8,7 @@ import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
 import NavBar from '../components/Navbar.jsx';
+import { useSelector } from 'react-redux';
 
 function Login() {
 	const {
@@ -20,6 +21,7 @@ function Login() {
 	const { auth, startGoogleAuth, startFacebookAuth } = useAuth();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 	const handleGoogleAuth = async () => {
 		try {
@@ -71,17 +73,25 @@ function Login() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
+			if (isLoggedIn) {
+				navigate('/mi-tienda');
+				return;
+			}
 			const res = await auth(values);
+			console.log(res);
 			const { accesoWJT } = res.data;
 			const decodedToken = jwt_decode(accesoWJT);
 			console.log(decodedToken);
-			const { Email, userId } = decodedToken;
+			const { Email, userId, Admin } = decodedToken;
 			dispatch({
 				type: types.login,
-				payload: { Email, userId },
+				payload: { Email, userId, Admin },
 			});
-			navigate('/mi-tienda');
-
+			if (Admin) {
+				navigate('/dashboard');
+			} else {
+				navigate('/mi-tienda');
+			}
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -114,7 +124,10 @@ function Login() {
 							crea una cuenta
 						</Link>
 					</p>
-					<form id='loginForm' className='w-full max-w-[504px]' onSubmit={onSubmit}>
+					<form
+						id='loginForm'
+						className='w-full max-w-[504px]'
+						onSubmit={onSubmit}>
 						<input
 							placeholder='Mail'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'

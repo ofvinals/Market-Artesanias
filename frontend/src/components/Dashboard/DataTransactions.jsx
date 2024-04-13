@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getTransactions } from '../../hooks/useUsers';
+import { getTransactions } from '../../hooks/useTransactions';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -7,29 +7,29 @@ import { Table } from './Table.jsx';
 export const DataTransactions = () => {
 	const [data, setData] = useState([]);
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const products = await getProducts();
-	// 			setData(products);
-	// 		} catch (error) {
-	// 			console.error('Error al obtener productos', error);
-	// 		}
-	// 	};
-	// 	fetchData();
-	// }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const transactions = await getTransactions();
+				setData(transactions);
+			} catch (error) {
+				console.error('Error al obtener las transacciones', error);
+			}
+		};
+		fetchData();
+	}, []);
 
 	const columns = useMemo(
 		() => [
 			{
-				header: 'Nombre',
+				header: 'Nombre Comprador',
 				accessorKey: 'nombre',
 				enableColumnOrdering: false,
 				size: 50,
 			},
 			{
-				header: 'Categoria',
-				accessorKey: 'genero',
+				header: 'Producto',
+				accessorKey: 'producto',
 				enableColumnOrdering: false,
 				size: 50,
 			},
@@ -46,8 +46,8 @@ export const DataTransactions = () => {
 				size: 50,
 			},
 			{
-				header: 'Activo',
-				accessorKey: 'activo',
+				header: 'Nombre Vendedor',
+				accessorKey: 'vendedor',
 				enableColumnOrdering: false,
 				size: 50,
 			},

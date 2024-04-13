@@ -1,9 +1,9 @@
 import { apiURL } from '../api/apiURL.js';
 
-export const getUser = async (id) => {
+export const getProduct = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/Registro/${id}`, {
+		const res = await apiURL.get(`/Producto/${id}`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -12,10 +12,10 @@ export const getUser = async (id) => {
 	}
 };
 
-export const getUsers = async () => {
+export const getProducts = async () => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/Registro`, {
+		const res = await apiURL.get(`/Producto`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -24,10 +24,10 @@ export const getUsers = async () => {
 	}
 };
 
-export const updateUser = async (id, values) => {
+export const updateProduct = async (id, values) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(`/Registro/${id}`, values, {
+		const res = await apiURL.put(`/Producto/${id}`, values, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -36,10 +36,10 @@ export const updateUser = async (id, values) => {
 	}
 };
 
-export const deleteUser = async (id) => {
+export const deleteProduct = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.delete(`/Registro/${id}`, {
+		const res = await apiURL.delete(`/Producto/${id}`, {
 			headers: { 'x-token': token },
 		});
 		return res.data;
@@ -48,20 +48,4 @@ export const deleteUser = async (id) => {
 	}
 };
 
-export const disableUser = async (id) => {
-	try {
-		const token = localStorage.getItem('token');
-		const res = await apiURL.put(
-			`/Registro/${id}`,
-			{
-				Activo: false, 
-			},
-			{
-				headers: { 'x-token': token },
-			}
-		);
-		return res.data;
-	} catch (error) {
-		console.error(error);
-	}
-};
+
