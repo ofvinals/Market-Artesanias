@@ -73,21 +73,21 @@ POST /Registro # (Michael Jackson)
 --
 POST /Login # (Javier)
 {
-      "Email": "mail2@gmail.com",
+      "Email": "mail@gmail.com",
       "Contraseña": "123456789"
 }
 
-# Obtener usuarios
+# Obtener usuarios ---> # En esta Request El JWT Debe ir en el header de "Authorization"
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA1MDc5OCwiZXhwIjoxNzEzMTM3MTk4fQ.PqKUGEGqKMJlQTSg-zh5FGFh6u32CKOEadhqIzWpL7o
 GET /Usuario
 
-# Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
+# Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID) ---> # En esta Request El JWT Debe ir en el header de "Authorization"
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
 GET /Usuario/2
 
-# Editar / Modificar un usuario Por ID
+# Editar / Modificar un usuario Por ID ---> # En esta Request El JWT Debe ir en el header de "Authorization"
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
 PATCH /Usuario/2
