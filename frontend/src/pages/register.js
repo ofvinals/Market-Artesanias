@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import NavBar from '../components/Navbar.jsx';
 
 function Register() {
@@ -13,20 +14,24 @@ function Register() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      // Aquí iría tu lógica para enviar los datos del formulario al servidor
-      console.log(data);
-      Swal.fire({
-        icon: 'success',
-        title: 'Registro exitoso!',
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      console.log('Datos del formulario:', data);
+      const response = await axios.post('http://localhost:3001/Registro', data);
+      console.log('Respuesta del servidor:', response);
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso!',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error de red:', error);
+      console.error('Respuesta de error:', error.response?.data);
       Swal.fire({
         icon: 'error',
         title: 'Error al registrarse',
-        text: 'Hubo un problema al procesar tu registro.',
+        text: error.response?.data?.message || 'Hubo un problema al procesar tu registro.',
         showConfirmButton: false,
         timer: 1500,
       });
@@ -42,7 +47,7 @@ function Register() {
             Regístrate
           </h2>
           <form id='registerForm' className='formregister' onSubmit={onSubmit}>
-            <div className="flex mb-7">
+          <div className="flex mb-7">
               <input
                 placeholder='Nombre'
                 className='ps-4 h-16 text-xl border-2 border-[#8B5300] mr-2 rounded-xl p-2 w-1/2'
@@ -103,7 +108,7 @@ function Register() {
               type='submit'>
               Crear Cuenta
             </button>
-          </form>
+            </form>
 
           <p className='text-xl text-[#8B5300] mt-4'>
             ¿Ya tienes una cuenta?
@@ -113,7 +118,7 @@ function Register() {
           </p>
         </div>
         <div className='imglogin'>
-          <img src='/lupa.png' alt='register' className=''></img>
+          <img src='/lupa.png' alt='register' className='' />
         </div>
       </section>
     </main>
@@ -121,4 +126,5 @@ function Register() {
 }
 
 export default Register;
+
 

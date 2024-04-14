@@ -17,13 +17,13 @@ function NavBar() {
           {!isHome && (
             <div className="h-16 w-24">
               <Link to='/'>
-                <img src="/logo.jpg" alt="Logo" className="h-full w-full"/>
+                <img src="/Logo.jpg" alt="Logo" className="h-full w-full"/>
               </Link>
             </div>
           )}
         </div>
         <div className="flex flex-grow font-thin">
-          <ul className={`flex space-x-6 ${isHome ? 'ml-16' : 'ml-4'}`}> {/* Selecciona el margen izquierdo según estés en la página de inicio o no */}
+          <ul className={`flex space-x-6 ${isHome ? 'ml-16' : 'ml-4'}`}>
             <li><Link to="/productos" className="text-white" style={{ fontSize: '25px' }}>Productos</Link></li>
             <li><Link to="/mi-tienda" className="text-white" style={{ fontSize: '25px' }}>Mi Tienda</Link></li>
             <li><Link to="/aboutUs" className="text-white" style={{ fontSize: '25px' }}>Nosotros</Link></li>
