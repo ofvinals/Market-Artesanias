@@ -16,7 +16,6 @@ function NavBar() {
 		navigate('/');
 	};
 
-<<<<<<< HEAD
 	return (
 		<nav className='bg-[#E98C00] p-4'>
 			<div className='w-full flex justify-between items-center'>
@@ -36,7 +35,6 @@ function NavBar() {
 				<div className='flex flex-grow font-thin'>
 					<ul className={`flex space-x-6 ${isHome ? 'ml-16' : 'ml-4'}`}>
 						{' '}
-						{/* Selecciona el margen izquierdo según estés en la página de inicio o no */}
 						<li>
 							<Link
 								to='/productos'
@@ -119,7 +117,6 @@ function NavBar() {
 			</div>
 		</nav>
 	);
-=======
   return (
     <nav className="bg-[#E98C00] p-4">
       <div className="w-full flex justify-between items-center">
@@ -174,7 +171,6 @@ function NavBar() {
       </div>
     </nav>
   );
->>>>>>> Lucas
 }
 
 export default NavBar;
