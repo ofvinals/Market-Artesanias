@@ -1,54 +1,52 @@
 const { User } = require("../../db");
-const bcrypt = require("bcryptjs");
 
 //GET todas las usuario.
 const getAll = async () => {
-    const usuario = await User.findAll();
-    return usuario;
+      const usuario = await User.findAll();
+      return usuario;
 };
 
 //GET solo un usuario.
 const controllerByEmailUser = async (Email) => {
-	const user = await User.findOne({
-		where: {Email}
-	});
-	return user;
+      const user = await User.findOne({
+            where: {Email}
+      });
+      return user;
 };
 
-//POST Carga la usuario en la DB.
-const postAdd = async (Nombre, Apellido, Email, Contraseña) => {
-    if (!Nombre || !Apellido || !Email || !Contraseña ) {
-        throw new Error("All fields are required");
-	}
+const editUsuario = async () => {}
 
-    if (!Contraseña || Contraseña.length < 8) {
-		throw new Error("Password is required");
-	}
-
-    const validationEmail = await User.findOne({
-		where: {
-			Email: Email,
-		}
-	})
-	if (validationEmail) {
-        throw new Error("El correo electronico ya existe");
-	}
-
-    const hashedContraseña = await bcrypt.hash(Contraseña, 12);
-
-	const usuario = await User.create({
-        Nombre, 
-        Apellido, 
-        Email, 
-        Contraseña: hashedContraseña
-	});
-    
-    console.log(usuario)
-	return usuario;
+const getById = async (Id) => {
+      const usuario = await User.findByPk(Id);
+      return usuario;
 };
+
+
+const updateById = async ( fields ) => {
+
+      // Existe el usuario con Id
+      const usuario = await User.findByPk(fields.Id);
+      // console.log( fields );
+      // console.log( usuario );
+
+      if (!usuario) throw new Error("El Usuario no existe.");
+
+      await usuario.update({
+            Nombre: fields.Nombre,
+            Apellido: fields.Apellido,
+            Genero: fields.Genero,
+            FechaNacimiento: fields.FechaNacimiento,
+            Ubicacion: fields.Ubicacion
+      });
+
+      return "Usuario Actualizado!!";
+}
+
 
 module.exports = {
-    getAll,
-    postAdd,
-    controllerByEmailUser
+      getAll,
+      controllerByEmailUser,
+      editUsuario,
+      getById,
+      updateById,
 }

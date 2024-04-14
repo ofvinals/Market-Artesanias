@@ -1,16 +1,19 @@
 const { Router } = require("express");
+const routerRegistro = require("./RouterRegistro/RouterRegistro");
+const routerLoginNormal = require("./RouterLoginNormal/RouterLoginNormal");
 const routerProducto = require("./RouterProductos/RouterProductos");
 const routerCategoria = require("./RouterCategorias/RouterCategorias");
 const routerUsuario = require("./RouterUsuario/RouterUsuario");
-const routerLoginNormal = require("./RouterLoginNormal/RouterLoginNormal");
 const routerTienda = require("./RouterTienda/RouterTienda");
 
 const routes = Router();
 
+routes.use("/Registro", routerRegistro);
+routes.use("/Login", routerLoginNormal);
+
 routes.use("/Producto", routerProducto);
 routes.use("/Categoria", routerCategoria);
-routes.use("/Registro", routerUsuario);
-routes.use("/Login", routerLoginNormal);
+routes.use("/Usuario", routerUsuario);
 routes.use("/Tienda", routerTienda);
 
 module.exports = routes;
