@@ -23,22 +23,22 @@ const getById = async (Id) => {
 
 
 const updateById = async ( fields ) => {
-
+console.log("fields", fields)
       // Existe el usuario con Id
       const usuario = await User.findByPk(fields.Id);
       // console.log( fields );
-      // console.log( usuario );
+      console.log( usuario );
 
       if (!usuario) throw new Error("El Usuario no existe.");
 
-      await usuario.update({
+      const newUsuario= await usuario.update({
             Nombre: fields.Nombre,
             Apellido: fields.Apellido,
             Genero: fields.Genero,
             FechaNacimiento: fields.FechaNacimiento,
             Ubicacion: fields.Ubicacion
       });
-
+console.log(newUsuario)
       return "Usuario Actualizado!!";
 }
 
