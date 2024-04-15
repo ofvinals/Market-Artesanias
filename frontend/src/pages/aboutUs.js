@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/Navbar.jsx';
+import NavBar from '../components/NavBar.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope as solidEnvelope } from '@fortawesome/free-solid-svg-icons';

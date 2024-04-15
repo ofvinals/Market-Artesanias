@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Detail } from '../components/Dashboard/Detail';
-import NavBar from '../components/Navbar.jsx';
+import NavBar from '../components/NavBar.jsx';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
