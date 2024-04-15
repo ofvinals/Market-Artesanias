@@ -2,41 +2,50 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { updateNameStore } from '../../hooks/useStore';
 import { useForm } from 'react-hook-form';
+import { uploadFile } from '../../firebase/config';
 
 export const Detail = ({ nombreStore, idStore }) => {
 	const [photoUrl, setPhotoUrl] = useState(null);
 	const [editing, setEditing] = useState(false);
 	const [newName, setNewName] = useState(nombreStore);
-	const id= idStore
+	const id = idStore;
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	const uploadPhoto = () => {
-		document.getElementById('fileInput').click();
-	};
-
-	const handleFileChange = (event) => {
-		const file = event.target.files[0];
-		const reader = new FileReader();
-
-		reader.onloadend = () => {
-			setPhotoUrl(reader.result);
-		};
-
-		if (file) {
-			reader.readAsDataURL(file);
+	const handleFileChange = async (event) => {
+		try {
+			const file = event.target.files[0];
+			if (file) {
+				const fileDownloadUrl = await uploadFile(file);
+				setPhotoUrl(fileDownloadUrl);
+				console.log(fileDownloadUrl)
+				const storeData = {
+					Id: id,
+					Imagen: fileDownloadUrl,
+				};
+				await updateNameStore(id, storeData);
+				Swal.fire({
+					icon: 'success',
+					title: 'La imagen de la tienda ha sido editada correctamente',
+					showConfirmButton: false,
+					timer: 2000,
+				});
+			}
+		} catch (error) {
+			console.error('Error al cargar el archivo:', error);
 		}
 	};
 
 	const handleSaveClick = handleSubmit(async (values) => {
 		try {
 			const storeData = {
+				Id: id,
 				Nombre: values.nombre,
 			};
-			console.log(storeData, id)
+			console.log(storeData, id);
 			await updateNameStore(id, storeData);
 			Swal.fire({
 				icon: 'success',
@@ -58,6 +67,10 @@ export const Detail = ({ nombreStore, idStore }) => {
 
 	const handleInputChange = (e) => {
 		setNewName(e.target.value);
+	};
+
+	const uploadPhoto = () => {
+		document.getElementById('fileInput').click();
 	};
 
 	return (
@@ -109,19 +122,19 @@ export const Detail = ({ nombreStore, idStore }) => {
 								onClick={uploadPhoto}
 							/>
 						) : (
-							<button
-								onClick={uploadPhoto}
-								className='me-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'>
-								<i className='fa-solid fa-circle-plus pe-5'></i>Subir
+							<label
+								htmlFor='fileInput'
+								className='me-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white cursor-pointer'>
+								<input
+									id='fileInput'
+									type='file'
+									style={{ display: 'none' }}
+									onChange={handleFileChange}
+								/>
+								<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>Subir
 								Foto
-							</button>
+							</label>
 						)}
-						<input
-							id='fileInput'
-							type='file'
-							style={{ display: 'none' }}
-							onChange={handleFileChange}
-						/>
 					</div>
 				</div>
 			</div>

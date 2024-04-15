@@ -52,7 +52,7 @@ const postAddTienda = async (req, res) => {
         const response = await postAdd(UserId ,Nombre, Imagen);
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json({error: error.mensage});
+        return res.status(500).json({error: error.message});
     }
 };
 
@@ -60,12 +60,13 @@ const postAddTienda = async (req, res) => {
 const putTienda = async (req, res) => {
 	console.log(req.body)
     const { Id, Nombre, Imagen } = req.body;
-    
+    console.log(Nombre)
 	try {
         const response = await update(Id ,Nombre, Imagen);
+		  console.log(response)
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json({error: error.mensage});
+        return res.status(500).json({error: error.message});
     }
 };
 
