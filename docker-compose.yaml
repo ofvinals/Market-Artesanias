@@ -29,6 +29,8 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     env_file: ./backend/.env
+    volumes:
+      - ./backend:app/
     ports:
       - "3001:3001"
     expose:
@@ -46,6 +48,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - node-backend
+    volumes:
+      - ./frontend:app/
     ports:
       - "3000:3000"
     expose:
