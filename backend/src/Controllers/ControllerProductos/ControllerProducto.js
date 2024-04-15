@@ -1,4 +1,4 @@
-const { Product, Store, Category }= require("../../db");
+const { Product, Store, Category, User }= require("../../db");
 const { Op } =  require("sequelize");
 
 
@@ -59,7 +59,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
     if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
         throw new Error("All fields are required");
 	}
-    console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
+    //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 	const producto = await Product.create({
         Nombre, 
         Disponible,
@@ -71,7 +71,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
     
     
 	await producto.setStore(StoreId);
-    console.log(producto)
+    //console.log(producto)
 	await producto.setCategory(CategoryId);
 	return producto;
 }
@@ -92,32 +92,29 @@ const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, Ca
 //PUT Suspende el producto
 const putSuspenderP = async ( Id ) => {
     //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
-    console.log("producto")
     const producto = await Product.findByPk(Id);
-	if (!producto) throw new Error("El Producto no existe.");
 
+	if (!producto) throw new Error("El Producto no existe.");
+    const tienda = await Store.findOne({where:{ UserId: producto.StoreId}});
+
+    const contador =  tienda.Contador + 1;
     await Product.update({Activo: false},{where: {Id}});
+    await Store.update({Contador: contador},{where: {UserId: producto.StoreId}});
 
+    if(contador >= 3){
+        await Store.update({Activo: false},{where: {UserId: producto.StoreId}});
+        await User.update({Activo: false},{where: {Id: tienda.UserId}});
+    }
 	return "Listo!!";
 };
 
-//PUT Suspende el producto
-const putQuitarSuspencionP = async ( Id ) => {
-    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
-    const producto = await Product.findByPk(Id);
 
-	if (!producto) throw new Error("El Producto no existe.");
 
-    await Product.update({Activo: true},{where: {Id}});
-
-	return "Listo!!";
-};
 module.exports = {
     getAll,
     getById,
     postAdd,
     putUpdate,
     getAllVendedor,
-    putSuspenderP,
-    putQuitarSuspencionP
+    putSuspenderP
 }

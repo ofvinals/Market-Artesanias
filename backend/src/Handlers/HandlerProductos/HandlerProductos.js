@@ -4,7 +4,6 @@ const {
         postAdd, 
         putUpdate, 
         getAllVendedor,
-        putQuitarSuspencionP,
         putSuspenderP
     } = require("../../Controllers/ControllerProductos/ControllerProducto");
     require("dotenv").config();
@@ -105,16 +104,6 @@ const putSuspender = async (req, res) => {
     }
 };
 
-//PUT Suspender el producto
-const putQuitarSuspencion = async (req, res) => {
-    const { Id } = req.body;
-    try {
-        const response = await putQuitarSuspencionP(Id);
-        return res.status(201).json(response);
-    } catch (error) {
-        return res.status(500).json({error: error.mensage});
-    }
-};
 
 module.exports = {
     getAllProducto,
@@ -122,6 +111,5 @@ module.exports = {
     postAddProducto,
     putUpdateProducto,
     getAllProductoVendedor,
-    putSuspender,
-    putQuitarSuspencion
+    putSuspender
 }

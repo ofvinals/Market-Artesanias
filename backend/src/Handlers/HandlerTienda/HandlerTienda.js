@@ -24,7 +24,8 @@ const getByStore = async (req, res) => {
 
 		UserId = tokenized.userId;
 console.log(UserId)
-        const tienda = await get(UserId);
+const tienda = await get(UserId);
+console.log(tienda)
         return  res.status(201).json(tienda);
 	} catch (error) {
 		return res.status(401).json({ message: 'Token inválido' });

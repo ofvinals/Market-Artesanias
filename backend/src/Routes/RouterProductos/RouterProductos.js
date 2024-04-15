@@ -5,8 +5,7 @@ const {
         postAddProducto, 
         putUpdateProducto, 
         getAllProductoVendedor,
-        putSuspender,
-        putQuitarSuspencion
+        putSuspender
     } = require("../../Handlers/HandlerProductos/HandlerProductos");
 
 const routerProducto = Router();
@@ -17,6 +16,5 @@ routerProducto.get("/:Id", getByIdProducto);
 routerProducto.post("/", postAddProducto);
 routerProducto.put("/", putUpdateProducto);
 routerProducto.put("/Suspender", putSuspender);
-routerProducto.put("/QuitarSuspencion", putQuitarSuspencion);
 
 module.exports = routerProducto;
