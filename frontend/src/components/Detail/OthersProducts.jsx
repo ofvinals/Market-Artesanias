@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide} from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -72,23 +72,9 @@ const OTROSPRODUCTOS = [
 ]
 
 function OthersProducts() {
-    // const swiper = useSwiper()
-
-    // const nextSlide = () =>{
-    //     swiper.slideNext()
-    // }
-    // const prevSlide = () =>{
-    //     swiper.slidePrev()
-    // }
-
-
-
     return (
         <section className='  mt-6 '>
             <h2 className='text-general text-2xl font-bold mb-3'>Más productos de esta tienda</h2>
-            {/* <button onClick={prevSlide}>
-            <TfiArrowCircleLeft className='text-general size-[38px]'  />
-            </button> */}
             <Swiper
                 breakpoints={{
                     1441: {
@@ -102,7 +88,6 @@ function OthersProducts() {
                 }}
                 
                 rewind={true}
-                // navigation={true}
                 pagination={{ clickable: true }}
                 mousewheel={true}
                 keyboard={true}
@@ -118,9 +103,6 @@ function OthersProducts() {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            {/* <button onClick={nextSlide}>
-            <TfiArrowCircleRight className='text-general size-[38px]'  />
-            </button> */}
 
         </section>
     )
