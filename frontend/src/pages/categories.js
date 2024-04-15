@@ -1,6 +1,6 @@
 import Content from '../components/Categories/Content'
 import Filter from '../components/Categories/Filter'
-import NavBar from '../components/Navbar'
+import NavBar from '../components/NavBar'
 const PRODUCTOS = [
   {
       id: 1,

@@ -79,15 +79,15 @@ const getUsuarioById = async (req, res) => {
 
             // #1 Primer caso
             // if( !isAdmin && id !== idReq ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-                  returnedUser = { 
-                        id: foundUser.id,
-                        Nombre: foundUser.Nombre,
-                        Apellido: foundUser.Apellido,
-                        Vendedor: foundUser.Vendedor
-                  };
-                  console.log( foundUser );
-                  console.log( returnedUser );
-                  return res.status(200).json(returnedUser); //  <--- Retorno detalle de usuario sin informacion sensible
+                  // returnedUser = { 
+                  //       id: foundUser.id,
+                  //       Nombre: foundUser.Nombre,
+                  //       Apellido: foundUser.Apellido,
+                  //       Vendedor: foundUser.Vendedor
+                  // };
+                  // console.log( foundUser );
+                  // console.log( returnedUser );
+                  // return res.status(200).json(returnedUser); //  <--- Retorno detalle de usuario sin informacion sensible
             // } 
 
             // #2 Segundo caso (no necesario)
@@ -109,8 +109,8 @@ const getUsuarioById = async (req, res) => {
                   Admin: foundUser.Admin,
                   Vendedor: foundUser.Vendedor
             };
-            console.log( foundUser );
-            console.log( returnedUser );
+            console.log( "foundUser", foundUser );
+            console.log( "returnuser", returnedUser );
             // Retorno detalle del usuario con informacion sensible
             return res.status(200).json(returnedUser);
       } catch (error) {

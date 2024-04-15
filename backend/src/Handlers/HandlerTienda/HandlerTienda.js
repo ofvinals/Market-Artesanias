@@ -58,6 +58,7 @@ const postAddTienda = async (req, res) => {
 
 //PUT Carga la Tienda en la DB.
 const putTienda = async (req, res) => {
+	console.log(req.body)
     const { Id, Nombre, Imagen } = req.body;
     
 	try {

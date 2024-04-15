@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { updateUser, getUser } from '../hooks/useUsers';
-import NavBar from '../components/Navbar.jsx';
+import NavBar from '../components/NavBar.jsx';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
 	const {
@@ -13,15 +14,18 @@ function Profile() {
 		formState: { errors },
 	} = useForm();
 	const { id } = useSelector((state) => state.auth);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function loadUser() {
 			try {
 				const userData = await getUser(id);
+				const originalDate = new Date(userData.FechaNacimiento);
+				const formattedDate = originalDate.toISOString().split('T')[0]; 
 				setValue('nombre', userData.Nombre);
 				setValue('apellido', userData.Apellido);
 				setValue('genero', userData.Genero);
-				setValue('fechanac', userData.FechaNacimiento);
+				setValue('fechanac', formattedDate);
 				setValue('ubicacion', userData.Ubicacion);
 			} catch (error) {
 				console.error('Error al cargar los datos del usuario', error);
@@ -30,34 +34,34 @@ function Profile() {
 		loadUser();
 	}, [id, setValue]);
 
-		const onSubmit = handleSubmit(async (values) => {
-			try {
-				const userData = {
-					Id: id,
-					Nombre: values.nombre,
-					Apellido: values.apellido,
-					Genero: values.genero,
-					FechaNacimiento: values.fechanac,
-					Ubicacion: values.ubicacion,
-				};
-				await updateUser(id, userData);
-
-				Swal.fire({
-					icon: 'success',
-					title: 'Los datos del usuario han sido editados correctamente',
-					showConfirmButton: false,
-					timer: 2000,
-				});
-			} catch (error) {
-				console.error(error);
-				Swal.fire({
-					icon: 'error',
-					title: 'Error al editar los datos del usuario. Intente nuevamente!',
-					showConfirmButton: false,
-					timer: 2000,
-				});
-			}
-		});
+	const onSubmit = handleSubmit(async (values) => {
+		try {
+			const userData = {
+				Id: id,
+				Nombre: values.nombre,
+				Apellido: values.apellido,
+				Genero: values.genero,
+				FechaNacimiento: values.fechanac,
+				Ubicacion: values.ubicacion,
+			};
+			await updateUser(id, userData);
+			navigate('/mi-tienda');
+			Swal.fire({
+				icon: 'success',
+				title: 'Los datos del usuario han sido editados correctamente',
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		} catch (error) {
+			console.error(error);
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al editar los datos del usuario. Intente nuevamente!',
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		}
+	});
 
 	return (
 		<>

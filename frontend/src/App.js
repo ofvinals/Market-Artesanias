@@ -4,6 +4,7 @@ import Homepage from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
 import Store from './pages/store';
+import CreateStore from './pages/createStore';
 import Detail from './pages/detail';
 import MyStore from './pages/myStore'
 import Profile from './pages/profile';
@@ -30,6 +31,7 @@ function App() {
 					<Route path='/search' element={<Search />} />
 					<Route path='/categories' element={<Categories />} />
 					<Route path='/dashboard' element={<Dashboard />} />
+					<Route path='/createStore' element={<CreateStore />} />
 				</Routes>
 		</>
 	);
