@@ -6,7 +6,7 @@ function Header() {
       <div className="container ml-16 mx-auto px-4">
         <div className="max-w-6xl  flex items-start">
           <div className="ml-0 mt-0 mr-20">
-            <img src='/logo.jpg' alt="Logo" className="h-23" />
+            <img src='/Logo.jpg' alt="Logo" className="h-23" />
           </div>
           <div className="flex-grow ml-6">
             <h1 className="text-3xl font-thin text-white mb-8">
