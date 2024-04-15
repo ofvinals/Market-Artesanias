@@ -11,9 +11,9 @@ import { useState } from "react";
 const PRODUCTOS = [
   {
     id: 1,
-    nombre: 'Taza de cafe',
+    nombre: 'Bandolera con doble cierre',
     description: 'Bandolera don doble cierre de cremallera, y correa larga regulable.',
-    precio: 7.99,
+    precio: 20.75,
     imagen: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb6%2F76%2Fb6767ccc55f4038639ad2cc8cc8056714c3e0bef.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]',
     imagen2: 'https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Fb8%2Fa5%2Fb8a5c2a8cb2213e04047a5115841b6f8a33bf6de.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVEDETAIL%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D'
   },

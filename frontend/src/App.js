@@ -12,6 +12,7 @@ import Cart from './pages/cart';
 import Search from './pages/search';
 import Categories from './pages/categories';
 import Dashboard from './pages/dashboard';
+import Discount from './pages/discount'
 
 function App() {
 	
@@ -24,6 +25,7 @@ function App() {
 					<Route path='/store' element={<Store />} />
 					<Route path='/mi-tienda' element={<MyStore />} />
 					<Route path='/store/:id' element={<Detail />} />
+					<Route path='/discount/:id' element={<Discount />} />
 					<Route path='/profile' element={<Profile />} />
 					<Route path='/aboutUs' element={<AboutUs />} />
 					<Route path='/cart' element={<Cart />} />
