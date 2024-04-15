@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-Para el front:
-=======
 # Para el front:
->>>>>>> 97f7d88d798244a21ec98094854ae3d1e75cc2c1
 # Dependency directories
 /frontend/node_modules/
 /frontend/jspm_packages/
