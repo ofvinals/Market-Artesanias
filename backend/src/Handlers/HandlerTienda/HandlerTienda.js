@@ -23,7 +23,7 @@ const getByStore = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		UserId = tokenized.userId;
-
+console.log(UserId)
         const tienda = await get(UserId);
         return  res.status(201).json(tienda);
 	} catch (error) {
@@ -48,7 +48,7 @@ const postAddTienda = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		UserId = tokenized.userId;
-        
+        console.log(UserId)
         const response = await postAdd(UserId ,Nombre, Imagen);
         return res.status(200).json(response);
     } catch (error) {

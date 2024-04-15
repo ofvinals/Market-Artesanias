@@ -8,7 +8,8 @@ const getAll = async () => {
         where: {
             Disponible: {
                 [Op.gt]: 0 // Filtrar los productos cuya disponibilidad sea mayor que 0
-            }
+            },
+            Activo: true
         },
         include: [
             {
@@ -75,6 +76,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
 	return producto;
 }
 
+
 //PUT Actualiza el producto
 const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId, Genero = null) => {
     //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
@@ -87,10 +89,35 @@ const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, Ca
 	return "Listo!!";
 };
 
+//PUT Suspende el producto
+const putSuspenderP = async ( Id ) => {
+    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
+    console.log("producto")
+    const producto = await Product.findByPk(Id);
+	if (!producto) throw new Error("El Producto no existe.");
+
+    await Product.update({Activo: false},{where: {Id}});
+
+	return "Listo!!";
+};
+
+//PUT Suspende el producto
+const putQuitarSuspencionP = async ( Id ) => {
+    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
+    const producto = await Product.findByPk(Id);
+
+	if (!producto) throw new Error("El Producto no existe.");
+
+    await Product.update({Activo: true},{where: {Id}});
+
+	return "Listo!!";
+};
 module.exports = {
     getAll,
     getById,
     postAdd,
     putUpdate,
-    getAllVendedor
+    getAllVendedor,
+    putSuspenderP,
+    putQuitarSuspencionP
 }

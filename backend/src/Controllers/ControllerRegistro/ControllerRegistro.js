@@ -2,7 +2,7 @@ const { User } = require("../../db");
 const bcrypt = require("bcryptjs");
 
 //POST Carga la usuario en la DB.
-const postAdd = async (Nombre, Apellido, Email, Contraseña) => {
+const postAdd = async (Nombre, Apellido, Email, Contraseña, Admin = false) => {
     if (!Nombre || !Apellido || !Email || !Contraseña ) {
         throw new Error("All fields are required");
 	}
@@ -27,7 +27,8 @@ const postAdd = async (Nombre, Apellido, Email, Contraseña) => {
         Nombre, 
         Apellido, 
         Email, 
-        Contraseña: hashedContraseña
+        Contraseña: hashedContraseña, 
+        Admin
 	});
     
     console.log(usuario)
