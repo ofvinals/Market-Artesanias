@@ -53,7 +53,7 @@ export const updateNameStore = async (id, values) => {
 	console.log(values, id)
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(`/Tienda/${id}`, values, {
+		const res = await apiURL.put(`/Tienda` , values, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		console.log(res);
