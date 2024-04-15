@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getUsers, deleteUser } from '../../hooks/useUsers';
-import { FaCalendarTimes } from 'react-icons/fa';
+import { getUsers, disableUser } from '../../hooks/useUsers';
+import { FaTrashAlt } from "react-icons/fa";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -64,7 +64,8 @@ export const DataUsers = () => {
 	const actions = [
 		{
 			text: 'Suspender',
-			icon: <FaCalendarTimes />,
+			icon: <FaTrashAlt />
+			,
 			onClick: (row) => {
 				suspendUser(row.original.id);
 			},
@@ -73,7 +74,7 @@ export const DataUsers = () => {
 
 	async function suspendUser(id) {
 		const result = await Swal.fire({
-			title: 'Confirmas la suspension del usuario?',
+			title: 'Confirmas la inhabilitacion del usuario?',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#d33',
@@ -83,11 +84,11 @@ export const DataUsers = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				// await deleteUser(id);
+				await disableUser(id);
 
 				Swal.fire({
 					icon: 'success',
-					title: 'Usuario suspendido correctamente',
+					title: 'Usuario inhabilitado correctamente',
 					showConfirmButton: false,
 					timer: 2500,
 				});

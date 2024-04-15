@@ -4,6 +4,7 @@ const { Product, Store, Category }= require("../../db");
 //GET todo los productos.
 const getAll = async () => {
     const producto = await Product.findAll();
+    console.log(producto)
     return producto;
 };
 

@@ -72,16 +72,20 @@ function Login() {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
+			console.log(res);
 			const { accesoWJT } = res.data;
 			const decodedToken = jwt_decode(accesoWJT);
 			console.log(decodedToken);
-			const { Email, userId } = decodedToken;
+			const { Email, userId, Admin } = decodedToken;
 			dispatch({
 				type: types.login,
-				payload: { Email, userId },
+				payload: { Email, userId, Admin },
 			});
-			navigate('/mi-tienda');
-
+			if (Admin) {
+				navigate('/dashboard');
+			} else {
+				navigate('/mi-tienda');
+			}
 			Swal.fire({
 				icon: 'success',
 				title: 'Inicio de sesión exitoso!',
@@ -114,7 +118,10 @@ function Login() {
 							crea una cuenta
 						</Link>
 					</p>
-					<form id='loginForm' className='w-full max-w-[504px]' onSubmit={onSubmit}>
+					<form
+						id='loginForm'
+						className='w-full max-w-[504px]'
+						onSubmit={onSubmit}>
 						<input
 							placeholder='Mail'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
