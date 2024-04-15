@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 import { Detail } from '../components/MyStore/Detail';
 import { Products } from '../components/MyStore/Products';
 import { List } from '../components/MyStore/List';

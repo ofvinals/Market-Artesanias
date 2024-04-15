@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth';
 import { types } from '../redux/Actions/authTypes';
-import NavBar from '../components/Navbar.jsx';
+import NavBar from '../components/NavBar.jsx';
 
 function Login() {
 	const {
@@ -166,9 +166,8 @@ function Login() {
 								id='vercontrasena'
 								className='btncontrasena'>
 								<i
-									className={`far ${
-										showPassword ? 'fa-eye-slash' : 'fa-eye'
-									}`}></i>
+									className={`far ${showPassword ? 'fa-eye-slash' : 'fa-eye'
+										}`}></i>
 							</button>
 						</div>
 						{errors.Contraseña && (

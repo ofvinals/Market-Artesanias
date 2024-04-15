@@ -1,5 +1,5 @@
 
-import NavBar from '../components/Navbar'
+import NavBar from '../components/NavBar'
 import Detail from '../components/Discount/Detail'
 import Counter from '../components/Discount/Counter'
 
@@ -11,8 +11,8 @@ function discount() {
     <>
       <NavBar />
       <div className='px-[106px]'>
-      <Counter />
-      <Detail />
+        <Counter />
+        <Detail />
       </div>
     </>
   )

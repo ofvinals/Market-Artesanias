@@ -1,5 +1,5 @@
 
-import NavBar from '../components/Navbar'
+import NavBar from '../components/NavBar'
 import Detail from '../components/Detail/Detail'
 import OthersProducts from '../components/Detail/OthersProducts'
 
@@ -11,8 +11,8 @@ function detail() {
     <>
       <NavBar />
       <div className='px-[106px]'>
-      <Detail />
-      <OthersProducts />
+        <Detail />
+        <OthersProducts />
       </div>
     </>
   )

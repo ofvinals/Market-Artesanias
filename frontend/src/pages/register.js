@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import NavBar from '../components/Navbar.jsx';
+import NavBar from '../components/NavBar.jsx';
 
 function Register() {
   const {
@@ -47,7 +47,7 @@ function Register() {
             Regístrate
           </h2>
           <form id='registerForm' className='formregister' onSubmit={onSubmit}>
-          <div className="flex mb-7">
+            <div className="flex mb-7">
               <input
                 placeholder='Nombre'
                 className='ps-4 h-16 text-xl border-2 border-[#8B5300] mr-2 rounded-xl p-2 w-1/2'
@@ -108,7 +108,7 @@ function Register() {
               type='submit'>
               Crear Cuenta
             </button>
-            </form>
+          </form>
 
           <p className='text-xl text-[#8B5300] mt-4'>
             ¿Ya tienes una cuenta?
