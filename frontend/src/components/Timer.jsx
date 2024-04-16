@@ -11,7 +11,7 @@ function Timer({ duration }) {
 
     // Cleanup function to prevent memory leaks
     return () => clearInterval(intervalId);
-  }, [duration]); // Only run when duration changes
+  }, [remainingTime]); // Only run when duration changes
 
   const getFormattedTime = (time) => {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
