@@ -15,7 +15,7 @@ function Register() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       console.log('Datos del formulario:', data);
-      const response = await axios.post('http://localhost:3001/Registro', data);
+      const response = await axios.post('/Registro', data);
       console.log('Respuesta del servidor:', response);
       if (response.status === 200) {
         Swal.fire({

@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const { 
-        getAllCategoria, 
-        postAddCategoria 
-    } = require("../../Handlers/HandlerCategoria/HandlerCategorias");
+      getAllCategoria, 
+      postAddCategoria 
+} = require("../../Handlers/HandlerCategoria/HandlerCategorias");
 
 const routerCategoria = Router();
 

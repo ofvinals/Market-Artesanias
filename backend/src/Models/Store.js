@@ -13,7 +13,12 @@ module.exports = storeModel = (sequelize) => {
     },
     Imagen: {
         type: DataTypes.STRING
-    }
+    },
+    Activo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   });
   return Store;
 }

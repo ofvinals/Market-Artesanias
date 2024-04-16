@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { updateUser, getUser } from '../hooks/useUsers';
 import NavBar from '../components/NavBar.jsx';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
 	const {
@@ -12,38 +13,39 @@ function Profile() {
 		setValue,
 		formState: { errors },
 	} = useForm();
-	const { email } = useSelector((state) => state.auth);
+	const { id } = useSelector((state) => state.auth);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function loadUser() {
-			console.log(email);
 			try {
-				const userData = await getUser(email);
-				console.log(userData);
+				const userData = await getUser(id);
+				const originalDate = new Date(userData.FechaNacimiento);
+				const formattedDate = originalDate.toISOString().split('T')[0]; 
 				setValue('nombre', userData.Nombre);
 				setValue('apellido', userData.Apellido);
 				setValue('genero', userData.Genero);
-				setValue('fechanac', userData.Fechanac);
+				setValue('fechanac', formattedDate);
 				setValue('ubicacion', userData.Ubicacion);
 			} catch (error) {
 				console.error('Error al cargar los datos del usuario', error);
 			}
 		}
 		loadUser();
-	}, [email, setValue]);
+	}, [id, setValue]);
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const userData = {
-				Nombre: values.Nombre,
-				Apellido: values.Apellido,
-				Genero: values.Genero,
-				Fechanac: values.Fechanac,
-				Ubicacion: values.Ubicacion,
+				Id: id,
+				Nombre: values.nombre,
+				Apellido: values.apellido,
+				Genero: values.genero,
+				FechaNacimiento: values.fechanac,
+				Ubicacion: values.ubicacion,
 			};
-
-			await updateUser(email, userData);
-
+			await updateUser(id, userData);
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Los datos del usuario han sido editados correctamente',
@@ -89,6 +91,7 @@ function Profile() {
 								{errors.nombre.message}
 							</span>
 						)}
+
 						<label className='text-xl text-[#563300]'>Apellido</label>
 						<input
 							className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
@@ -100,6 +103,12 @@ function Profile() {
 								},
 							})}
 						/>
+						{errors.apellido && (
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+								{errors.apellido.message}
+							</span>
+						)}
+
 						<div className='flex flex-row justify-center w-full'>
 							<div className='flex flex-col mr-3 w-full'>
 								<label className='text-xl text-[#563300]'>Genero</label>
@@ -117,6 +126,12 @@ function Profile() {
 									<option value='no binario'>No Binario</option>
 								</select>
 							</div>
+							{errors.genero && (
+								<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+									{errors.genero.message}
+								</span>
+							)}
+
 							<div className='flex flex-col w-full'>
 								<label className='text-xl text-[#563300]'>
 									Fecha de Nacimiento
@@ -133,6 +148,11 @@ function Profile() {
 								/>
 							</div>
 						</div>
+						{errors.fechanac && (
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+								{errors.fechanac.message}
+							</span>
+						)}
 						<label className='text-xl text-[#563300]'>Ubicacion</label>
 						<input
 							className='ps-4 mt-5 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
@@ -144,6 +164,11 @@ function Profile() {
 								},
 							})}
 						/>
+						{errors.ubicacion && (
+							<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
+								{errors.ubicacion.message}
+							</span>
+						)}
 
 						<div className='mb-9'>
 							<button
