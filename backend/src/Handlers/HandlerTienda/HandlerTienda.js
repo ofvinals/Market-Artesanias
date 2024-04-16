@@ -1,4 +1,4 @@
-const { postAdd, update, get } = require("../../Controllers/ControllerTienda/ControllerTienda");
+const { postAdd, update, get, deleteStoreById } = require("../../Controllers/ControllerTienda/ControllerTienda");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
@@ -63,15 +63,29 @@ const putTienda = async (req, res) => {
     console.log(Nombre)
 	try {
         const response = await update(Id ,Nombre, Imagen);
-		  console.log(response)
-        return res.status(200).json(response);
+        return res.sendStatus(202).json(response);
+      // if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
     } catch (error) {
         return res.status(500).json({error: error.message});
     }
 };
 
+const deleteTienda = async (req, res) => {
+      const { Id } = req.params;
+      const isAdmin = req.user.Admin; // Es administrador?
+      //
+      // if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
+      try {
+            const response = await deleteStoreById(Id);
+            return res.status(200).json(response);
+      } catch (error) {
+            return res.status(500).json({error: error.message});
+      }
+};
+
 module.exports = {
     postAddTienda,
     getByStore,
-    putTienda
+    putTienda,
+      deleteTienda
 }

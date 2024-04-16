@@ -64,17 +64,17 @@ const getUsuarioById = async (req, res) => {
       let id = Number( Id );
       const idReq = req.user.userId; // id Usuario de la request
       const isAdmin = req.user.Admin; // Es administrador?
-      console.log( "JWT DATA: : : : : : >>>>>>> " );
-      console.log( idReq );
-      console.log( isAdmin );
-      console.log( id );
-      console.log( Id );
+      // console.log( "JWT DATA: : : : : : >>>>>>> " );
+      // console.log( idReq );
+      // console.log( isAdmin );
+      // console.log( id );
+      // console.log( Id );
 
       try {
             const foundUser = await getById(Id);
-            console.log( "getbyid handler", foundUser );
+            // console.log( "getbyid handler", foundUser );
             let returnedUser;
-            console.log("foundUser", foundUser );
+            // console.log("foundUser", foundUser );
             if( foundUser === null ) return res.sendStatus(404);
 
             // #1 Primer caso
@@ -109,8 +109,8 @@ const getUsuarioById = async (req, res) => {
                   Admin: foundUser.Admin,
                   Vendedor: foundUser.Vendedor
             };
-            console.log( "foundUser", foundUser );
-            console.log( "returnuser", returnedUser );
+            // console.log( "foundUser", foundUser );
+            // console.log( "returnuser", returnedUser );
             // Retorno detalle del usuario con informacion sensible
             return res.status(200).json(returnedUser);
       } catch (error) {
