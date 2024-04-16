@@ -1,31 +1,36 @@
 # Endpoints
 
-*Raiz*
+**Raiz** <<<
 ```txt
 http://localhost:3001
 ```
 
-Recurso *Usuario*:
+Recurso **Registro**
 ```txt
 {raiz}/Registro
 ```
 
-Recurso *Login*
+Recurso **Login**
 ```txt
 {raiz}/Login
 ```
 
-Recurso *Producto*
+Recurso **Usuario**
+```txt
+{raiz}/Usuario
+```
+
+Recurso **Producto**
 ```txt
 {raiz}/Producto
 ```
 
-Recurso *Categoria*
+Recurso **Categoria**
 ```txt
 {raiz}/Categoria
 ```
 
-Recurso *Tienda*
+Recurso **Tienda**
 ```txt
 {raiz}/Tienda
 ```
