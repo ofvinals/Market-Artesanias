@@ -143,7 +143,7 @@ function Login() {
 							</span>
 						)}
 
-						<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 px-2'>
+						<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 px-2 focus:border-transparent'>
 							<input
 								placeholder='Contraseña'
 								className='inputlogin text-xl w-full h-full'
