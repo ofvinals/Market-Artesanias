@@ -37,7 +37,7 @@ Recurso *Tienda*
 ### Operaciones `Registro`
 
 ```txt
-// Registrarse con un usuario
+# Registrarse con un usuario
 POST /Registro
 {
       "Nombre": "Javier",
@@ -53,7 +53,7 @@ POST /Registro
 ### Operaciones `Login`
 
 ```txt
-// Logearse con un mail (devuelve JWT)
+# Logearse con un mail (devuelve JWT)
 POST /Login
 {
       "Email": "mail@gmail.com",
@@ -89,13 +89,13 @@ PATCH /Usuario/{id}
 ### Operaciones `Producto`
 
 ```txt
-// Recuperar todos los productos
+# Recuperar todos los productos
 GET /Producto
 
-// Recuperar un producto por ID
+# Recuperar un producto por ID
 GET /Producto/{id}
 
-// Crear un nuevo Producto
+# Crear un nuevo Producto
 POST /Producto
 Content-Type: application/json
 {
@@ -121,7 +121,7 @@ Content-Type: application/json
 ### Operaciones `Tienda`
 
 ```txt
-// Crear una tienda
+# Crear una tienda
 Authorization: Bearer <JWT>
 POST /Tienda
 {
@@ -129,11 +129,11 @@ POST /Tienda
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
-// Recuperar una tienda
+# Recuperar una tienda
 Authorization: Bearer <JWT>
 GET /Tienda
 
-// Eliminar una tienda
+# Eliminar una tienda
 Authorization: Bearer <JWT>
 DELETE /Tienda/{id}
 ```
