@@ -23,11 +23,11 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 
 //PUT actualiza la tieda en la DB.
 const update = async (Id, Nombre, Imagen) => {
-    console.log("updatecontroler", Id, Nombre, Imagen)
+    // console.log("updatecontroler", Id, Nombre, Imagen)
     const tienda = await Store.findByPk(Id);
 	if (!tienda) throw new Error("El Tienda no existe.");
-    console.log(tienda)
-    console.log(Nombre, Imagen)
+    // console.log(tienda)
+    // console.log(Nombre, Imagen)
 
     await Store.update({ Nombre, Imagen }, {where: {Id}});
 
