@@ -29,8 +29,8 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     env_file: ./backend/.env
-    # volumes:
-    #   - ./backend:/app/
+    volumes:
+      - ./backend/src:/app/src
     ports:
       - "3001:3001"
     expose:
