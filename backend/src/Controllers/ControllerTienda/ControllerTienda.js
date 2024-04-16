@@ -16,7 +16,6 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 
     console.log("entra")
 	const tienda = await Store.create({Nombre, Imagen, UserId});
-    console.log(tienda)
     await User.update({Vendedor: true},{where: {Id: UserId}});
     
     console.log(tienda)
@@ -25,6 +24,7 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 
 //PUT actualiza la tieda en la DB.
 const update = async (Id, Nombre, Imagen) => {
+    console.log("updatecontroler", Id, Nombre, Imagen)
     const tienda = await Store.findByPk(Id);
 	if (!tienda) throw new Error("El Tienda no existe.");
     console.log(tienda)
@@ -35,8 +35,19 @@ const update = async (Id, Nombre, Imagen) => {
 	return "Listo!!";
 };
 
+//PUT actualiza la tieda en la DB.
+const deleteStoreById = async (Id) => {
+      const tienda = await Store.findByPk(Id);
+      if (!tienda) throw new Error("El Tienda no existe.");
+
+      await Store.update({ Activo: false }, {where: {Id}});
+
+      return "Listo!!";
+};
+
 module.exports = {
     get,
     postAdd,
-    update
+    update,
+    deleteStoreById
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getUsers, disableUser } from '../../hooks/useUsers';
-import { FaTrashAlt } from "react-icons/fa";
+import { getUsers, disableUser, enableUser } from '../../hooks/useUsers';
+import { FaUserAltSlash } from 'react-icons/fa';
+import { FaUserCheck } from 'react-icons/fa';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -52,6 +53,15 @@ export const DataUsers = () => {
 				},
 			},
 			{
+				header: 'Estado',
+				accessorKey: 'Activo',
+				enableColumnOrdering: false,
+				size: 50,
+				Cell: ({ row }) => {
+					return row.original.Activo ? 'Habilitado' : 'Suspendido';
+				},
+			},
+			{
 				header: 'Tienda',
 				accessorKey: 'tienda',
 				enableColumnOrdering: false,
@@ -63,11 +73,17 @@ export const DataUsers = () => {
 
 	const actions = [
 		{
-			text: 'Suspender',
-			icon: <FaTrashAlt />
-			,
+			text: 'Inhabilitar',
+			icon: <FaUserAltSlash />,
 			onClick: (row) => {
 				suspendUser(row.original.id);
+			},
+		},
+		{
+			text: 'Habilitar',
+			icon: <FaUserCheck />,
+			onClick: (row) => {
+				habilitUser(row.original.id);
 			},
 		},
 	];
@@ -89,6 +105,33 @@ export const DataUsers = () => {
 				Swal.fire({
 					icon: 'success',
 					title: 'Usuario inhabilitado correctamente',
+					showConfirmButton: false,
+					timer: 2500,
+				});
+				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+			} catch (error) {
+				console.error('Error al suspender al usuario:', error);
+			}
+		}
+	}
+
+	async function habilitUser(id) {
+		const result = await Swal.fire({
+			title: 'Confirmas la habilitacion del usuario?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#8f8e8b',
+			confirmButtonText: 'Sí, confirmar',
+			cancelButtonText: 'Cancelar',
+		});
+		if (result.isConfirmed) {
+			try {
+				await enableUser(id);
+
+				Swal.fire({
+					icon: 'success',
+					title: 'Usuario habilitado correctamente',
 					showConfirmButton: false,
 					timer: 2500,
 				});
