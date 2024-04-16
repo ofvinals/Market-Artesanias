@@ -104,7 +104,7 @@ PATCH /Usuario/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyODA1NiwiZXhwIjoxNzEzMzE0NDU2fQ.EXw5r432zjxpSpwALyvzVvJEMlz0d3fFe__vNyllrII
 GET /Tienda
 
-### Recuperar una tienda
+### Crear una tienda
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
 POST /Tienda
@@ -113,7 +113,7 @@ POST /Tienda
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
-### Recuperar una tienda
+### Eliminar una tienda
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
 DELETE /Tienda/4
