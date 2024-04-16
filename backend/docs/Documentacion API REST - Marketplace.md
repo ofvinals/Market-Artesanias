@@ -62,6 +62,30 @@ POST /Login
 ```
 
 
+### Operaciones de `Usuario`
+
+```txt
+# Obtener todos los usuarios
+Authorization: Bearer <JWT>
+GET /Usuario
+
+# Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
+Authorization: Bearer <JWT>
+GET /Usuario/{id}
+
+# Editar / Modificar un usuario Por ID
+Authorization: Bearer <JWT>
+PATCH /Usuario/{id}
+{
+      "Nombre": "Michael",
+      "Apellido": "Jackson",
+      "Genero": "Masculino",
+      "FechaNacimiento": "2024-04-13T22:17:12.837Z",
+      "Ubicacion": "Indiana, US"
+}
+```
+
+
 ### Operaciones `Producto`
 
 ```txt
@@ -86,11 +110,13 @@ Content-Type: application/json
 }
 ```
 
+
 ### Operaciones `Categoria` (working on)
 
 ```txt
 {raiz}/Categoria
 ```
+
 
 ### Operaciones `Tienda`
 
@@ -111,3 +137,4 @@ GET /Tienda
 Authorization: Bearer <JWT>
 DELETE /Tienda/{id}
 ```
+
