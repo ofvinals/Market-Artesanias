@@ -7,7 +7,7 @@ const routerUsuario = Router();
 
 routerUsuario.get("/", validateToken, getAllUsuario);
 routerUsuario.get("/:Id", validateToken, getUsuarioById);
-routerUsuario.patch("/:Id", validateToken, patchEditUsuario);
+routerUsuario.patch("/:Id", validateToken, /*validateActive, */ patchEditUsuario);
 routerUsuario.delete("/:Id", validateToken, eliminarUsuario);
 
 function validateToken( req, res, next )
@@ -33,5 +33,7 @@ function validateToken( req, res, next )
       );
 }
 
+// function validateActive( req, res, next )
+// {}
 
 module.exports = routerUsuario;
