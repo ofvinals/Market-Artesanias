@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Detail } from '../components/MyStore/Detail';
@@ -12,7 +13,7 @@ function MyStore() {
 	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 	const { id } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
-	const [store, setStore] = useState([]);
+	const [store, setStore] = useState({});
 
 	if (!isLoggedIn) {
 		navigate('/login');
@@ -22,18 +23,21 @@ function MyStore() {
 		async function loadStore() {
 			try {
 				const storeData = await getStore();
-				setStore(storeData);
+				console.log(storeData)
+				const firstStoreItem = storeData[0];
+				setStore(firstStoreItem);
 			} catch (error) {
 				console.error('Error al cargar los datos de la tienda', error);
 			}
 		}
+
 		loadStore();
 	}, [id]);
 
-	const stored = { id: 1, Nombre: 'Oscar' };
+
 	useEffect(() => {
 		console.log(store);
-		if (stored.length === 0) {
+		if (!store ) {
 			Swal.fire({
 				icon: 'info',
 				title: 'No tienes una tienda creada. Debes crear una!',
@@ -43,12 +47,12 @@ function MyStore() {
 			navigate('/createStore');
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [store, navigate]);
-
+	}, [store]);
+console.log(store)
 	return (
 		<>
 			<NavBar />
-			<Detail nombreStore={stored.Nombre} idStore={stored.id} />
+			<Detail Store={store} />
 			<Products />
 			<List />
 		</>

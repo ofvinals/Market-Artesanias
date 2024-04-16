@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { updateNameStore } from '../../hooks/useStore';
 import { useForm } from 'react-hook-form';
 import { uploadFile } from '../../firebase/config';
 
-export const Detail = ({ nombreStore, idStore }) => {
-	const [photoUrl, setPhotoUrl] = useState(null);
+export const Detail = ({ Store }) => {
+	const imgStore = Store && Store.Imagen ? Store.Imagen : null;
+	const nombreStore = Store && Store.Nombre ? Store.Nombre : null;
+	const id = Store && Store.Id ? Store.Id : null; //
+	const [photoUrl, setPhotoUrl] = useState(imgStore);
 	const [editing, setEditing] = useState(false);
-	const [newName, setNewName] = useState(nombreStore);
-	const id = idStore;
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	useEffect(() => {
+		setPhotoUrl(imgStore);
+	}, [imgStore]);
 
 	const handleFileChange = async (event) => {
 		try {
@@ -21,7 +27,7 @@ export const Detail = ({ nombreStore, idStore }) => {
 			if (file) {
 				const fileDownloadUrl = await uploadFile(file);
 				setPhotoUrl(fileDownloadUrl);
-				console.log(fileDownloadUrl)
+				console.log(fileDownloadUrl);
 				const storeData = {
 					Id: id,
 					Imagen: fileDownloadUrl,
@@ -65,10 +71,6 @@ export const Detail = ({ nombreStore, idStore }) => {
 		setEditing(false);
 	});
 
-	const handleInputChange = (e) => {
-		setNewName(e.target.value);
-	};
-
 	const uploadPhoto = () => {
 		document.getElementById('fileInput').click();
 	};
@@ -77,64 +79,67 @@ export const Detail = ({ nombreStore, idStore }) => {
 		<div>
 			<div>
 				<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
-					<div className='flex flex-col-reverse sm:flex-row justify-around w-full ps-10 items-center'>
+					<div className='flex flex-col-reverse sm:flex-row justify-between w-full items-center'>
 						<form
 							className='flex flex-row text-[#563300]'
 							onSubmit={handleSaveClick}>
-							<input
-								id='nombre'
-								readOnly={!editing}
-								ref={(input) => input && editing && input.focus()}
-								type='text'
-								name='nombre'
-								{...register('nombre', {
-									required: {
-										value: true,
-										message: 'El nombre es requerido',
-									},
-								})}
-								value={newName}
-								onChange={handleInputChange}
-								className={`text-[20px] sm:text-[40px] text-wrap text-center bg-transparent min-w-fit focus:outline-none focus:border-transparent`}
-							/>
-							{errors.nombre && (
-								<span className='error-message'>
-									{errors.nombre.message}
-								</span>
-							)}
-							{!editing ? (
-								<i
-									onClick={() => setEditing(true)}
-									className='fa-solid fa-pencil ps-5 pt-4 text-2xl hover:text-4xl'></i>
-							) : null}
-						</form>
-						{editing && (
-							<i
-								onClick={handleSaveClick}
-								className='fa-solid fa-floppy-disk ps-5 pt-4 text-3xl hover:text-4xl hover:text-white'></i>
-						)}
-
-						{photoUrl ? (
-							<img
-								src={photoUrl}
-								alt='Uploaded'
-								className='w-[192px] h-48 rounded-full mt-5'
-								onClick={uploadPhoto}
-							/>
-						) : (
-							<label
-								htmlFor='fileInput'
-								className='me-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white cursor-pointer'>
+							<div className='flex flex-row justify-around w-6/12 items center'>
 								<input
-									id='fileInput'
-									type='file'
-									style={{ display: 'none' }}
-									onChange={handleFileChange}
+									id='nombre'
+									readOnly={!editing}
+									ref={(input) => input && editing && input.focus()}
+									type='text'
+									name='nombre'
+									{...register('Nombre', {
+										required: {
+											value: true,
+											message: 'El nombre es requerido',
+										},
+									})}
+									defaultValue={nombreStore}
+									className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent min-w-fit focus:outline-none focus:border-transparent'
 								/>
-								<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>Subir
-								Foto
-							</label>
-						)}
+								{errors.nombre && (
+									<span className='error-message'>
+										{errors.nombre.message}
+									</span>
+								)}
+								{!editing ? (
+									<i
+										onClick={() => setEditing(true)}
+										className='fa-solid fa-pencil ps-5 pt-4 text-2xl hover:text-4xl'></i>
+								) : null}
+
+								{editing && (
+									<i
+										onClick={handleSaveClick}
+										className='fa-solid fa-floppy-disk ps-5 pt-4 text-3xl hover:text-4xl'></i>
+								)}
+							</div>
+						</form>
+						<div className='flex justify-around items-center text-center '>
+							{photoUrl ? (
+								<img
+									src={photoUrl}
+									alt='Uploaded'
+									className='w-[192px] h-48 rounded-full me-10'
+									onClick={uploadPhoto}
+								/>
+							) : (
+								<label
+									htmlFor='fileInput'
+									className='me-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white cursor-pointer '>
+									<input
+										id='fileInput'
+										type='file'
+										style={{ display: 'none' }}
+										onChange={handleFileChange}
+									/>
+									<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>
+									Subir Foto
+								</label>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
