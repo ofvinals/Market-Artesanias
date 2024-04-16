@@ -23,14 +23,14 @@ services:
 
   node-backend:
     container_name: node-backend
-    restart: always
+    # restart: always
     image: node-backend
     build:
       context: ./backend/
       dockerfile: Dockerfile
     env_file: ./backend/.env
-    volumes:
-      - ./backend:/app/
+    # volumes:
+    #   - ./backend:/app/
     ports:
       - "3001:3001"
     expose:
@@ -49,7 +49,7 @@ services:
     depends_on:
       - node-backend
     volumes:
-      - ./frontend:/app/
+      - ./frontend/src:/app/src
     ports:
       - "3000:3000"
     expose:
