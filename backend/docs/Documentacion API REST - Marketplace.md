@@ -1,32 +1,32 @@
 # Endpoints
 
 *Raiz*
-```http
+```txt
 http://localhost:3001
 ```
 
 Recurso *Usuario*:
-```http
+```txt
 {raiz}/Registro
 ```
 
 Recurso *Login*
-```http
+```txt
 {raiz}/Login
 ```
 
 Recurso *Producto*
-```http
+```txt
 {raiz}/Producto
 ```
 
 Recurso *Categoria*
-```http
+```txt
 {raiz}/Categoria
 ```
 
 Recurso *Tienda*
-```http
+```txt
 {raiz}/Tienda
 ```
 
@@ -36,7 +36,7 @@ Recurso *Tienda*
 
 ### Operaciones `Registro`
 
-```json
+```txt
 // Registrarse con un usuario
 POST /Registro
 {
@@ -52,7 +52,7 @@ POST /Registro
 
 ### Operaciones `Login`
 
-```json
+```txt
 // Logearse con un mail (devuelve JWT)
 POST /Login
 {
@@ -64,7 +64,7 @@ POST /Login
 
 ### Operaciones `Producto`
 
-```json
+```txt
 // Recuperar todos los productos
 GET /Producto
 
@@ -88,13 +88,13 @@ Content-Type: application/json
 
 ### Operaciones `Categoria` (working on)
 
-```http
+```txt
 {raiz}/Categoria
 ```
 
 ### Operaciones `Tienda`
 
-```json
+```txt
 // Crear una tienda
 Authorization: Bearer <JWT>
 POST /Tienda
