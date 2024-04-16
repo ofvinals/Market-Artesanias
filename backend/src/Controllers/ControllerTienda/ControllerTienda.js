@@ -18,7 +18,6 @@ const postAdd = async (UserId, Nombre, Imagen) => {
 	const tienda = await Store.create({Nombre, Imagen, UserId});
     await User.update({Vendedor: true},{where: {Id: UserId}});
     
-    console.log(tienda)
 	return tienda;
 };
 
