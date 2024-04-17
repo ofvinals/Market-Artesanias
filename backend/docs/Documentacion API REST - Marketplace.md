@@ -90,6 +90,13 @@ PATCH /Usuario/{id}
 }
 ```
 
+```txt
+# Editar / Modificar un usuario Por ID
+Authorization: Bearer <JWT>
+DELETE /Usuario/{id}
+```
+
+
 
 ### Operaciones `Producto`
 

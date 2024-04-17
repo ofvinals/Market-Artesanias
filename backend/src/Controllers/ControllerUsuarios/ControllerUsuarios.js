@@ -1,4 +1,5 @@
 const { User } = require("../../db");
+const { postAdd, update, get, deleteStoreById } = require("../ControllerTienda/ControllerTienda");
 
 //GET todas las usuario.
 const getAll = async () => {
@@ -42,6 +43,27 @@ console.log(newUsuario)
       return "Usuario Actualizado!!";
 }
 
+//PUT actualiza la tieda en la DB.
+const deleteUserById = async (Id) => {
+      const usuario = await User.findByPk(Id);
+      if (!usuario) throw new Error("El Tienda no existe.");
+
+      await User.update({ Activo: false }, {where: {Id}});
+
+      const tiendasUsuario = await get( Id );
+
+
+      // console.log( tiendasUsuario );
+      console.log( tiendasUsuario.length );
+      tiendasUsuario.forEach(element => {
+            deleteStoreById( element.dataValues.Id );
+      });
+      // tiendasUsuario
+      // deleteStoreById
+
+      return "Listo!!";
+};
+
 
 module.exports = {
       getAll,
@@ -49,4 +71,5 @@ module.exports = {
       editUsuario,
       getById,
       updateById,
+      deleteUserById,
 }

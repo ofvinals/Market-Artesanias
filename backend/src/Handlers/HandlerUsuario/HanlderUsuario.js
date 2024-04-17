@@ -1,4 +1,4 @@
-const { getAll, getById, updateById } = require("../../Controllers/ControllerUsuarios/ControllerUsuarios");
+const { getAll, getById, updateById, deleteUserById } = require("../../Controllers/ControllerUsuarios/ControllerUsuarios");
 
 //GET todas las Usuario.
 const getAllUsuario = async (req, res) => {
@@ -118,8 +118,23 @@ const getUsuarioById = async (req, res) => {
       }
 };
 
+const eliminarUsuario = async (req, res) => {
+      const { Id } = req.params;
+      const isAdmin = req.user.Admin; // Es administrador?
+      //
+      // if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
+      try {
+            const response = await deleteUserById(Id);
+            return res.status(200).json(response);
+      } catch (error) {
+            return res.status(500).json({error: error.message});
+      }
+}
+
+
 module.exports = {
       getAllUsuario,
       patchEditUsuario,
-      getUsuarioById
+      getUsuarioById,
+      eliminarUsuario
 }
