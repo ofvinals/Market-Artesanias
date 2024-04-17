@@ -58,6 +58,15 @@ POST /Registro # (Michael Jackson)
       "Email": "mail2@gmail.com",
       "Contraseña": "123456789"
 }
+# Crear admin  ( Registro )
+--
+POST /Registro # (Freddie Mercury)
+{
+      "Nombre": "Freddie",
+      "Apellido": "Mercury",
+      "Email": "admin123@gmail.com",
+      "Contraseña": "12345678"
+}
 
 # Crear nuevo usuario  ( Registro )
 --
