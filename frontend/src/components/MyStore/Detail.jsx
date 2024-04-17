@@ -79,7 +79,7 @@ export const Detail = ({ Store }) => {
 		<div>
 			<div>
 				<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
-					<div className='flex flex-col-reverse sm:flex-row justify-between w-full items-center'>
+					<div className='flex flex-col-reverse sm:flex-row justify-around w-full items-center'>
 					<div className='flex justify-around items-center text-center '>
 							{photoUrl ? (
 								<img
