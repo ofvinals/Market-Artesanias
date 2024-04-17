@@ -49,7 +49,7 @@ const getAllProductoVendedor = async (req, res) => {
 
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
-		StoreId = tokenized.UserId;
+		StoreId = tokenized.userId;
         console.log("StoreId ProductoVendedor",StoreId)
         const responseDb = await getAllVendedor(StoreId);
         
