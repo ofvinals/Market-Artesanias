@@ -72,10 +72,8 @@ function Login() {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
-			console.log(res);
 			const { accesoWJT } = res.data;
 			const decodedToken = jwt_decode(accesoWJT);
-			console.log(decodedToken);
 			const { Email, userId, Admin } = decodedToken;
 			dispatch({
 				type: types.login,

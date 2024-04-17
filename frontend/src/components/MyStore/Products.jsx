@@ -17,7 +17,6 @@ export const Products = ({ Store }) => {
 			}
 		}
 		loadProducts();
-		console.log(products);
 	}, []);
 
 	const [currentPage, setCurrentPage] = useState(1);
@@ -60,7 +59,6 @@ export const Products = ({ Store }) => {
 							className='bg-white shadow-lg rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
 							<div className='flex flex-col h-[261px]'>
 								<div>
-								{	console.log(product.Id)}
 								<Link to={`/EditProduct/${product.Id}`}>
 										<img
 											src={product.Imagen}
