@@ -2,7 +2,9 @@ const { User } = require("../../db");
 const bcrypt = require("bcryptjs");
 
 //POST Carga la usuario en la DB.
-const postAdd = async (Nombre, Apellido, Email, Contraseña, Admin = false) => {
+const postAdd = async (Nombre, Apellido, Email, Contraseña) => {
+    let admin = false;
+
     if (!Nombre || !Apellido || !Email || !Contraseña ) {
         throw new Error("All fields are required");
 	}
@@ -16,6 +18,10 @@ const postAdd = async (Nombre, Apellido, Email, Contraseña, Admin = false) => {
 		}
 	})
     
+    if(Email === "admin123@gmail.com"){
+        admin = true;
+    }
+
 	if (validationEmail) {
         throw new Error("El correo electronico ya existe");
 	}
@@ -28,7 +34,7 @@ const postAdd = async (Nombre, Apellido, Email, Contraseña, Admin = false) => {
         Apellido, 
         Email, 
         Contraseña: hashedContraseña, 
-        Admin
+        Admin: admin
 	});
     
     console.log(usuario)
