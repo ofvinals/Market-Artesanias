@@ -49,12 +49,76 @@ POST /Categoria
       "Nombre": "Accesorios"
 }
 
-# Crear nuevo usuario ( Registro )
+# Crear nuevo usuario  ( Registro )
 --
-POST /Registro
+POST /Registro # (Michael Jackson)
+{
+      "Nombre": "Michael",
+      "Apellido": "Jackson",
+      "Email": "mail2@gmail.com",
+      "Contraseña": "123456789"
+}
+
+# Crear nuevo usuario  ( Registro )
+--
+POST /Registro # (Javier)
 {
       "Nombre": "Javier",
       "Apellido": "Pignataro",
-      "Email": "jgp.workmail@gmail.com",
+      "Email": "mail@gmail.com",
       "Contraseña": "123456789"
 }
+
+# Loguear un usuario
+--
+POST /Login # (Javier)
+{
+      "Email": "mail@gmail.com",
+      "Contraseña": "123456789"
+}
+
+# Obtener usuarios ---> # En esta Request El JWT Debe ir en el header de "Authorization"
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzA1MDc5OCwiZXhwIjoxNzEzMTM3MTk4fQ.PqKUGEGqKMJlQTSg-zh5FGFh6u32CKOEadhqIzWpL7o
+GET /Usuario
+
+# Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID) ---> # En esta Request El JWT Debe ir en el header de "Authorization"
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
+GET /Usuario/2
+
+# Editar / Modificar un usuario Por ID ---> # En esta Request El JWT Debe ir en el header de "Authorization"
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbDJAZ21haWwuY29tIiwiQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTMwNTEwMDIsImV4cCI6MTcxMzEzNzQwMn0.REyhbrNRliPc2yGlcJUpPoYbHQmuWW5z-cMdER-sXj0
+PATCH /Usuario/2
+{
+      "Nombre": "Hector",
+      "Apellido": "Soler",
+      "Genero": "Masculino",
+      "FechaNacimiento": "2024-04-13T22:17:12.837Z",
+      "Ubicacion": "Buenos Aires, Argentina"
+}
+
+### Recuperar una tienda
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyODA1NiwiZXhwIjoxNzEzMzE0NDU2fQ.EXw5r432zjxpSpwALyvzVvJEMlz0d3fFe__vNyllrII
+GET /Tienda
+
+### Crear una tienda
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
+POST /Tienda
+{
+      "Nombre": "Verduleria de la pasion",
+      "Imagen": "http://urlfalsa.ultra.falsa"
+}
+
+### Eliminar una tienda
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
+DELETE /Tienda/4
+
+### Eliminar Usuario
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
+DELETE /Usuario/1

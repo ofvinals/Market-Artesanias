@@ -1,4 +1,4 @@
-Para el front:
+# Para el front:
 # Dependency directories
 /frontend/node_modules/
 /frontend/jspm_packages/
@@ -45,3 +45,5 @@ Para el front:
 /backend/.env.test.local
 /backend/.env.production.local
 /backend/.env.local
+
+

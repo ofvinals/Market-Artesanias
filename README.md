@@ -20,10 +20,9 @@ De todas las sugerencias de proyectos, nuestro grupo se decidio por una app de c
 
 **Server:** Node, Express
 
-**DB:** MongoDB
+**DB:** PostgreSQL
 
 **UI/UX:** Figma
 
 **Gestion de Trabajo:** Jira
 
-# Branch Javii

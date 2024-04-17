@@ -9,6 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
 
 export const Table = ({ columns, data, actions }) => {
+	console.log(data)
 	const table = useMaterialReactTable({
 		columns,
 		data: data || [],
@@ -34,18 +35,35 @@ export const Table = ({ columns, data, actions }) => {
 		renderRowActions: ({ row }) => (
 			<Box sx={{}}>
 				{actions.map((action, index) => {
-               return(
-					<button
-						key={index}
-						className=' flex items-center justify-center '
-						onClick={() => action.onClick(row)}>
-						<span
-							className='text-red-700 ms-3 text-center text-2xl hover:opacity-50'>
-							{action.icon}
-						</span>
-				
-					</button>
-               )
+					if (row.original.Activo) {
+						if (action.text === 'Inhabilitar') {
+							return (
+								<button
+									key={index}
+									className='flex flex-col items-center justify-center'
+									onClick={() => action.onClick(row)}>
+									<span className='bg-red-700 ms-3 text-white text-center border-2 p-3 text-2xl hover:opacity-50'>
+										{action.icon}
+									</span>
+								</button>
+							);
+						}
+					} else {
+						if (action.text === 'Habilitar') {
+							return (
+								<button
+									key={index}
+									className='flex items-center justify-center'
+									onClick={() => action.onClick(row)}>
+									<span className='bg-green-700 ms-3 text-center text-white text-2xl border-2 p-3 hover:opacity-50'>
+										{action.icon}
+									</span>
+									{action.text}
+								</button>
+							);
+						}
+					}
+					return null; 
 				})}
 			</Box>
 		),
