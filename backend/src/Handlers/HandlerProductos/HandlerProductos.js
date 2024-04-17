@@ -15,6 +15,7 @@ const getAllProducto = async (req, res) => {
     const { Nombre } = req.query;
     try {
         const responseDb = await getAll();
+        console.log(responseDb)
         if (Nombre) {
             const response = responseDb.filter((e) =>
               e.Nombre.toLowerCase().includes(Nombre.toLowerCase())
@@ -48,8 +49,8 @@ const getAllProductoVendedor = async (req, res) => {
 
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
-		StoreId = tokenized.StoreId;
-        console.log(StoreId)
+		StoreId = tokenized.userId;
+        console.log("StoreId ProductoVendedor",StoreId)
         const responseDb = await getAllVendedor(StoreId);
         
         return  res.status(200).json(responseDb);

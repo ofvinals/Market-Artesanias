@@ -109,7 +109,7 @@ GET /Tienda
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
 POST /Tienda
 {
-      "Nombre": "Almacen de amor",
+      "Nombre": "Verduleria de la pasion",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
@@ -117,3 +117,8 @@ POST /Tienda
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
 DELETE /Tienda/4
+
+### Eliminar Usuario
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
+DELETE /Usuario/1

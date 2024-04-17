@@ -22,7 +22,6 @@ function NewProduct() {
 			setPhotos((prevPhotos) => [...prevPhotos, file]);
 		}
 	};
-	console.log(photos);
 
 	const handleUpChange = async (event) => {
 		try {
@@ -42,7 +41,6 @@ function NewProduct() {
 		updatedPhotos.splice(index, 1);
 		setPhotos(updatedPhotos);
 	};
-	console.log(photoUrl);
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {

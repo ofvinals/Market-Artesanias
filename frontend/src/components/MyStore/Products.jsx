@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 export const Products = ({ Store }) => {
 	const [products, setProducts] = useState([]);
-	const idStore = Store && Store.Id ? Store.Id : null;
-	console.log(idStore);
 
 	useEffect(() => {
 		async function loadProducts() {
