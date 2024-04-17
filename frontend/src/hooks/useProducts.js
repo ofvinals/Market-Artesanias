@@ -1,5 +1,31 @@
 import { apiURL } from '../api/apiURL.js';
 
+export const getProductVendedor = async () => {
+	try {
+		const token = localStorage.getItem('token');
+		console.log(token)
+			const res = await apiURL.get(`/Producto/Vendedor`, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+		console.log(res)
+		return res.data;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const getProducts = async () => {
+	try {
+		const token = localStorage.getItem('token');
+		const res = await apiURL.get(`/Producto`, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+		return res.data;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
 export const getProduct = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
@@ -12,10 +38,11 @@ export const getProduct = async (id) => {
 	}
 };
 
-export const getProducts = async () => {
+export const createProduct = async (values) => {
+	console.log(values)
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/Producto`, {
+		const res = await apiURL.post(`/Producto`, values, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return res.data;
@@ -47,5 +74,3 @@ export const deleteProduct = async (id) => {
 		console.error(error);
 	}
 };
-
-

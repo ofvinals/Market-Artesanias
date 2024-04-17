@@ -23,21 +23,19 @@ function MyStore() {
 		async function loadStore() {
 			try {
 				const storeData = await getStore();
-				console.log(storeData)
+				console.log(storeData);
 				const firstStoreItem = storeData[0];
 				setStore(firstStoreItem);
 			} catch (error) {
 				console.error('Error al cargar los datos de la tienda', error);
 			}
 		}
-
 		loadStore();
 	}, [id]);
 
-
 	useEffect(() => {
 		console.log(store);
-		if (!store ) {
+		if (!store) {
 			Swal.fire({
 				icon: 'info',
 				title: 'No tienes una tienda creada. Debes crear una!',
@@ -45,15 +43,15 @@ function MyStore() {
 				timer: 3000,
 			});
 			navigate('/createStore');
+			return;
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [store]);
-console.log(store)
+
 	return (
 		<>
 			<NavBar />
 			<Detail Store={store} />
-			<Products />
+			<Products Store={store} />
 			<List />
 		</>
 	);

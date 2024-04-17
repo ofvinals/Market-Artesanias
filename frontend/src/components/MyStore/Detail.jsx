@@ -79,11 +79,34 @@ export const Detail = ({ Store }) => {
 		<div>
 			<div>
 				<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
-					<div className='flex flex-col-reverse sm:flex-row justify-between w-full items-center'>
+					<div className='flex flex-col-reverse sm:flex-row justify-around w-full items-center'>
+					<div className='flex justify-around items-center text-center '>
+							{photoUrl ? (
+								<img
+									src={photoUrl}
+									alt='Uploaded'
+									className='w-[192px] h-48 rounded-full sm:ms-16'
+									onClick={uploadPhoto}
+								/>
+							) : (
+								<label
+									htmlFor='fileInput'
+									className='ms-16 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white cursor-pointer '>
+									<input
+										id='fileInput'
+										type='file'
+										style={{ display: 'none' }}
+										onChange={handleFileChange}
+									/>
+									<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>
+									Subir Foto
+								</label>
+							)}
+						</div>
 						<form
 							className='flex flex-row text-[#563300]'
 							onSubmit={handleSaveClick}>
-							<div className='flex flex-row justify-around w-6/12 items center'>
+							<div className='flex flex-row'>
 								<input
 									id='nombre'
 									readOnly={!editing}
@@ -97,7 +120,7 @@ export const Detail = ({ Store }) => {
 										},
 									})}
 									defaultValue={nombreStore}
-									className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent min-w-fit focus:outline-none focus:border-transparent'
+									className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent'
 								/>
 								{errors.nombre && (
 									<span className='error-message'>
@@ -117,29 +140,7 @@ export const Detail = ({ Store }) => {
 								)}
 							</div>
 						</form>
-						<div className='flex justify-around items-center text-center '>
-							{photoUrl ? (
-								<img
-									src={photoUrl}
-									alt='Uploaded'
-									className='w-[192px] h-48 rounded-full me-10'
-									onClick={uploadPhoto}
-								/>
-							) : (
-								<label
-									htmlFor='fileInput'
-									className='me-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white cursor-pointer '>
-									<input
-										id='fileInput'
-										type='file'
-										style={{ display: 'none' }}
-										onChange={handleFileChange}
-									/>
-									<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>
-									Subir Foto
-								</label>
-							)}
-						</div>
+						
 					</div>
 				</div>
 			</div>

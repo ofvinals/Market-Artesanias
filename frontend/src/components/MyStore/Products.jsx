@@ -1,37 +1,37 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { getProducts } from '../../hooks/useProducts';
+import { getProductVendedor } from '../../hooks/useProducts';
+import { Link } from 'react-router-dom';
 
-export const Products = () => {
+export const Products = ({ Store }) => {
 	const [products, setProducts] = useState([]);
+	const idStore = Store && Store.Id ? Store.Id : null;
+	console.log(idStore);
 
 	useEffect(() => {
 		async function loadProducts() {
 			try {
-				const productData = await getProducts();
+				const productData = await getProductVendedor();
+				console.log(productData)
 				setProducts(productData);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
 			}
 		}
 		loadProducts();
-
 		console.log(products);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const productsPerPage = 3;
-
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 	const currentProducts = products
 		? products.slice(indexOfFirstProduct, indexOfLastProduct)
 		: [];
-
 	const totalPages = products
 		? Math.ceil(products.length / productsPerPage)
 		: 0;
-
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
@@ -44,8 +44,8 @@ export const Products = () => {
 					<div className='bg-secondary rounded-lg border-[#D9D9D9] border-2 mt-3 ms-3 flex flex-row justify-between w-full h-full max-w-[296px] max-h-[261px]'>
 						<div className='flex flex-col w-full shadow-lg '>
 							<div className='flex items-center justify-center w-full h-48 text-general rounded-lg '>
-								<a href='/'>
-									<i className='fa-solid fa-circle-plus text-8xl hover:text-9xl'></i>
+								<a href='/newProduct'>
+									<i className='fa-solid fa-circle-plus text-general text-8xl hover:text-9xl'></i>
 								</a>
 							</div>
 							<div className='flex bg-white text-wrap w-full items-center justify-center h-20 text-general text-xl font-semibold rounded-lg'>
@@ -62,23 +62,25 @@ export const Products = () => {
 							className='bg-white shadow-lg rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
 							<div className='flex flex-col h-[261px]'>
 								<div>
-									<a href='/'>
+								{	console.log(product.Id)}
+								<Link to={`/EditProduct/${product.Id}`}>
 										<img
-											src={product.image}
-											alt={product.nombre}
+											src={product.Imagen}
+											alt={product.Nombre}
 											className='w-[296px] h-[157px] rounded-md hover:opacity-50'
 										/>
-									</a>
+									</Link>
+									
 								</div>
 								<div className='flex flex-col ms-2 '>
 									<h3 className='font-bold text-xl text-general mt-2'>
-										{product.nombre}
+										{product.Nombre}
 									</h3>
 									<p className='mb-2 text-general'>
-										{product.description}
+										{product.Descripcion}
 									</p>
 									<p className='font-bold text-xl text-specific mb-2'>
-										$ {product.price}
+										$ {product.Precio}
 									</p>
 								</div>
 							</div>

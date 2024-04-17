@@ -28,14 +28,14 @@ const getAllProducto = async (req, res) => {
         }
         return  res.status(200).json(responseDb);
     } catch (error) {
-        return  res.status(500).json({error: error.mensage});
+        return  res.status(500).json({error: error.message});
     }
 };
 
 //GET todo los productos del vendedor.
 const getAllProductoVendedor = async (req, res) => {
     const token = req.headers.authorization;
-    //console.log(token)
+    console.log(token)
 	
 	if (!token) {
 		return res.status(401).json({ message: 'Token no proporcionado' });
@@ -54,7 +54,7 @@ const getAllProductoVendedor = async (req, res) => {
         
         return  res.status(200).json(responseDb);
     } catch (error) {
-        return  res.status(500).json({error: error.mensage});
+        return  res.status(500).json({error: error.message});
     }
 };
 
@@ -65,7 +65,7 @@ const getByIdProducto = async (req, res) => {
         const response = await getById(Id);
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json({error: error.mensage});
+        return res.status(500).json({error: error.message});
     }
 };
 
@@ -76,7 +76,7 @@ const postAddProducto = async (req, res) => {
         const response = await postAdd(Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero);
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json({error: error.mensage});
+        return res.status(500).json({error: error.message});
     }
 };
 
@@ -87,7 +87,7 @@ const putUpdateProducto = async (req, res) => {
         const response = await putUpdate(Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId, Genero);
         return res.status(201).json(response);
     } catch (error) {
-        return res.status(500).json({error: error.mensage});
+        return res.status(500).json({error: error.message});
     }
 };
 
