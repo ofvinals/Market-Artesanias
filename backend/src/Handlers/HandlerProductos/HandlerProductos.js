@@ -3,7 +3,8 @@ const {
         getById, 
         postAdd, 
         putUpdate, 
-        getAllVendedor
+        getAllVendedor,
+        putSuspenderP
     } = require("../../Controllers/ControllerProductos/ControllerProducto");
     require("dotenv").config();
     const jwt = require("jsonwebtoken");
@@ -92,10 +93,24 @@ const putUpdateProducto = async (req, res) => {
     }
 };
 
+//PUT Suspender el producto
+const putSuspender = async (req, res) => {
+    const { Id } = req.body;
+    try {
+        console.log(Id)
+        const response = await putSuspenderP(Id);
+        return res.status(201).json(response);
+    } catch (error) {
+        return res.status(500).json({error: error.mensage});
+    }
+};
+
+
 module.exports = {
     getAllProducto,
     getByIdProducto,
     postAddProducto,
     putUpdateProducto,
-    getAllProductoVendedor
+    getAllProductoVendedor,
+    putSuspender
 }
