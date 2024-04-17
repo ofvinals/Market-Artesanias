@@ -16,9 +16,18 @@ function MyStore() {
 	const [store, setStore] = useState({});
 	const [storeLoaded, setStoreLoaded] = useState(false);
 
-	if (!isLoggedIn) {
-		navigate('/login');
-	}
+	useEffect(() => {
+		if (!isLoggedIn || !id) {
+			navigate('/login');
+			Swal.fire({
+				icon: 'warning',
+				title: 'Debes iniciar sesion!',
+				showConfirmButton: false,
+				timer: 2000,
+			});
+			return;
+		}
+	}, [isLoggedIn, id]);
 
 	useEffect(() => {
 		async function loadStore() {
@@ -73,7 +82,7 @@ function MyStore() {
 	return (
 		<>
 			<NavBar />
-			{storeLoaded && store? (
+			{storeLoaded && store ? (
 				<>
 					<Detail Store={store} />
 					<Products Store={store} />

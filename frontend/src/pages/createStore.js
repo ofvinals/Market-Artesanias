@@ -32,7 +32,13 @@ function CreateStore() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
-			const storeData = {
+			if (!photoUrl || photoUrl.length === 0) {
+				alert(
+					'Cargando Fotos. Aguarde unos instantes e intente nuevamente!.'
+				);
+				return;
+			}
+						const storeData = {
 				Id: id,
 				Nombre: values.Nombre,
 				Imagen: photoUrl,

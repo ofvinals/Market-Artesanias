@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../css/Login.css';
 import Swal from 'sweetalert2';
-import { createProduct } from '../hooks/useProducts';
+import { createProduct } from '../hooks/useProducts.js';
 import NavBar from '../components/NavBar.jsx';
-import { uploadFile } from '../firebase/config';
+import { uploadFile } from '../firebase/config.js';
+import { useNavigate } from 'react-router-dom';
 
-function NewProduct() {
+export const NewProduct = () => {
 	const {
 		register,
 		handleSubmit,
@@ -15,7 +16,8 @@ function NewProduct() {
 	} = useForm();
 	const [photoUrl, setPhotoUrl] = useState([]);
 	const [photos, setPhotos] = useState([]);
-
+	const [count, setCount] = useState(0);
+	const navigate = useNavigate();
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
 		if (file) {
@@ -42,6 +44,15 @@ function NewProduct() {
 		setPhotos(updatedPhotos);
 	};
 
+	const increaseCount = () => {
+		setCount(count + 1);
+	};
+
+	const decreaseCount = () => {
+		if (count > 0) {
+			setCount(count - 1);
+		}
+	};
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const categoryId = parseInt(values.categoria);
@@ -64,11 +75,12 @@ function NewProduct() {
 			};
 			console.log(productData);
 			await createProduct(productData);
+			navigate('/mi-tienda');
 			Swal.fire({
 				icon: 'success',
 				title: 'Producto publicado correctamente!',
 				showConfirmButton: false,
-				timer: 2000,
+				timer: 3000,
 			});
 			reset();
 			setPhotos([]);
@@ -97,7 +109,7 @@ function NewProduct() {
 					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
 						<label className='text-xl text-[#563300]'>Categoria</label>
 						<select
-							className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-1 rounded-xl w-full'
+							className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-1 rounded-xl w-full focus:border-[#8B5300]'
 							aria-label='Default select'
 							{...register('categoria', {
 								required: {
@@ -121,7 +133,7 @@ function NewProduct() {
 
 						<label className='text-xl text-[#563300]'>Nombre</label>
 						<input
-							className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full'
+							className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'
 							type='text'
 							{...register('nombre', {
 								required: {
@@ -140,8 +152,8 @@ function NewProduct() {
 							<label className='text-xl text-[#563300] mt-3'>
 								Descripcion del producto
 							</label>
-							<input
-								className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full'
+							<textarea
+								className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'
 								type='text'
 								{...register('descripcion', {
 									required: {
@@ -160,16 +172,34 @@ function NewProduct() {
 						<label className='text-xl text-[#563300]'>
 							Cantidad de Unidades
 						</label>
-						<input
-							className='ps-4 mt-3 h-16 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full'
-							type='number'
-							{...register('cantidad', {
-								required: {
-									value: true,
-									message: 'La cantidad es requerida',
-								},
-							})}
-						/>
+						<div className='ms-10 flex flex-row items center justify-start'>
+							<button
+								onClick={decreaseCount}
+								className='text-6xl text-general'>
+								-
+							</button>
+							<input
+								className='ps-4 mt-3 mx-10 h-16 text-xl text-center border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-2/12'
+								type='number'
+								onChange={(e) => {
+									const value = parseInt(e.target.value);
+									setCount(value);
+								}}
+								value={count}
+								{...register('cantidad', {
+									required: {
+										value: true,
+										message: 'La cantidad de producto es requerida',
+									},
+								})}
+							/>
+
+							<button
+								onClick={increaseCount}
+								className='text-6xl text-general'>
+								+
+							</button>
+						</div>
 						{errors.cantidad && (
 							<span className='bg-red-500 inline-block mb-5 inline; rounded-xl w-full px-5 text-center text-xl text-white'>
 								{errors.cantidad.message}
@@ -179,16 +209,19 @@ function NewProduct() {
 						<label className='text-xl text-[#563300]'>
 							Especificar precio del producto
 						</label>
-						<input
-							className='ps-4 mt-3 h-16 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full'
-							type='number'
-							{...register('precio', {
-								required: {
-									value: true,
-									message: 'El precio es requerido',
-								},
-							})}
-						/>
+						<div className='flex flex-row h-16 border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'>
+							<span className='ps-4 mt-1 text-2xl text-general'>$</span>
+							<input
+								className='ps-4  w-full text-xl focus:outline-none focus:border-transparent '
+								type='number'
+								{...register('precio', {
+									required: {
+										value: true,
+										message: 'El precio es requerido',
+									},
+								})}
+							/>
+						</div>
 						{errors.precio && (
 							<span className='bg-red-500 inline-block rounded-xl w-full text-center px-5 text-xl mb-5 text-white'>
 								{errors.precio.message}
@@ -197,7 +230,7 @@ function NewProduct() {
 
 						<div className='mb-9'>
 							<button
-								className='bg-[#E98C00] w-full font-bold text-xl h-16 mt-7 text-white rounded-xl'
+								className='bg-[#E98C00] w-full border-2 border-specific font-bold text-xl h-16 mt-7 text-white rounded-xl hover:bg-white hover:text-specific'
 								type='submit'>
 								Publicar Producto
 							</button>
@@ -217,7 +250,7 @@ function NewProduct() {
 								onClick={uploadPhoto}
 							/>
 							<i
-								className='fa-solid fa-circle-plus text-xl pe-5'
+								className='fa-regular fa-circle-xmark text-specific text-xl pe-5 hover:text-general hover:cursor-pointer'
 								onClick={() => handleDeletePhoto(index)}></i>
 						</div>
 					))}
@@ -240,6 +273,6 @@ function NewProduct() {
 			</section>
 		</>
 	);
-}
+};
 
 export default NewProduct;
