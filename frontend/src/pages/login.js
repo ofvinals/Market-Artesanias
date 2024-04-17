@@ -124,7 +124,7 @@ function Login() {
 						onSubmit={onSubmit}>
 						<input
 							placeholder='Mail'
-							className='ps-4 h-16 text-xl border-2 border-[#8B5300] rounded-xl p-2 w-full'
+							className='ps-4 h-16 text-xl border-2 bg-transparent border-[#8B5300] rounded-xl p-2 w-full focus:border-[#8B5300]'
 							type='email'
 							{...register('Email', {
 								required: {
@@ -143,10 +143,10 @@ function Login() {
 							</span>
 						)}
 
-						<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 px-2 focus:border-transparent'>
+						<div className='w-full h-16 text-xl flex flex-row items-center border-2 border-[#8B5300] rounded-xl mt-9 px-2 '>
 							<input
 								placeholder='Contraseña'
-								className='inputlogin text-xl w-full h-full'
+								className='inputlogin text-xl w-full h-full focus:outline-none focus:border-transparent'
 								type={showPassword ? 'text' : 'password'}
 								{...register('Contraseña', {
 									required: {

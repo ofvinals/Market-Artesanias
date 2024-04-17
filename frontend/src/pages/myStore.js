@@ -14,6 +14,7 @@ function MyStore() {
 	const { id } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
 	const [store, setStore] = useState({});
+	const [storeLoaded, setStoreLoaded] = useState(false);
 
 	if (!isLoggedIn) {
 		navigate('/login');
@@ -26,6 +27,7 @@ function MyStore() {
 				console.log(storeData);
 				const firstStoreItem = storeData[0];
 				setStore(firstStoreItem);
+				setStoreLoaded(true);
 			} catch (error) {
 				console.error('Error al cargar los datos de la tienda', error);
 			}
@@ -34,25 +36,52 @@ function MyStore() {
 	}, [id]);
 
 	useEffect(() => {
-		console.log(store);
-		if (!store) {
-			Swal.fire({
-				icon: 'info',
-				title: 'No tienes una tienda creada. Debes crear una!',
-				showConfirmButton: false,
-				timer: 3000,
-			});
-			navigate('/createStore');
-			return;
+		async function checkStore() {
+			if (!store && storeLoaded) {
+				const result = await Swal.fire({
+					title: 'No tienes una tienda creada!',
+					text: 'Quieres crear tu tienda de ventas?',
+					icon: 'info',
+					showCancelButton: true,
+					confirmButtonColor: '#E98C00',
+					cancelButtonColor: '#8f8e8b',
+					confirmButtonText: 'Sí, crear mi tienda',
+					cancelButtonText: 'Cancelar',
+				});
+				if (result.isConfirmed) {
+					Swal.close();
+					navigate('/createStore');
+				} else {
+					Swal.fire({
+						icon: 'warning',
+						title: 'Deberas crear tu tienda para realizar ventas!',
+						showConfirmButton: false,
+						timer: 2000,
+					});
+					navigate('/store');
+					return;
+				}
+			}
 		}
-	}, [store]);
 
+		checkStore();
+	}, [store, storeLoaded, navigate]);
+
+	if (!storeLoaded) {
+		return <div>Cargando...</div>;
+	}
 	return (
 		<>
 			<NavBar />
-			<Detail Store={store} />
-			<Products Store={store} />
-			<List />
+			{storeLoaded && store? (
+				<>
+					<Detail Store={store} />
+					<Products Store={store} />
+					<List />
+				</>
+			) : (
+				<div>Cargando...</div>
+			)}
 		</>
 	);
 }

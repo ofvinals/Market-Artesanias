@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { getProducts, deleteProduct } from '../../hooks/useProducts';
 import { FaTrashAlt } from "react-icons/fa";
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -27,31 +26,31 @@ export const DataProducts = () => {
 		() => [
 			{
 				header: 'Nombre',
-				accessorKey: 'nombre',
+				accessorKey: 'Nombre',
 				enableColumnOrdering: false,
 				size: 50,
 			},
 			{
 				header: 'Categoria',
-				accessorKey: 'genero',
+				accessorKey: 'Category',
 				enableColumnOrdering: false,
 				size: 50,
 			},
 			{
 				header: 'Precio',
-				accessorKey: 'precio',
+				accessorKey: 'Precio',
 				enableColumnOrdering: false,
 				size: 100,
 			},
 			{
 				header: 'Descripcion',
-				accessorKey: 'descripcion',
+				accessorKey: 'Descripcion',
 				enableColumnOrdering: false,
 				size: 50,
 			},
 			{
 				header: 'Activo',
-				accessorKey: 'activo',
+				accessorKey: 'Activo',
 				enableColumnOrdering: false,
 				size: 50,
 			},
@@ -61,10 +60,10 @@ export const DataProducts = () => {
 
 	const actions = [
 		{
-			text: 'Eliminar',
+			text: 'Inhabilitar',
 			icon: <FaTrashAlt />,
 			onClick: (row) => {
-				delProduct(row.original._id);
+				delProduct(row.original.id);
 			},
 		},
 	];

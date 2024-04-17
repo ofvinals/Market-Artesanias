@@ -25,7 +25,7 @@ const getByStore = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		UserId = tokenized.userId;
-
+		console.log("userID", UserId)
 		const tienda = await get(UserId);
 		return res.status(201).json(tienda);
 	} catch (error) {

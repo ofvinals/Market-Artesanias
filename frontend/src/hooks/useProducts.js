@@ -3,7 +3,6 @@ import { apiURL } from '../api/apiURL.js';
 export const getProductVendedor = async () => {
 	try {
 		const token = localStorage.getItem('token');
-		console.log(token)
 			const res = await apiURL.get(`/Producto/Vendedor`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
@@ -39,7 +38,6 @@ export const getProduct = async (id) => {
 };
 
 export const createProduct = async (values) => {
-	console.log(values)
 	try {
 		const token = localStorage.getItem('token');
 		const res = await apiURL.post(`/Producto`, values, {
