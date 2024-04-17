@@ -65,7 +65,7 @@ const putTienda = async (req, res) => {
 	console.log('handlertienda', Imagen, Nombre);
 	try {
 		const response = await update(Id, Nombre, Imagen);
-		return res.sendStatus(202).json(response);
+		return res.status(202).json(response);
 		// if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
