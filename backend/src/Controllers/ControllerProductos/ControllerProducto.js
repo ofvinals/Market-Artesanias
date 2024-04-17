@@ -55,9 +55,9 @@ const getById = async (Id) => {
 
 //POST Carga el producto en la DB.
 const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero = null) => {
-    if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
-        throw new Error("All fields are required");
-	}
+    // if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
+    //     throw new Error("All fields are required");
+	// }
     console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 	const producto = await Product.create({
         Nombre, 

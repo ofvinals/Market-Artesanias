@@ -9,6 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
 
 export const Table = ({ columns, data, actions }) => {
+	console.log(data)
 	const table = useMaterialReactTable({
 		columns,
 		data: data || [],
