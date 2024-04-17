@@ -2,6 +2,7 @@ const { Store, User } = require("../../db");
 
 //GET trae solo la tiena del vendedor en la DB.
 const get = async (UserId) => {
+    console.log("userid", UserId)
     const tienda = await Store.findAll({
         where: { UserId }
     });

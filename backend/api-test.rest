@@ -108,7 +108,7 @@ PATCH /Usuario/2
       "Ubicacion": "Buenos Aires, Argentina"
 }
 
-### Recuperar una tienda
+### Recuperar todas las tiendas
 --
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4ODA4NywiZXhwIjoxNzEzNDc0NDg3fQ.XKazUK5hzqXGb-psNld-CwKV32251wFTk1XaeORjgB8
 GET /Tienda
@@ -116,10 +116,10 @@ GET /Tienda
 
 ### Crear una tienda
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4ODA4NywiZXhwIjoxNzEzNDc0NDg3fQ.XKazUK5hzqXGb-psNld-CwKV32251wFTk1XaeORjgB8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4OTUxOCwiZXhwIjoxNzEzNDc1OTE4fQ.vtybpO98TQRHWmkuK4EPR-Bmg7tlM_mJjP7kXl3UDHg
 POST /Tienda
 {
-      "Nombre": "Verduleria de la pasion",
+      "Nombre": "Almacen del hamor",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
@@ -128,7 +128,7 @@ POST /Tienda
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4ODA4NywiZXhwIjoxNzEzNDc0NDg3fQ.XKazUK5hzqXGb-psNld-CwKV32251wFTk1XaeORjgB8
 PUT /Tienda
 {
-      "Id": 1,
+      "Id": "1",
       "Nombre": "Verduleria de la pasion",
       "Imagen": "google"
 }
