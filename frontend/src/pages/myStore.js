@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Detail } from '../components/MyStore/Detail';

@@ -3,9 +3,9 @@ const { postAdd } = require("../../Controllers/ControllerRegistro/ControllerRegi
 
 //POST Carga la Usuario en la DB.
 const postAddUsuario = async (req, res) => {
-      const { Nombre, Apellido, Email, Contraseña } = req.body;
+      const { Nombre, Apellido, Email, Contraseña, Admin } = req.body;
       try {
-            const response = await postAdd(Nombre, Apellido, Email, Contraseña);
+            const response = await postAdd(Nombre, Apellido, Email, Contraseña, Admin);
             return res.status(200).json(response);
       } catch (error) {
             return res.status(500).json({error: error.mensage});

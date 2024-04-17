@@ -58,6 +58,15 @@ POST /Registro # (Michael Jackson)
       "Email": "mail2@gmail.com",
       "Contraseña": "123456789"
 }
+# Crear admin  ( Registro )
+--
+POST /Registro # (Freddie Mercury)
+{
+      "Nombre": "Freddie",
+      "Apellido": "Mercury",
+      "Email": "admin123@gmail.com",
+      "Contraseña": "12345678"
+}
 
 # Crear nuevo usuario  ( Registro )
 --
@@ -99,19 +108,31 @@ PATCH /Usuario/2
       "Ubicacion": "Buenos Aires, Argentina"
 }
 
-### Recuperar una tienda
+### Recuperar todas las tiendas
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyODA1NiwiZXhwIjoxNzEzMzE0NDU2fQ.EXw5r432zjxpSpwALyvzVvJEMlz0d3fFe__vNyllrII
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4ODA4NywiZXhwIjoxNzEzNDc0NDg3fQ.XKazUK5hzqXGb-psNld-CwKV32251wFTk1XaeORjgB8
 GET /Tienda
+
 
 ### Crear una tienda
 --
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzIyNjEzNCwiZXhwIjoxNzEzMzEyNTM0fQ.6UwUFog3LKyuM_hXMjg0yw4gKSbJp-4ToySCol0O3L0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4OTUxOCwiZXhwIjoxNzEzNDc1OTE4fQ.vtybpO98TQRHWmkuK4EPR-Bmg7tlM_mJjP7kXl3UDHg
 POST /Tienda
 {
-      "Nombre": "Verduleria de la pasion",
+      "Nombre": "Almacen del hamor",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
+
+### Modificar una tienda
+--
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzM4ODA4NywiZXhwIjoxNzEzNDc0NDg3fQ.XKazUK5hzqXGb-psNld-CwKV32251wFTk1XaeORjgB8
+PUT /Tienda
+{
+      "Id": "1",
+      "Nombre": "Verduleria de la pasion",
+      "Imagen": "google"
+}
+
 
 ### Eliminar una tienda
 --

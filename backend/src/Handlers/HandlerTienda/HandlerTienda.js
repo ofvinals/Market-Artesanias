@@ -25,9 +25,12 @@ const getByStore = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		UserId = tokenized.userId;
-		console.log("userID", UserId)
-		const tienda = await get(UserId);
-		return res.status(201).json(tienda);
+
+console.log(UserId)
+const tienda = await get(UserId);
+console.log(tienda)
+        return  res.status(201).json(tienda);
+
 	} catch (error) {
 		return res.status(401).json({ message: 'Token inválido' });
 	}
@@ -51,11 +54,12 @@ const postAddTienda = async (req, res) => {
 
 		UserId = tokenized.userId;
 
-		const response = await postAdd(UserId, Nombre, Imagen);
-		return res.status(200).json(response);
-	} catch (error) {
-		return res.status(500).json({ error: error.message });
-	}
+        console.log(UserId)
+        const response = await postAdd(UserId ,Nombre, Imagen);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json({error: error.message});
+    }
 };
 
 //PUT Carga la Tienda en la DB.
@@ -65,7 +69,7 @@ const putTienda = async (req, res) => {
 	console.log('handlertienda', Imagen, Nombre);
 	try {
 		const response = await update(Id, Nombre, Imagen);
-		return res.sendStatus(202).json(response);
+		return res.status(202).json(response);
 		// if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
