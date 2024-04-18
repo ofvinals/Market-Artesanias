@@ -78,6 +78,7 @@ function MyStore() {
 	if (!storeLoaded) {
 		return <div>Cargando...</div>;
 	}
+
 	return (
 		<>
 			<NavBar />

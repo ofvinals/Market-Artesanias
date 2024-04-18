@@ -1,6 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getProducts, deleteProduct } from '../../hooks/useProducts';
-import { FaTrashAlt } from 'react-icons/fa';
+import {
+	getProducts,
+	unableProduct,
+	enableProduct,
+} from '../../hooks/useProducts';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { FaUserCheck } from 'react-icons/fa';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -13,7 +18,6 @@ export const DataProducts = () => {
 		const fetchData = async () => {
 			try {
 				const products = await getProducts();
-				console.log(products);
 				setData(products);
 			} catch (error) {
 				console.error('Error al obtener productos', error);
@@ -65,16 +69,23 @@ export const DataProducts = () => {
 	const actions = [
 		{
 			text: 'Inhabilitar',
-			icon: <FaTrashAlt />,
+			icon: <TiDeleteOutline />,
 			onClick: (row) => {
-				delProduct(row.original.Id);
+				suspProduct(row.original.Id);
+			},
+		},
+		{
+			text: 'Habilitar',
+			icon: <FaUserCheck />,
+			onClick: (row) => {
+				habilitProduct(row.original.id);
 			},
 		},
 	];
 
-	async function delProduct(Id) {
+	async function suspProduct(Id) {
 		const result = await Swal.fire({
-			title: 'Confirmas la eliminacion del producto?',
+			title: 'Confirmas la suspension del producto?',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#d33',
@@ -84,15 +95,41 @@ export const DataProducts = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				await deleteProduct(Id);
+				await unableProduct(Id);
 				Swal.fire({
 					icon: 'success',
-					title: 'Producto eliminado correctamente',
+					title: 'Producto suspendido correctamente',
 					showConfirmButton: false,
 					timer: 2500,
 				});
 			} catch (error) {
-				console.error('Error al eliminar el producto:', error);
+				console.error('Error al suspender el producto:', error);
+			}
+		}
+	}
+
+	async function habilitProduct(id) {
+		const result = await Swal.fire({
+			title: 'Confirmas la habilitacion del producto?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#8f8e8b',
+			confirmButtonText: 'Sí, confirmar',
+			cancelButtonText: 'Cancelar',
+		});
+		if (result.isConfirmed) {
+			try {
+				await enableProduct(id);
+				Swal.fire({
+					icon: 'success',
+					title: 'Producto habilitado correctamente',
+					showConfirmButton: false,
+					timer: 2500,
+				});
+				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+			} catch (error) {
+				console.error('Error al suspender al producto:', error);
 			}
 		}
 	}
@@ -111,7 +148,8 @@ export const DataProducts = () => {
 					columns={columns}
 					data={data}
 					actions={actions}
-					deleteProduct={deleteProduct}
+					suspProduct={suspProduct}
+					habilitProduct={habilitProduct}
 				/>
 			</ThemeProvider>
 		</div>
