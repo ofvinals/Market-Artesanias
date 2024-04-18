@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -26,19 +27,47 @@ export const EditProduct = () => {
 
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const handleFileChange = (e) => {
-		const file = e.target.files[0];
-		if (file) {
-			setPhotos((prevPhotos) => [...prevPhotos, file]);
+
+	const handleFileChange = async (e) => {
+		try {
+			const file = e.target.files[0];
+			console.log(file);
+			if (file) {
+				const newPhotos = [...photos, file];
+				setPhotos(newPhotos);
+				console.log(photos);
+				await handleUpChange(newPhotos);
+				Swal.fire({
+					icon: 'info',
+					title: 'Aguarde',
+					text: 'Estamos actualizando la imagen.',
+					showConfirmButton: false,
+					timer: 3000,
+				});
+			}
+		} catch (error) {
+			console.error('Error al cargar el archivo de foto:', error);
 		}
 	};
 
-	const handleUpChange = async (event) => {
+	const handleUpChange = async (newPhotos) => {
 		try {
-			const fileDownloadUrls = await Promise.all(photos.map(uploadFile));
-			setPhotoUrl(fileDownloadUrls);
+			const filteredPhotos = newPhotos.filter(
+				(photo) => !photoUrl.includes(photo)
+			);
+			if (filteredPhotos.length === 0) {
+				console.log('No hay fotos nuevas para cargar.');
+				return photoUrl;
+			}
+			const fileDownloadUrls = await Promise.all(newPhotos.map(uploadFile));
+			const newPhotoUrls = [...photoUrl, ...fileDownloadUrls];
+			setPhotoUrl(newPhotoUrls);
+			setPhotos(newPhotoUrls);
+			console.log(photoUrl);
+			return newPhotoUrls;
 		} catch (error) {
 			console.error('Error al cargar el archivo de foto:', error);
+			return photoUrl;
 		}
 	};
 
@@ -69,7 +98,7 @@ export const EditProduct = () => {
 				const store = await getStore();
 				setImgStore(store[0].Imagen);
 				setNombreStore(store[0].Nombre);
-				console.log(product, store);
+				console.log(product);
 				setValue('Id', product.Id);
 				setValue('nombre', product.Nombre);
 				setValue('categoria', product.CategoryId);
@@ -79,32 +108,34 @@ export const EditProduct = () => {
 				setValue('photos', product.Imagen);
 				setCount(product.Disponible);
 				setPhotos([product.Imagen]);
+				console.log(photos);
 			} catch (error) {
 				console.error('Error al obtener datos del producto', error);
 			}
 		}
 		loadProduct();
-	}, [id, setValue]);
+	}, []);
 
 	const onSubmit = handleSubmit(async (values) => {
 		try {
-			const categoryId = parseInt(values.categoria);
-			await handleUpChange();
-			if (!photoUrl || photoUrl.length === 0) {
-				alert(
-					'Cargando Fotos. Aguarde unos instantes e intente nuevamente!.'
-				);
-				return;
+			let newImageUrls = [];
+			console.log(photos);
+			console.log(photoUrl);
+			if (photoUrl.length < 0) {
+				newImageUrls = photos;
+			} else {
+				newImageUrls = photoUrl;
 			}
+			console.log(newImageUrls);
 			const productData = {
 				Id: id,
 				StoreId: 1,
 				Nombre: values.nombre,
-				CategoryId: categoryId,
+				CategoryId: values.categoria,
 				Descripcion: values.descripcion,
-				Disponible: values.cantidad,
+				Disponible: count,
 				Precio: values.precio,
-				Imagen: photoUrl.join(','),
+				Imagen: photos.join(','),
 			};
 			console.log(productData);
 			await updateProduct(productData);
@@ -119,8 +150,8 @@ export const EditProduct = () => {
 			console.log(error);
 			Swal.fire({
 				icon: 'error',
-				title: 'Publicacion rechazada',
-				text: 'Tu producto no pudo ser publicado. Intenta nuevamente!',
+				title: 'Edicion rechazada',
+				text: 'Tu producto no pudo ser editado. Intenta nuevamente!',
 				showConfirmButton: false,
 				timer: 2000,
 			});
@@ -176,33 +207,16 @@ export const EditProduct = () => {
 						</span>
 					)}
 					<div className='flex flex-row items-center'>
-						<img src={imgStore} alt='' className='w-[70px] h-[70px] rounded-full'/>
-						<p className='text-2xl text-specific ms-16 font-semibold'>{nombreStore}</p>
+						<img
+							src={imgStore}
+							alt=''
+							className='w-[70px] h-[70px] rounded-full'
+						/>
+						<p className='text-2xl text-specific ms-16 font-semibold'>
+							{nombreStore}
+						</p>
 					</div>
-					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
-						<select
-							className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-1 rounded-xl w-full'
-							aria-label='Default select'
-							{...register('categoria', {
-								required: {
-									value: true,
-									message: 'La categoria es requerida',
-								},
-							})}>
-							<option value=''>Seleccione una categoria...</option>
-							<option value='1'>Vestimenta</option>
-							<option value='2'>Ceramica</option>
-							<option value='3'>Muebles</option>
-							<option value='4'>Pasteleria</option>
-							<option value='5'>Accesorios</option>
-						</select>
-
-						{errors.categoria && (
-							<span className='bg-red-500 rounded-xl inline-block px-5 text-center w-full mb-5 text-xl text-white'>
-								{errors.categoria.message}
-							</span>
-						)}
-
+					<form className='formlogin' onSubmit={onSubmit}>
 						<div className='flex flex-col mr-3 w-full'>
 							<input
 								className='ps-4 h-16 mt-3 text-xl text-[#563300] mb-1 rounded-xl p-2 w-full'
@@ -246,6 +260,7 @@ export const EditProduct = () => {
 						</label>
 						<div className='flex flex-row items center justify-around'>
 							<button
+								type='button'
 								onClick={decreaseCount}
 								className='text-6xl text-general'>
 								-
@@ -253,12 +268,13 @@ export const EditProduct = () => {
 							<input
 								className='ps-4 mt-3 h-16 text-xl text-center border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-3/12'
 								type='number'
+								readOnly
 								onChange={(e) => {
 									const value = parseInt(e.target.value);
 									setCount(value);
 								}}
 								value={count}
-								{...register('cantidad', {
+								{...register('count', {
 									required: {
 										value: true,
 										message: 'La cantidad de producto es requerida',
@@ -267,6 +283,7 @@ export const EditProduct = () => {
 							/>
 
 							<button
+								type='button'
 								onClick={increaseCount}
 								className='text-6xl text-general'>
 								+
