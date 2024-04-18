@@ -15,10 +15,10 @@ const postAdd = async (UserId, Nombre, Imagen) => {
         throw new Error("Todos los campos son obligatorios");
 	}
 
+    console.log("entra")
 	const tienda = await Store.create({Nombre, Imagen, UserId});
     await User.update({Vendedor: true},{where: {Id: UserId}});
     
-    console.log(tienda)
 	return tienda;
 };
 

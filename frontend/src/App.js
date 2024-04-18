@@ -16,6 +16,8 @@ import Dashboard from './pages/dashboard';
 import Discount from './pages/discount';
 import NewProduct from './pages/newProduct';
 import EditProduct from './components/Products/EditProduct';
+import Welcome from './pages/welcome';
+import CheckUser from './pages/checkUser';
 
 function App() {
 	return (
@@ -37,7 +39,8 @@ function App() {
 				<Route path='/createStore' element={<CreateStore />} />
 				<Route path='/newProduct' element={<NewProduct />} />
 				<Route path='/editproduct/:id' element={<EditProduct />} />
-
+				<Route path='/welcome' element={<Welcome />} />
+				<Route path='/checkuser' element={<CheckUser />} />
 			</Routes>
 		</>
 	);

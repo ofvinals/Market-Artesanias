@@ -3,7 +3,8 @@ const {
         getById, 
         postAdd, 
         putUpdate, 
-        getAllVendedor
+        getAllVendedor,
+        putSuspenderP
     } = require("../../Controllers/ControllerProductos/ControllerProducto");
     require("dotenv").config();
     const jwt = require("jsonwebtoken");
@@ -50,7 +51,7 @@ const getAllProductoVendedor = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		StoreId = tokenized.userId;
-        console.log("StoreId ProductoVendedor",StoreId)
+
         const responseDb = await getAllVendedor(StoreId);
         
         return  res.status(200).json(responseDb);
@@ -73,6 +74,7 @@ const getByIdProducto = async (req, res) => {
 //POST Carga el producto en la DB.
 const postAddProducto = async (req, res) => {
     const { Nombre, Disponible, Precio, Imagen, Descripcion, Genero, StoreId, CategoryId } = req.body;
+    console.log(res.body)
     try {
         const response = await postAdd(Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero);
         return res.status(200).json(response);
@@ -92,10 +94,23 @@ const putUpdateProducto = async (req, res) => {
     }
 };
 
+//PUT Suspender el producto
+const putSuspender = async (req, res) => {
+    const { Id } = req.body;
+    try {
+        const response = await putSuspenderP(Id);
+        return res.status(201).json(response);
+    } catch (error) {
+        return res.status(500).json({error: error.mensage});
+    }
+};
+
+
 module.exports = {
     getAllProducto,
     getByIdProducto,
     postAddProducto,
     putUpdateProducto,
-    getAllProductoVendedor
+    getAllProductoVendedor,
+    putSuspender
 }

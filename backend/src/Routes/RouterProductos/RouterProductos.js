@@ -4,15 +4,18 @@ const {
         getByIdProducto, 
         postAddProducto, 
         putUpdateProducto, 
-        getAllProductoVendedor
+        getAllProductoVendedor,
+        putSuspender
     } = require("../../Handlers/HandlerProductos/HandlerProductos");
+const validateToken = require("../ValidateToken/ValidateToken");
 
 const routerProducto = Router();
 
 routerProducto.get("/", getAllProducto);
-routerProducto.get("/Vendedor", getAllProductoVendedor);
+routerProducto.get("/Vendedor", validateToken, getAllProductoVendedor);
 routerProducto.get("/:Id", getByIdProducto);
-routerProducto.post("/", postAddProducto);
-routerProducto.put("/", putUpdateProducto);
+routerProducto.post("/", validateToken, postAddProducto);
+routerProducto.put("/", validateToken, putUpdateProducto);
+routerProducto.put("/Suspender", validateToken, putSuspender);
 
 module.exports = routerProducto;

@@ -10,7 +10,6 @@ export const Products = ({ Store }) => {
 		async function loadProducts() {
 			try {
 				const productData = await getProductVendedor();
-				console.log(productData)
 				setProducts(productData);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
@@ -38,16 +37,16 @@ export const Products = ({ Store }) => {
 			</h1>
 			<div className='m-10 flex flex-row space-x-3 space-y-3 flex-wrap justify-center'>
 				{currentPage === 1 && (
-					<div className='bg-secondary rounded-lg border-[#D9D9D9] border-2 mt-3 ms-3 flex flex-row justify-between w-full h-full max-w-[296px] max-h-[261px]'>
-						<div className='flex flex-col w-full shadow-lg '>
-							<div className='flex items-center justify-center w-full h-48 text-general rounded-lg '>
-								<a href='/newProduct'>
-									<i className='fa-solid fa-circle-plus text-general text-8xl hover:text-9xl'></i>
-								</a>
-							</div>
-							<div className='flex bg-white text-wrap w-full items-center justify-center h-20 text-general text-xl font-semibold rounded-lg'>
-								<p className='text-center '>Cargar nuevo producto</p>
-							</div>
+					<div className='bg-white rounded-lg shadow-xl border-specific border-2 mt-3 ms-3 flex flex-col justify-between w-full h-full max-w-[296px] max-h-[261px]'>
+						<div className='flex  justify-center w-full h-[261px] font-bold text-specific rounded-lg '>
+							<a
+								href='/newProduct'
+								className='items-center flex flex-col '>
+								<i className='fa-regular fa-plus text-specific text-8xl hover:text-9xl mt-10'></i>
+								<p className='text-center text-xl pt-10'>
+									Subir producto
+								</p>
+							</a>
 						</div>
 					</div>
 				)}
@@ -57,22 +56,21 @@ export const Products = ({ Store }) => {
 						<div
 							key={idx}
 							className='bg-white shadow-lg rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
-							<div className='flex flex-col h-[261px]'>
+							<div className='flex flex-col h-[261px] flex-nowrap'>
 								<div>
-								<Link to={`/EditProduct/${product.Id}`}>
+									<Link to={`/EditProduct/${product.Id}`}>
 										<img
 											src={product.Imagen}
 											alt={product.Nombre}
 											className='w-[296px] h-[157px] rounded-md hover:opacity-50'
 										/>
 									</Link>
-									
 								</div>
 								<div className='flex flex-col ms-2 '>
 									<h3 className='font-bold text-xl text-general mt-2'>
 										{product.Nombre}
 									</h3>
-									<p className='mb-2 text-general'>
+									<p className='mb-2 w-[270px] text-general truncate ...'>
 										{product.Descripcion}
 									</p>
 									<p className='font-bold text-xl text-specific mb-2'>

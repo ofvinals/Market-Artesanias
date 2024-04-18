@@ -9,7 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
 
 export const Table = ({ columns, data, actions }) => {
-	console.log(data)
 	const table = useMaterialReactTable({
 		columns,
 		data: data || [],
@@ -42,7 +41,7 @@ export const Table = ({ columns, data, actions }) => {
 									key={index}
 									className='flex flex-col items-center justify-center'
 									onClick={() => action.onClick(row)}>
-									<span className='bg-red-700 ms-3 text-white text-center border-2 p-3 text-2xl hover:opacity-50'>
+									<span className='bg-red-700 ms-3 text-white text-center rounded-xl border-2 p-3 text-xl hover:opacity-50'>
 										{action.icon}
 									</span>
 								</button>
@@ -63,7 +62,7 @@ export const Table = ({ columns, data, actions }) => {
 							);
 						}
 					}
-					return null; 
+					return null;
 				})}
 			</Box>
 		),

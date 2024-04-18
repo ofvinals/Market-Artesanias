@@ -46,6 +46,15 @@ function Profile() {
 			};
 			await updateUser(id, userData);
 			navigate('/mi-tienda');
+
+
+
+
+			//  HACER CONDICION SI LA TIENDA ESTA CREADA DEBE IR A MI TIENDA... SINO A CHECKUSER
+
+
+
+
 			Swal.fire({
 				icon: 'success',
 				title: 'Los datos del usuario han sido editados correctamente',
@@ -69,7 +78,7 @@ function Profile() {
 			<section className='container'>
 				<div className='container-login'>
 					<h2 className='text-5xl font-semibold text-[#8B5300] mb-20'>
-						Datos Personales
+						Completa tus datos personales
 					</h2>
 
 					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
@@ -181,7 +190,7 @@ function Profile() {
 				</div>
 				<div className='imglogin'>
 					<img
-						src='/Online zoom meeting of several people.svg'
+						src='/Looking for new employees among the resumes of people.png'
 						alt='profile'
 						className=''></img>
 				</div>
