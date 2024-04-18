@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiURL } from '../api/apiURL';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 import NavBar from '../components/NavBar.jsx';
+import { types } from '../redux/Actions/authTypes';
+import { useDispatch } from 'react-redux';
+import { jwtDecode as jwt_decode } from 'jwt-decode';
 
 function Register() {
 	const {
@@ -12,13 +15,21 @@ function Register() {
 		formState: { errors },
 	} = useForm();
 	const navigate = useNavigate();
-  
+	const dispatch = useDispatch();
+
 	const onSubmit = handleSubmit(async (data) => {
 		try {
 			console.log('Datos del formulario:', data);
-			const response = await axios.post('/Registro', data);
+			const response = await apiURL.post('/Registro', data);
 			console.log('Respuesta del servidor:', response);
 			if (response.status === 200) {
+				const { accesoWJT } = response.data;
+				const decodedToken = jwt_decode(accesoWJT);
+				const { Email, userId, Admin } = decodedToken;
+				dispatch({
+					type: types.login,
+					payload: { Email, userId, Admin },
+				});
 				navigate('/welcome');
 				Swal.fire({
 					icon: 'success',
@@ -59,26 +70,26 @@ function Register() {
 								placeholder='Nombre'
 								className='ps-4 h-16 text-xl border-2 border-[#8B5300] mr-2 rounded-xl p-2 w-1/2'
 								type='text'
-								{...register('firstname', {
+								{...register('Nombre', {
 									required: 'El nombre es requerido',
 								})}
 							/>
-							{errors.firstname && (
+							{errors.Nombre && (
 								<span className='error-message'>
-									{errors.firstname.message}
+									{errors.Nombre.message}
 								</span>
 							)}
 							<input
 								placeholder='Apellido'
 								className='ps-4 h-16 text-xl border-2 border-[#8B5300] ml-2 rounded-xl p-2 w-1/2'
 								type='text'
-								{...register('lastname', {
+								{...register('Apellido', {
 									required: 'El apellido es requerido',
 								})}
 							/>
-							{errors.lastname && (
+							{errors.Apellido && (
 								<span className='error-message'>
-									{errors.lastname.message}
+									{errors.Apellido.message}
 								</span>
 							)}
 						</div>
@@ -86,7 +97,7 @@ function Register() {
 							placeholder='Email'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
 							type='email'
-							{...register('email', {
+							{...register('Email', {
 								required: 'El correo electrónico es requerido',
 								pattern: {
 									value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -94,9 +105,9 @@ function Register() {
 								},
 							})}
 						/>
-						{errors.email && (
+						{errors.Email && (
 							<span className='error-message'>
-								{errors.email.message}
+								{errors.Email.message}
 							</span>
 						)}
 
@@ -104,7 +115,7 @@ function Register() {
 							placeholder='Contraseña'
 							className='ps-4 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
 							type='password'
-							{...register('password', {
+							{...register('Contraseña', {
 								required: 'La contraseña es requerida',
 								minLength: {
 									value: 8,
@@ -113,9 +124,9 @@ function Register() {
 								},
 							})}
 						/>
-						{errors.password && (
+						{errors.Contraseña && (
 							<span className='error-message'>
-								{errors.password.message}
+								{errors.Contraseña.message}
 							</span>
 						)}
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { updateUser, getUser } from '../hooks/useUsers';
@@ -15,13 +15,15 @@ function Profile() {
 	} = useForm();
 	const { id } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
+const [user, setUser] = useState();
 
 	useEffect(() => {
 		async function loadUser() {
 			try {
 				const userData = await getUser(id);
+				setUser(userData)
 				const originalDate = new Date(userData.FechaNacimiento);
-				const formattedDate = originalDate.toISOString().split('T')[0]; 
+				const formattedDate = originalDate.toISOString().split('T')[0];
 				setValue('nombre', userData.Nombre);
 				setValue('apellido', userData.Apellido);
 				setValue('genero', userData.Genero);
@@ -45,16 +47,12 @@ function Profile() {
 				Ubicacion: values.ubicacion,
 			};
 			await updateUser(id, userData);
-			navigate('/mi-tienda');
-
-
-
-
+			if (user.Vendedor) {
+				navigate('/mi-tienda');
+			} else {
+				navigate('/checkuser');
+			}
 			//  HACER CONDICION SI LA TIENDA ESTA CREADA DEBE IR A MI TIENDA... SINO A CHECKUSER
-
-
-
-
 			Swal.fire({
 				icon: 'success',
 				title: 'Los datos del usuario han sido editados correctamente',

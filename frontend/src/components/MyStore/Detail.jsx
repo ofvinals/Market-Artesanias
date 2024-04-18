@@ -82,7 +82,7 @@ export const Detail = ({ Store }) => {
 	};
 
 	return (
-		<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
+		<div className='bg-specific min-h-[250px] bg-cover flex flex-row '>
 			<div className='flex flex-col-reverse sm:flex-row justify-around w-full items-center'>
 				<div className='flex justify-around items-center text-center '>
 					{photoUrl ? (
@@ -112,7 +112,7 @@ export const Detail = ({ Store }) => {
 					)}
 				</div>
 				<form
-					className='flex flex-row text-[#563300]'
+					className='flex flex-row text-white'
 					onSubmit={handleSaveClick}>
 					<div className='flex flex-row w-fit bg-transparent justify-center'>
 						<input
@@ -120,14 +120,15 @@ export const Detail = ({ Store }) => {
 							readOnly={!editing}
 							ref={(input) => input && editing && input.focus()}
 							type='text'
-							name='nombre'
+							name='Nombre'
 							{...register('Nombre', {
 								required: {
 									value: true,
 									message: 'El nombre es requerido',
 								},
 							})}
-							defaultValue={nombreStore}
+							value={nombreStore} 
+							onChange={(e) => setNombreStore(e.target.value)}
 							className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent focus:bg-transparent'
 						/>
 						{errors.nombre && (

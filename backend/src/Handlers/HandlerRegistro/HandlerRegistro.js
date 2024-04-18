@@ -8,7 +8,7 @@ const postAddUsuario = async (req, res) => {
             const response = await postAdd(Nombre, Apellido, Email, Contraseña, Admin);
             return res.status(200).json(response);
       } catch (error) {
-            return res.status(500).json({error: error.mensage});
+            return res.status(500).json({error: error.message});
       }
 };
 
