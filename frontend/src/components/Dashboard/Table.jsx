@@ -33,7 +33,9 @@ export const Table = ({ columns, data, actions }) => {
 			variant: 'outlined',
 		},
 		renderRowActions: ({ row }) => (
+			
 			<Box sx={{}}>
+				{console.log(row)}
 				{actions.map((action, index) => {
 					if (row.original.Activo) {
 						if (action.text === 'Inhabilitar') {

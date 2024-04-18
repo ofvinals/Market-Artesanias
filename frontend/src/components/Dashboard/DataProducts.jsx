@@ -63,12 +63,12 @@ export const DataProducts = () => {
 			text: 'Inhabilitar',
 			icon: <FaTrashAlt />,
 			onClick: (row) => {
-				delProduct(row.original.id);
+				delProduct(row.original.Id);
 			},
 		},
 	];
 
-	async function delProduct(id) {
+	async function delProduct(Id) {
 		const result = await Swal.fire({
 			title: 'Confirmas la eliminacion del producto?',
 			icon: 'warning',
@@ -80,14 +80,13 @@ export const DataProducts = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				await deleteProduct(id);
+				await deleteProduct(Id);
 					Swal.fire({
 					icon: 'success',
 					title: 'Producto eliminado correctamente',
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				setData((prevData) => prevData.filter((turno) => turno._id !== id));
 			} catch (error) {
 				console.error('Error al eliminar el producto:', error);
 			}

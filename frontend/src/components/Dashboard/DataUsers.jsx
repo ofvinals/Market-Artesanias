@@ -101,7 +101,6 @@ export const DataUsers = () => {
 		if (result.isConfirmed) {
 			try {
 				await disableUser(id);
-
 				Swal.fire({
 					icon: 'success',
 					title: 'Usuario inhabilitado correctamente',

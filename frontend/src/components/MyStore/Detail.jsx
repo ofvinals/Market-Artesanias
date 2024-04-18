@@ -6,9 +6,11 @@ import { uploadFile } from '../../firebase/config';
 
 export const Detail = ({ Store }) => {
 	const imgStore = Store && Store.Imagen ? Store.Imagen : null;
-	const nombreStore = Store && Store.Nombre ? Store.Nombre : null;
-	const id = Store && Store.Id ? Store.Id : null; //
+	const nameStore = Store && Store.Nombre ? Store.Nombre : null;
+	const id = Store && Store.Id ? Store.Id : null; 
 	const [photoUrl, setPhotoUrl] = useState(imgStore);
+	const [nombreStore, setNombreStore] = useState(nameStore);
+
 	const [editing, setEditing] = useState(false);
 
 	const {
@@ -27,18 +29,13 @@ export const Detail = ({ Store }) => {
 			if (file) {
 				const fileDownloadUrl = await uploadFile(file);
 				setPhotoUrl(fileDownloadUrl);
-				console.log(fileDownloadUrl);
+				setNombreStore(nameStore)
 				const storeData = {
 					Id: id,
-					Imagen: fileDownloadUrl,
+					Nombre: nombreStore,
+					Imagen: photoUrl
 				};
-				await updateNameStore(id, storeData);
-				Swal.fire({
-					icon: 'success',
-					title: 'La imagen de la tienda ha sido editada correctamente',
-					showConfirmButton: false,
-					timer: 2000,
-				});
+				await updateNameStore(storeData);
 			}
 		} catch (error) {
 			console.error('Error al cargar el archivo:', error);
@@ -47,12 +44,13 @@ export const Detail = ({ Store }) => {
 
 	const handleSaveClick = handleSubmit(async (values) => {
 		try {
+			setNombreStore(values.Nombre)
 			const storeData = {
 				Id: id,
-				Nombre: values.nombre,
+				Nombre: nombreStore,
+				Imagen: photoUrl
 			};
-			console.log(storeData, id);
-			await updateNameStore(id, storeData);
+			await updateNameStore(storeData);
 			Swal.fire({
 				icon: 'success',
 				title: 'El nombre de la tienda ha sido editado correctamente',
@@ -72,6 +70,15 @@ export const Detail = ({ Store }) => {
 	});
 
 	const uploadPhoto = () => {
+		let fileInput = document.getElementById('fileInput');
+		if (!fileInput) {
+			fileInput = document.createElement('input');
+			fileInput.type = 'file';
+			fileInput.id = 'fileInput';
+			fileInput.style.display = 'none';
+			fileInput.addEventListener('change', handleFileChange);
+			document.body.appendChild(fileInput);
+		}
 		document.getElementById('fileInput').click();
 	};
 
@@ -80,7 +87,7 @@ export const Detail = ({ Store }) => {
 			<div>
 				<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
 					<div className='flex flex-col-reverse sm:flex-row justify-around w-full items-center'>
-					<div className='flex justify-around items-center text-center '>
+						<div className='flex justify-around items-center text-center '>
 							{photoUrl ? (
 								<img
 									src={photoUrl}
@@ -96,7 +103,6 @@ export const Detail = ({ Store }) => {
 										id='fileInput'
 										type='file'
 										style={{ display: 'none' }}
-										onChange={handleFileChange}
 									/>
 									<i className='fa-solid fa-circle-plus text-center pe-5 pt-2 ps-3 text-4xl'></i>
 									Subir Foto
@@ -106,7 +112,7 @@ export const Detail = ({ Store }) => {
 						<form
 							className='flex flex-row text-[#563300]'
 							onSubmit={handleSaveClick}>
-							<div className='flex flex-row'>
+							<div className='flex flex-row w-fit bg-transparent justify-center'>
 								<input
 									id='nombre'
 									readOnly={!editing}
@@ -120,7 +126,7 @@ export const Detail = ({ Store }) => {
 										},
 									})}
 									defaultValue={nombreStore}
-									className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent'
+									className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent focus:bg-transparent'
 								/>
 								{errors.nombre && (
 									<span className='error-message'>
@@ -140,7 +146,6 @@ export const Detail = ({ Store }) => {
 								)}
 							</div>
 						</form>
-						
 					</div>
 				</div>
 			</div>

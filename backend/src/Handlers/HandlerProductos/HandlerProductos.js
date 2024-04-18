@@ -74,6 +74,7 @@ const getByIdProducto = async (req, res) => {
 //POST Carga el producto en la DB.
 const postAddProducto = async (req, res) => {
     const { Nombre, Disponible, Precio, Imagen, Descripcion, Genero, StoreId, CategoryId } = req.body;
+    console.log(res.body)
     try {
         const response = await postAdd(Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero);
         return res.status(200).json(response);
