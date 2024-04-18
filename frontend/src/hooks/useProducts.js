@@ -72,3 +72,27 @@ export const deleteProduct = async (id) => {
 		console.error(error);
 	}
 };
+
+export const unableProduct = async (id) => {
+	try {
+		const token = localStorage.getItem('token');
+		const res = await apiURL.put(`/Suspender`, id, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+		return res.data;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const enableProduct = async (id) => {
+	try {
+		const token = localStorage.getItem('token');
+		const res = await apiURL.put(`/Suspender`, id, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+		return res.data;
+	} catch (error) {
+		console.error(error);
+	}
+};

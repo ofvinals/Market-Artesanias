@@ -38,7 +38,7 @@ function CreateStore() {
 				);
 				return;
 			}
-						const storeData = {
+			const storeData = {
 				Id: id,
 				Nombre: values.Nombre,
 				Imagen: photoUrl,
@@ -77,12 +77,12 @@ function CreateStore() {
 			<section className='container'>
 				<div className='container-login'>
 					<h2 className='text-5xl font-semibold text-[#8B5300] mb-20'>
-						Datos de su tienda
+						Crear tienda
 					</h2>
 
 					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
 						<label className='text-xl text-[#563300]'>
-							Nombre de su tienda
+							Nombre de la tienda
 						</label>
 						<input
 							className='ps-4 h-16 mt-5  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
@@ -111,10 +111,11 @@ function CreateStore() {
 								/>
 							</div>
 						) : (
+							<div className='flex justify-end'>
 							<button
 								onClick={uploadPhoto}
 								type='button'
-								className='me-10 mb-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'>
+								className='mb-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'>
 								<i className='fa-solid fa-circle-plus pe-5'></i>Subir
 								Foto
 								<input
@@ -123,7 +124,7 @@ function CreateStore() {
 									style={{ display: 'none' }}
 									onChange={handleFileChange}
 								/>{' '}
-							</button>
+							</button></div>
 						)}
 						<div className='mb-9'>
 							<button
