@@ -49,7 +49,16 @@ const getAllVendedor = async (StoreId) => {
 //GETBYID solo un producto.
 const getById = async (Id) => {
     const producto = await Product.findByPk(Id,{
-        include: {model: Category, attributes: ["Id","Nombre"]}
+        include: [
+            {
+                model: Store,
+                attributes: ["Id", "Nombre", "Imagen"]
+            },
+            {
+                model: Category,
+                attributes: ["Id", "Nombre"]
+            }
+        ]
     });
     return producto;
 };
