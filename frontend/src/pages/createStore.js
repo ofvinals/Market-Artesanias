@@ -5,6 +5,7 @@ import { createStore } from '../hooks/useStore';
 import NavBar from '../components/NavBar.jsx';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { uploadFile } from '../firebase/config';
 
 function CreateStore() {
 	const {
@@ -16,6 +17,19 @@ function CreateStore() {
 	const navigate = useNavigate();
 	const [photoUrl, setPhotoUrl] = useState(null);
 
+	const handleFileChange = async (event) => {
+		try {
+			const file = event.target.files[0];
+			if (file) {
+				const fileDownloadUrl = await uploadFile(file);
+				setPhotoUrl(fileDownloadUrl);
+				console.log(fileDownloadUrl);
+			}
+		} catch (error) {
+			console.error('Error al cargar el archivo:', error);
+		}
+	};
+
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const storeData = {
@@ -23,7 +37,6 @@ function CreateStore() {
 				Nombre: values.Nombre,
 				Imagen: photoUrl,
 			};
-			console.log(storeData);
 			const res = await createStore(storeData);
 			console.log(res);
 			Swal.fire({
@@ -45,19 +58,10 @@ function CreateStore() {
 	});
 
 	const uploadPhoto = () => {
-		document.getElementById('fileInput').click();
-	};
-
-	const handleFileChange = (event) => {
-		const file = event.target.files[0];
-		const reader = new FileReader();
-
-		reader.onloadend = () => {
-			setPhotoUrl(reader.result);
-		};
-
-		if (file) {
-			reader.readAsDataURL(file);
+		if (photoUrl) {
+			setPhotoUrl(null);
+		} else {
+			document.getElementById('fileInput').click();
 		}
 	};
 
@@ -92,25 +96,29 @@ function CreateStore() {
 							</span>
 						)}
 						{photoUrl ? (
-							<img
-								src={photoUrl}
-								alt='Uploaded'
-								className='w-[192px] h-48 mx-12 rounded-full my-5'
-							/>
+							<div className='flex justify-center'>
+								<img
+									src={photoUrl}
+									alt='Uploaded'
+									className='w-[192px] h-48 mx-12 rounded-full my-5 '
+									onClick={uploadPhoto}
+								/>
+							</div>
 						) : (
-						<button
-							onClick={uploadPhoto}
-							className='me-10 mb-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'>
-							<i className='fa-solid fa-circle-plus pe-5'></i>Subir Foto
-					
-		
-						<input
-							id='fileInput'
-							type='file'
-							style={{ display: 'none' }}
-							onChange={handleFileChange}
-						/>	</button>
-               )}
+							<button
+								onClick={uploadPhoto}
+								type='button'
+								className='me-10 mb-10 text-xl w-[192px] bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'>
+								<i className='fa-solid fa-circle-plus pe-5'></i>Subir
+								Foto
+								<input
+									id='fileInput'
+									type='file'
+									style={{ display: 'none' }}
+									onChange={handleFileChange}
+								/>{' '}
+							</button>
+						)}
 						<div className='mb-9'>
 							<button
 								className='bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'

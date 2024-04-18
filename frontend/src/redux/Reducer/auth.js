@@ -10,8 +10,8 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.login:
-			console.log('Recibida acción de inicio de sesión:', action);
-			console.log('Estado anterior:', state);
+			// console.log('Recibida acción de inicio de sesión:', action);
+			// console.log('Estado anterior:', state);
 			const newState = {
 				...state,
 				id: action.payload.userId,
@@ -19,7 +19,7 @@ export const authReducer = (state = initialState, action) => {
 				isLoggedIn: true,
 				admin: action.payload.Admin,
 			};
-			console.log('Nuevo estado:', newState);
+			// console.log('Nuevo estado:', newState);
 			return newState;
 
 		case types.startGoogleAuth:
