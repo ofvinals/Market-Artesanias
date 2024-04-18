@@ -19,11 +19,10 @@ function Register() {
 
 	const onSubmit = handleSubmit(async (data) => {
 		try {
-			console.log('Datos del formulario:', data);
 			const response = await apiURL.post('/Registro', data);
-			console.log('Respuesta del servidor:', response);
 			if (response.status === 200) {
 				const { accesoWJT } = response.data;
+				localStorage.setItem('token', accesoWJT);
 				const decodedToken = jwt_decode(accesoWJT);
 				const { Email, userId, Admin } = decodedToken;
 				dispatch({

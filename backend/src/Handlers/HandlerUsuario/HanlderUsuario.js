@@ -62,7 +62,7 @@ const patchEditUsuario = async (req, res) => {
 const getUsuarioById = async (req, res) => {
       const { Id } = req.params;
       let id = Number( Id );
-      const idReq = req.user.userId; // id Usuario de la request
+      // const idReq = req.user.userId; // id Usuario de la request
       const isAdmin = req.user.Admin; // Es administrador?
       // console.log( "JWT DATA: : : : : : >>>>>>> " );
       // console.log( idReq );

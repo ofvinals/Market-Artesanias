@@ -52,7 +52,6 @@ const [user, setUser] = useState();
 			} else {
 				navigate('/checkuser');
 			}
-			//  HACER CONDICION SI LA TIENDA ESTA CREADA DEBE IR A MI TIENDA... SINO A CHECKUSER
 			Swal.fire({
 				icon: 'success',
 				title: 'Los datos del usuario han sido editados correctamente',
@@ -116,11 +115,12 @@ const [user, setUser] = useState();
 							</span>
 						)}
 
-						<div className='flex flex-row justify-center w-full'>
+						<div className='flex flex-row justify-between w-full'>
+							<div className='w-5/12 flex flex-col '>
 							<div className='flex flex-col mr-3 w-full'>
 								<label className='text-xl text-[#563300]'>Genero</label>
 								<select
-									className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-7 rounded-xl w-full'
+									className='ps-4 h-16 mt-1 text-xl border-2 border-[#8B5300] mb-2 rounded-xl w-full'
 									aria-label='Default select'
 									{...register('genero', {
 										required: {
@@ -137,14 +137,14 @@ const [user, setUser] = useState();
 								<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 									{errors.genero.message}
 								</span>
-							)}
+							)}</div>
 
-							<div className='flex flex-col w-full'>
-								<label className='text-xl text-[#563300]'>
+							<div className='flex flex-col w-5/12'>
+								<label className='text-xl text-[#563300] text-nowrap'>
 									Fecha de Nacimiento
 								</label>
 								<input
-									className='ps-4 h-16 mt-5  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+									className='ps-4 h-16 mt-1  text-xl border-2 border-[#8B5300] mb-2 rounded-xl p-2 w-full'
 									type='date'
 									{...register('fechanac', {
 										required: {
@@ -160,9 +160,10 @@ const [user, setUser] = useState();
 								{errors.fechanac.message}
 							</span>
 						)}
-						<label className='text-xl text-[#563300]'>Ubicacion</label>
+
+						<label className='text-xl text-[#563300] mt-15'>Ubicacion</label>
 						<input
-							className='ps-4 mt-5 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+							className='ps-4 mt-1 h-16 text-xl border-2 border-[#8B5300] mb-2 rounded-xl p-2 w-full'
 							type='text'
 							{...register('ubicacion', {
 								required: {
@@ -177,7 +178,7 @@ const [user, setUser] = useState();
 							</span>
 						)}
 
-						<div className='mb-9'>
+						<div className='my-9'>
 							<button
 								className='bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
 								type='submit'>
