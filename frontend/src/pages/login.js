@@ -72,24 +72,26 @@ function Login() {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
-			const { accesoWJT } = res.data;
-			const decodedToken = jwt_decode(accesoWJT);
-			const { Email, userId, Admin } = decodedToken;
-			dispatch({
-				type: types.login,
-				payload: { Email, userId, Admin },
-			});
-			if (Admin) {
-				navigate('/dashboard');
-			} else {
-				navigate('/mi-tienda');
+			if (res.status === 200) {
+				const { accesoWJT } = res.data;
+				const decodedToken = jwt_decode(accesoWJT);
+				const { Email, userId, Admin } = decodedToken;
+				dispatch({
+					type: types.login,
+					payload: { Email, userId, Admin },
+				});
+				if (Admin) {
+					navigate('/dashboard');
+				} else {
+					navigate('/mi-tienda');
+				}
+				Swal.fire({
+					icon: 'success',
+					title: 'Inicio de sesión exitoso!',
+					showConfirmButton: false,
+					timer: 2000,
+				});
 			}
-			Swal.fire({
-				icon: 'success',
-				title: 'Inicio de sesión exitoso!',
-				showConfirmButton: false,
-				timer: 2000,
-			});
 		} catch (error) {
 			console.log(error);
 			Swal.fire({

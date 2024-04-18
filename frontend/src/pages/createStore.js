@@ -43,8 +43,7 @@ function CreateStore() {
 				Nombre: values.Nombre,
 				Imagen: photoUrl,
 			};
-			const res = await createStore(storeData);
-			console.log(res);
+			await createStore(storeData);
 			Swal.fire({
 				icon: 'success',
 				title: 'Su tienda ha sido creada correctamente',
