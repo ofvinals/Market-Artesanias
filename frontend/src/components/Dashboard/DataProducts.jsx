@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { getProducts, deleteProduct } from '../../hooks/useProducts';
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from 'react-icons/fa';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -13,7 +13,7 @@ export const DataProducts = () => {
 		const fetchData = async () => {
 			try {
 				const products = await getProducts();
-				console.log(products)
+				console.log(products);
 				setData(products);
 			} catch (error) {
 				console.error('Error al obtener productos', error);
@@ -32,9 +32,13 @@ export const DataProducts = () => {
 			},
 			{
 				header: 'Categoria',
-				accessorKey: 'Category',
+				accessorKey: 'CategoryId',
 				enableColumnOrdering: false,
 				size: 50,
+				Cell: ({ cell: { value }, row: { original } }) => {
+					const nombreCategoria = original.Category.Nombre || '';
+					return <span>{nombreCategoria}</span>;
+				},
 			},
 			{
 				header: 'Precio',
@@ -81,7 +85,7 @@ export const DataProducts = () => {
 		if (result.isConfirmed) {
 			try {
 				await deleteProduct(Id);
-					Swal.fire({
+				Swal.fire({
 					icon: 'success',
 					title: 'Producto eliminado correctamente',
 					showConfirmButton: false,

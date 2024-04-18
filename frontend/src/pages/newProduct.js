@@ -18,6 +18,7 @@ export const NewProduct = () => {
 	const [photos, setPhotos] = useState([]);
 	const [count, setCount] = useState(0);
 	const navigate = useNavigate();
+
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
 		if (file) {
@@ -25,7 +26,7 @@ export const NewProduct = () => {
 		}
 	};
 
-	const handleUpChange = async (event) => {
+	const handleUpChange = async (e) => {
 		try {
 			const fileDownloadUrls = await Promise.all(photos.map(uploadFile));
 			setPhotoUrl(fileDownloadUrls);
@@ -56,7 +57,6 @@ export const NewProduct = () => {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const categoryId = parseInt(values.categoria);
-
 			await handleUpChange();
 			if (!photoUrl || photoUrl.length === 0) {
 				alert(
@@ -64,12 +64,13 @@ export const NewProduct = () => {
 				);
 				return;
 			}
+			console.log(values.cantidad);
 			const productData = {
 				StoreId: 1,
 				Nombre: values.nombre,
 				CategoryId: categoryId,
 				Descripcion: values.descripcion,
-				Disponible: values.cantidad,
+				Disponible: count,
 				Precio: values.precio,
 				Imagen: photoUrl.join(','),
 			};
@@ -180,6 +181,7 @@ export const NewProduct = () => {
 							</button>
 							<input
 								className='ps-4 mt-3 mx-10 h-16 text-xl text-center border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-2/12'
+								readOnly
 								type='number'
 								onChange={(e) => {
 									const value = parseInt(e.target.value);
