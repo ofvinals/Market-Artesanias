@@ -51,7 +51,7 @@ const getAllProductoVendedor = async (req, res) => {
 		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
 
 		StoreId = tokenized.userId;
-        console.log("StoreId ProductoVendedor",StoreId)
+
         const responseDb = await getAllVendedor(StoreId);
         
         return  res.status(200).json(responseDb);
@@ -98,7 +98,6 @@ const putUpdateProducto = async (req, res) => {
 const putSuspender = async (req, res) => {
     const { Id } = req.body;
     try {
-        console.log(Id)
         const response = await putSuspenderP(Id);
         return res.status(201).json(response);
     } catch (error) {
