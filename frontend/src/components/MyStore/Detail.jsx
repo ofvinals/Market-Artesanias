@@ -82,8 +82,8 @@ export const Detail = ({ Store }) => {
 	};
 
 	return (
-		<div className='bg-portada min-h-[250px] bg-cover flex flex-row '>
-			<div className='flex flex-col-reverse sm:flex-row justify-around w-full items-center'>
+		<div className='bg-specific min-h-[250px] bg-cover flex flex-row '>
+			<div className='flex flex-col-reverse sm:flex-row justify-around w-full'>
 				<div className='flex justify-around items-center text-center '>
 					{photoUrl ? (
 						<div className='flex flex-col items-center justify-center'>
@@ -112,23 +112,24 @@ export const Detail = ({ Store }) => {
 					)}
 				</div>
 				<form
-					className='flex flex-row text-[#563300]'
+					className='flex flex-row text-white'
 					onSubmit={handleSaveClick}>
-					<div className='flex flex-row w-fit bg-transparent justify-center'>
+					<div className='flex flex-row w-fit bg-transparent items-start justify-start ms-10 mt-5'>
 						<input
 							id='nombre'
 							readOnly={!editing}
 							ref={(input) => input && editing && input.focus()}
 							type='text'
-							name='nombre'
+							name='Nombre'
 							{...register('Nombre', {
 								required: {
 									value: true,
 									message: 'El nombre es requerido',
 								},
 							})}
-							defaultValue={nombreStore}
-							className='w-7/12 text-[20px] sm:text-[40px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent focus:bg-transparent'
+							value={nombreStore} 
+							onChange={(e) => setNombreStore(e.target.value)}
+							className='w-7/12 text-[20px] sm:text-[32px] text-wrap text-center bg-transparent focus:outline-none focus:border-transparent focus:bg-transparent'
 						/>
 						{errors.nombre && (
 							<span className='error-message'>
@@ -138,12 +139,12 @@ export const Detail = ({ Store }) => {
 						{!editing ? (
 							<i
 								onClick={() => setEditing(true)}
-								className='fa-solid fa-pencil ps-5 pt-4 text-2xl hover:text-4xl'></i>
+								className='fa-solid fa-pencil ps-5  text-2xl hover:text-4xl'></i>
 						) : null}
 						{editing && (
 							<i
 								onClick={handleSaveClick}
-								className='fa-solid fa-floppy-disk ps-5 pt-4 text-3xl hover:text-4xl'></i>
+								className='fa-solid fa-floppy-disk ps-5 text-3xl hover:text-4xl'></i>
 						)}
 					</div>
 				</form>

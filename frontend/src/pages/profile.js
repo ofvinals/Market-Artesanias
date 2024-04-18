@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { updateUser, getUser } from '../hooks/useUsers';
@@ -15,13 +15,15 @@ function Profile() {
 	} = useForm();
 	const { id } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
+const [user, setUser] = useState();
 
 	useEffect(() => {
 		async function loadUser() {
 			try {
 				const userData = await getUser(id);
+				setUser(userData)
 				const originalDate = new Date(userData.FechaNacimiento);
-				const formattedDate = originalDate.toISOString().split('T')[0]; 
+				const formattedDate = originalDate.toISOString().split('T')[0];
 				setValue('nombre', userData.Nombre);
 				setValue('apellido', userData.Apellido);
 				setValue('genero', userData.Genero);
@@ -45,16 +47,11 @@ function Profile() {
 				Ubicacion: values.ubicacion,
 			};
 			await updateUser(id, userData);
-			navigate('/mi-tienda');
-
-
-
-
-			//  HACER CONDICION SI LA TIENDA ESTA CREADA DEBE IR A MI TIENDA... SINO A CHECKUSER
-
-
-
-
+			if (user.Vendedor) {
+				navigate('/mi-tienda');
+			} else {
+				navigate('/checkuser');
+			}
 			Swal.fire({
 				icon: 'success',
 				title: 'Los datos del usuario han sido editados correctamente',
@@ -118,11 +115,12 @@ function Profile() {
 							</span>
 						)}
 
-						<div className='flex flex-row justify-center w-full'>
+						<div className='flex flex-row justify-between w-full'>
+							<div className='w-5/12 flex flex-col '>
 							<div className='flex flex-col mr-3 w-full'>
 								<label className='text-xl text-[#563300]'>Genero</label>
 								<select
-									className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-7 rounded-xl w-full'
+									className='ps-4 h-16 mt-1 text-xl border-2 border-[#8B5300] mb-2 rounded-xl w-full'
 									aria-label='Default select'
 									{...register('genero', {
 										required: {
@@ -139,14 +137,14 @@ function Profile() {
 								<span className='bg-red-500 rounded-xl px-5 text-center text-xl text-white'>
 									{errors.genero.message}
 								</span>
-							)}
+							)}</div>
 
-							<div className='flex flex-col w-full'>
-								<label className='text-xl text-[#563300]'>
+							<div className='flex flex-col w-5/12'>
+								<label className='text-xl text-[#563300] text-nowrap'>
 									Fecha de Nacimiento
 								</label>
 								<input
-									className='ps-4 h-16 mt-5  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+									className='ps-4 h-16 mt-1  text-xl border-2 border-[#8B5300] mb-2 rounded-xl p-2 w-full'
 									type='date'
 									{...register('fechanac', {
 										required: {
@@ -162,9 +160,10 @@ function Profile() {
 								{errors.fechanac.message}
 							</span>
 						)}
-						<label className='text-xl text-[#563300]'>Ubicacion</label>
+
+						<label className='text-xl text-[#563300] mt-15'>Ubicacion</label>
 						<input
-							className='ps-4 mt-5 h-16 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+							className='ps-4 mt-1 h-16 text-xl border-2 border-[#8B5300] mb-2 rounded-xl p-2 w-full'
 							type='text'
 							{...register('ubicacion', {
 								required: {
@@ -179,7 +178,7 @@ function Profile() {
 							</span>
 						)}
 
-						<div className='mb-9'>
+						<div className='my-9'>
 							<button
 								className='bg-[#E98C00] w-full font-bold text-xl h-16 text-white rounded-xl'
 								type='submit'>

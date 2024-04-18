@@ -21,7 +21,7 @@ const postAddUsuario = async (req, res) => {
 				vendedor: response.Vendedor,
 			});
       } catch (error) {
-            return res.status(500).json({error: error.mensage});
+            return res.status(500).json({error: error.message});
       }
 };
 
