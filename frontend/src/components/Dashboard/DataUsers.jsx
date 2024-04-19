@@ -60,12 +60,6 @@ export const DataUsers = () => {
 					return row.original.Activo ? 'Habilitado' : 'Suspendido';
 				},
 			},
-			{
-				header: 'Tienda',
-				accessorKey: 'tienda',
-				enableColumnOrdering: false,
-				size: 50,
-			},
 		],
 		[]
 	);
@@ -99,7 +93,7 @@ export const DataUsers = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				console.log(id)
+				console.log(id);
 				await disableUser(id);
 				Swal.fire({
 					icon: 'success',

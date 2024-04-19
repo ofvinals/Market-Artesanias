@@ -22,34 +22,56 @@ export const DataTransactions = () => {
 	const columns = useMemo(
 		() => [
 			{
-				header: 'Nombre Comprador',
-				accessorKey: 'nombre',
-				enableColumnOrdering: false,
-				size: 50,
-			},
-			{
 				header: 'Producto',
-				accessorKey: 'producto',
+				accessorKey: 'Titulo',
 				enableColumnOrdering: false,
 				size: 50,
 			},
 			{
-				header: 'Precio',
-				accessorKey: 'precio',
+				header: 'Fecha de Compra',
+				accessorKey: 'FechaCompra',
+				enableColumnOrdering: false,
+				size: 50,
+			},
+			{
+				header: 'Cantidad',
+				accessorKey: 'Cantidad',
 				enableColumnOrdering: false,
 				size: 100,
 			},
 			{
-				header: 'Descripcion',
-				accessorKey: 'descripcion',
+				header: 'Precio Total',
+				accessorKey: 'PrecioTotal',
 				enableColumnOrdering: false,
 				size: 50,
+				Cell: ({ row }) => {
+					const precioTotal = row.original['PrecioTotal'];
+					return <span>{`$ ${precioTotal}`}</span>;
+				},
 			},
 			{
 				header: 'Nombre Vendedor',
-				accessorKey: 'vendedor',
+				accessorKey: 'Vendedor',
 				enableColumnOrdering: false,
 				size: 50,
+				Cell: ({ row: { original } }) => {
+					const nombre = original.User.Nombre;
+					const apellido = original.User.Apellido;
+					const nombreCompleto = `${nombre} ${apellido}`.trim();
+					return <span>{nombreCompleto}</span>;
+				},
+			},
+			{
+				header: 'Nombre Comprador',
+				accessorKey: 'Comprador',
+				enableColumnOrdering: false,
+				size: 50,
+				Cell: ({ cell: { value }, row: { original } }) => {
+					const nombre = original.User.Nombre || '';
+					const apellido = original.User.Apellido || '';
+					const nombreCompleto = `${nombre} ${apellido}`.trim();
+					return <span>{nombreCompleto}</span>;
+				},
 			},
 		],
 		[]
@@ -57,7 +79,7 @@ export const DataTransactions = () => {
 
 	const actions = [];
 
-		const darkTheme = createTheme({
+	const darkTheme = createTheme({
 		palette: {
 			mode: 'light',
 		},
@@ -67,11 +89,7 @@ export const DataTransactions = () => {
 		<div className='table-responsive'>
 			<ThemeProvider theme={darkTheme}>
 				<CssBaseline />
-				<Table
-					columns={columns}
-					data={data}
-					actions={actions}
-				/>
+				<Table columns={columns} data={data} actions={actions} />
 			</ThemeProvider>
 		</div>
 	);

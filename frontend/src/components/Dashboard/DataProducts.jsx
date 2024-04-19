@@ -4,8 +4,8 @@ import {
 	unableProduct,
 	enableProduct,
 } from '../../hooks/useProducts';
-import { MdOutlineInsertComment } from "react-icons/md";
-import { MdOutlineCommentsDisabled } from "react-icons/md";
+import { MdOutlineInsertComment } from 'react-icons/md';
+import { MdOutlineCommentsDisabled } from 'react-icons/md';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -39,7 +39,7 @@ export const DataProducts = () => {
 				accessorKey: 'CategoryId',
 				enableColumnOrdering: false,
 				size: 50,
-				Cell: ({ cell: { value }, row: { original } }) => {
+				Cell: ({ row: { original } }) => {
 					const nombreCategoria = original.Category.Nombre || '';
 					return <span>{nombreCategoria}</span>;
 				},
@@ -49,12 +49,25 @@ export const DataProducts = () => {
 				accessorKey: 'Precio',
 				enableColumnOrdering: false,
 				size: 100,
+				Cell: ({ row }) => {
+					const precioTotal = row.original['Precio'];
+					return <span>{`$ ${precioTotal}`}</span>;
+				},
 			},
 			{
 				header: 'Descripcion',
 				accessorKey: 'Descripcion',
 				enableColumnOrdering: false,
 				size: 50,
+			},
+			{
+				header: 'Tienda',
+				accessorKey: 'Tienda',
+				enableColumnOrdering: false,
+				size: 50,
+				Cell: ({ row }) => {
+					return row.original.Store.Nombre;
+				},
 			},
 			{
 				header: 'Activo',
@@ -64,7 +77,7 @@ export const DataProducts = () => {
 				Cell: ({ row }) => {
 					return row.original.Activo ? 'Activo' : 'Inactivo';
 				},
-			}
+			},
 		],
 		[]
 	);
@@ -81,7 +94,7 @@ export const DataProducts = () => {
 			text: 'Habilitar',
 			icon: <MdOutlineInsertComment />,
 			onClick: (row) => {
-				habilitProduct(row.original.id);
+				habilitProduct(row.original.Id);
 			},
 		},
 	];

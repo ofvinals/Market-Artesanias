@@ -61,18 +61,6 @@ export const updateProduct = async (values) => {
 	}
 };
 
-export const deleteProduct = async (id) => {
-	try {
-		const token = localStorage.getItem('token');
-		const res = await apiURL.delete(`/Producto/${id}`, {
-			headers: { Authorization: `Bearer ${token}` },
-		});
-		return res.data;
-	} catch (error) {
-		console.error(error);
-	}
-};
-
 export const unableProduct = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
