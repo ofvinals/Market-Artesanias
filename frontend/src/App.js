@@ -11,7 +11,7 @@ import Profile from './pages/profile';
 import AboutUs from './pages/aboutUs';
 import Cart from './pages/cart';
 import Search from './pages/search';
-import Categories from './pages/categories';
+import Categories from './pages/Categories'
 import Dashboard from './pages/dashboard';
 import Discount from './pages/discount';
 import NewProduct from './pages/newProduct';
@@ -26,7 +26,7 @@ function App() {
 				<Route path='/' element={<Homepage />} />
 				<Route path='/store' element={<Store />} />
 				<Route path='/mi-tienda' element={<MyStore />} />
-				<Route path='/store/:id' element={<Detail />} />
+				<Route path='/:id' element={<Detail />} />
 				<Route path='/discount/:id' element={<Discount />} />
 				<Route path='/profile' element={<Profile />} />
 				<Route path='/aboutUs' element={<AboutUs />} />
@@ -37,6 +37,7 @@ function App() {
 				<Route path='/createStore' element={<CreateStore />} />
 				<Route path='/newProduct' element={<NewProduct />} />
 				<Route path='/editproduct/:id' element={<EditProduct />} />
+				
 
 			</Routes>
 		</>
