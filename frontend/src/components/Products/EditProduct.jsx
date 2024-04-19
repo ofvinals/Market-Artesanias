@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import {
 	getProduct,
 	updateProduct,
-	deleteProduct,
+	unableProduct,
 } from '../../hooks/useProducts';
 import { getStore } from '../../hooks/useStore.js';
 import NavBar from '../../components/NavBar.jsx';
@@ -171,7 +171,7 @@ export const EditProduct = () => {
 				cancelButtonText: 'Cancelar',
 			});
 			if (result.isConfirmed) {
-				await deleteProduct(id);
+				await unableProduct(id);
 				navigate('/deletedProduct');
 			}
 		} catch (error) {

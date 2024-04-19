@@ -72,7 +72,14 @@ function Login() {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
-			if (res.status === 200) {
+			if (res.status === 401) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Tu usuario esta inhabilitado. Ponte en contacto con el administrador de la pagina!',
+					showConfirmButton: false,
+					timer: 3000,
+				});
+			} else if (res.status === 200) {
 				const { accesoWJT } = res.data;
 				const decodedToken = jwt_decode(accesoWJT);
 				const { Email, userId, Admin } = decodedToken;

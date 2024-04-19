@@ -10,7 +10,8 @@ export const Products = ({ Store }) => {
 		async function loadProducts() {
 			try {
 				const productData = await getProductVendedor();
-				setProducts(productData);
+				const activeProducts = productData.filter(product => product.Activo);
+            setProducts(activeProducts);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
 			}

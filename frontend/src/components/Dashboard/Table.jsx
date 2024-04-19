@@ -34,6 +34,9 @@ export const Table = ({ columns, data, actions }) => {
 		renderRowActions: ({ row }) => (
 			<Box sx={{}}>
 				{actions.map((action, index) => {
+					if (row.original.Admin) {
+						return null;
+					}
 					if (row.original.Activo) {
 						if (action.text === 'Inhabilitar') {
 							return (
