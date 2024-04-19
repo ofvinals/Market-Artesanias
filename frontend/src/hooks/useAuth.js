@@ -16,7 +16,6 @@ export const useAuth = () => {
 	const auth = async (values) => {
 		try {
 			const user = await apiURL.post('/Login', values);
-			console.log(user);
 			if (user.status === 200) {
 				const userData = user.data; 
 				await setCurrentUser(userData);

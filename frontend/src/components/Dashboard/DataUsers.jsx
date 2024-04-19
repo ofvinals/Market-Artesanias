@@ -14,7 +14,6 @@ export const DataUsers = () => {
 		const fetchData = async () => {
 			try {
 				const users = await getUsers();
-				console.log(users);
 				setData(users);
 			} catch (error) {
 				console.error('Error al obtener usuarios', error);
@@ -49,7 +48,7 @@ export const DataUsers = () => {
 				enableColumnOrdering: false,
 				size: 50,
 				Cell: ({ row }) => {
-					return row.original.Vendedor ? 'Solo Vendedor' : 'Comprador';
+					return row.original.Vendedor ? 'Vendedor' : 'Comprador';
 				},
 			},
 			{
@@ -101,7 +100,6 @@ export const DataUsers = () => {
 		if (result.isConfirmed) {
 			try {
 				await disableUser(id);
-
 				Swal.fire({
 					icon: 'success',
 					title: 'Usuario inhabilitado correctamente',
@@ -157,6 +155,7 @@ export const DataUsers = () => {
 					data={data}
 					actions={actions}
 					suspendUser={suspendUser}
+					habilitUser={habilitUser}
 				/>
 			</ThemeProvider>
 		</div>

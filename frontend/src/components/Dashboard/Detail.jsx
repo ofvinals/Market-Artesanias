@@ -34,7 +34,6 @@ export const Detail = () => {
 						Panel de Administracion
 					</h3>
 				</div>
-
 				<div className='w-full flex flex-row items-center justify-center mx-3 flex-wrap'>
 					<button
 						className='bg-white text-specific text-center px-4 py-2 mt-4 sm:me-4 rounded-md w-[260px] h-[44px] mb-10  hover:bg-white hover:text-specific hover:border-specific hover:border-2'

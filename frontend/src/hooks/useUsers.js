@@ -52,7 +52,7 @@ export const deleteUser = async (id) => {
 export const disableUser = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(
+		const res = await apiURL.patch(
 			`/Usuario/${id}`,
 			{
 				Activo: false,
@@ -70,7 +70,7 @@ export const disableUser = async (id) => {
 export const enableUser = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(
+		const res = await apiURL.patch(
 			`/Usuario/${id}`,
 			{
 				Activo: true,
