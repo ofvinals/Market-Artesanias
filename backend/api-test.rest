@@ -116,7 +116,7 @@ GET /Tienda
 --
 POST /Tienda
 {
-      "Nombre": "Almacen del hamor",
+      "Nombre": "Verduleria de la pasion",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
