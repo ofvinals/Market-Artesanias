@@ -1,21 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategory } from '../../redux/Slices/categoriesSlice'; // Asegúrate de que la ruta sea correcta
 
-function Filter() {
+const categorias = [
+    'Vestimenta',
+    'Cerámica',
+    'Muebles',
+    'Pastelería',
+    'Accesorios'
+];
+
+function Filter({ onCategoryChange }) {
+    const dispatch = useDispatch();
+    const categoriaSeleccionada = useSelector((state) => state.categoria.categoriaSeleccionada);
     
 
-    return (
-        <nav className='flex flex-row justify-center items-center mt-[45px] '>
-            <ul className='flex justify-center items-center border-2 border-primary w-[639px] h-[44px] rounded-[5px] '>
-                <li className=' border-r-[0.5px] border-primary w-[128px] justify-center flex text-specific'><Link>Vestimenta</Link> </li>
-                <li className=' border-r-[0.5px] border-primary w-[128px] justify-center flex text-specific'><Link>Cerámica</Link> </li>
-                <li className=' border-r-[0.5px] border-primary w-[128px] justify-center flex text-specific'><Link>Muebles</Link> </li>
-                <li className=' border-r-[0.5px] border-primary w-[128px] justify-center flex text-specific'><Link>Pastelería</Link> </li>
-                <li className=' w-[128px] justify-center flex text-specific'><Link>Accesorios</Link> </li>
 
-            </ul>
-        </nav>
-    )
+    const handleClick = (categoria) => {
+        dispatch(setCategory(categoria));
+        onCategoryChange(categoria)
+    };
+
+
+    return (
+        <div>
+            <nav className="flex flex-row justify-center items-center mt-[45px] ">
+                <ul className="flex justify-center items-center border-2 border-primary w-[639px] h-[44px] rounded-[5px] ">
+                    {categorias.map(categoria => (
+                        <li key={categoria}
+                            className='justify-center flex border-r-[0.5px] border-primary w-[128px]'
+                            onClick={() => handleClick(categoria)}>
+                            <button className='   text-specific hover:text-[#0739EB] hover:scale-110 '>
+                                {categoria}
+                            </button></li>
+                    ))}
+                </ul>
+            </nav>
+
+            <h1 className="text-general text-3xl mx-[104px] mt-8">{categoriaSeleccionada}</h1>
+        </div>
+    );
 }
 
-export default Filter
+export default Filter;
