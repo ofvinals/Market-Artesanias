@@ -4,8 +4,8 @@ import {
 	unableProduct,
 	enableProduct,
 } from '../../hooks/useProducts';
-import { TiDeleteOutline } from 'react-icons/ti';
-import { FaUserCheck } from 'react-icons/fa';
+import { MdOutlineInsertComment } from "react-icons/md";
+import { MdOutlineCommentsDisabled } from "react-icons/md";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -61,7 +61,10 @@ export const DataProducts = () => {
 				accessorKey: 'Activo',
 				enableColumnOrdering: false,
 				size: 50,
-			},
+				Cell: ({ row }) => {
+					return row.original.Activo ? 'Activo' : 'Inactivo';
+				},
+			}
 		],
 		[]
 	);
@@ -69,14 +72,14 @@ export const DataProducts = () => {
 	const actions = [
 		{
 			text: 'Inhabilitar',
-			icon: <TiDeleteOutline />,
+			icon: <MdOutlineCommentsDisabled />,
 			onClick: (row) => {
 				suspProduct(row.original.Id);
 			},
 		},
 		{
 			text: 'Habilitar',
-			icon: <FaUserCheck />,
+			icon: <MdOutlineInsertComment />,
 			onClick: (row) => {
 				habilitProduct(row.original.id);
 			},

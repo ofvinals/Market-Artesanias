@@ -50,13 +50,11 @@ export const deleteUser = async (id) => {
 };
 
 export const disableUser = async (id) => {
+	console.log(id)
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.patch(
+		const res = await apiURL.delete(
 			`/Usuario/${id}`,
-			{
-				Activo: false,
-			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			}
@@ -70,11 +68,8 @@ export const disableUser = async (id) => {
 export const enableUser = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.patch(
+		const res = await apiURL.delete(
 			`/Usuario/${id}`,
-			{
-				Activo: true,
-			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			}

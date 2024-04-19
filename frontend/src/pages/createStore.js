@@ -23,7 +23,6 @@ function CreateStore() {
 			if (file) {
 				const fileDownloadUrl = await uploadFile(file);
 				setPhotoUrl(fileDownloadUrl);
-				console.log(fileDownloadUrl);
 			}
 		} catch (error) {
 			console.error('Error al cargar el archivo:', error);

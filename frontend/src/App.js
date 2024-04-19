@@ -18,6 +18,8 @@ import NewProduct from './pages/newProduct';
 import EditProduct from './components/Products/EditProduct';
 import Welcome from './pages/welcome';
 import CheckUser from './pages/checkUser';
+import PublishedProduct from './pages/publishedProduct';
+import DeletedProduct from './pages/deletedProduct';
 
 function App() {
 	return (
@@ -41,6 +43,9 @@ function App() {
 				<Route path='/editproduct/:id' element={<EditProduct />} />
 				<Route path='/welcome' element={<Welcome />} />
 				<Route path='/checkuser' element={<CheckUser />} />
+				<Route path='/publishedproduct' element={<PublishedProduct />} />
+				<Route path='/deletedproduct' element={<DeletedProduct />} />
+
 			</Routes>
 		</>
 	);

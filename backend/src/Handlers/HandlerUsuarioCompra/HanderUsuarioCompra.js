@@ -1,7 +1,4 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const { get } = require('../../Controllers/ControllerUsuarioCompra/ControllerUsuarioCompra');
-const { JWT_SECRET } = process.env;
+const { get, postAdd } = require('../../Controllers/ControllerUsuarioCompra/ControllerUsuarioCompra');
 
 
 //GET Trae todas las compras en la DB.
@@ -16,33 +13,19 @@ const getAllCompras = async (req, res) => {
 };
 
 //POST Carga la compras en la DB.
-const postAddCompra = async (req, res) => {
-	const { Nombre, Imagen } = req.body;
-	const token = req.headers.authorization;
-
-	if (!token) {
-		return res.status(401).json({ message: 'Token no proporcionado' });
-	}
-
-	// Verifica y decodifica el token para obtener el userId
-	let UserId;
-	try {
-		const tokenParts = token.split('Bearer').pop().trim();
-
-		const tokenized = jwt.verify(tokenParts, JWT_SECRET);
-
-		UserId = tokenized.userId;
-
-        console.log(UserId)
-        const response = await postAdd(UserId ,Nombre, Imagen);
-        return res.status(200).json(response);
-    } catch (error) {
-        return res.status(500).json({error: error.message});
-    }
+const crearCompra = async (req, res) => {
+      const { Titulo, UserId, ProductId, FechaCompra, Cantidad, PrecioTotal } = req.body;
+      // console.log( req.body );
+      try {
+            const response = await postAdd( Titulo, UserId, ProductId, FechaCompra, Cantidad, PrecioTotal );
+            return res.status(200).json(response);
+      } catch (error) {
+            return res.status(500).json({error: error.message});
+      }
 };
 
 
 module.exports = {
-	postAddCompra,
+	crearCompra,
 	getAllCompras
 };
