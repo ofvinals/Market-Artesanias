@@ -75,14 +75,14 @@ export const DataUsers = () => {
 			text: 'Inhabilitar',
 			icon: <FaUserAltSlash />,
 			onClick: (row) => {
-				suspendUser(row.original.id);
+				suspendUser(row.original.Id);
 			},
 		},
 		{
 			text: 'Habilitar',
 			icon: <FaUserCheck />,
 			onClick: (row) => {
-				habilitUser(row.original.id);
+				habilitUser(row.original.Id);
 			},
 		},
 	];
@@ -99,6 +99,7 @@ export const DataUsers = () => {
 		});
 		if (result.isConfirmed) {
 			try {
+				console.log(id)
 				await disableUser(id);
 				Swal.fire({
 					icon: 'success',
@@ -106,7 +107,7 @@ export const DataUsers = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				// setData((prevData) => prevData.filter((turno) => turno._id !== id));
 			} catch (error) {
 				console.error('Error al suspender al usuario:', error);
 			}
@@ -118,7 +119,7 @@ export const DataUsers = () => {
 			title: 'Confirmas la habilitacion del usuario?',
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#d33',
+			confirmButtonColor: '#085718',
 			cancelButtonColor: '#8f8e8b',
 			confirmButtonText: 'Sí, confirmar',
 			cancelButtonText: 'Cancelar',
@@ -126,14 +127,13 @@ export const DataUsers = () => {
 		if (result.isConfirmed) {
 			try {
 				await enableUser(id);
-
 				Swal.fire({
 					icon: 'success',
 					title: 'Usuario habilitado correctamente',
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				// setData((prevData) => prevData.filter((turno) => turno._id !== id));
 			} catch (error) {
 				console.error('Error al suspender al usuario:', error);
 			}

@@ -172,13 +172,7 @@ export const EditProduct = () => {
 			});
 			if (result.isConfirmed) {
 				await deleteProduct(id);
-				navigate('/mi-tienda');
-				Swal.fire({
-					icon: 'success',
-					title: 'Producto eliminado correctamente',
-					showConfirmButton: false,
-					timer: 1500,
-				});
+				navigate('/deletedProduct');
 			}
 		} catch (error) {
 			console.error('Error al eliminar el usuario:', error);

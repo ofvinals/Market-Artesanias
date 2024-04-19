@@ -64,7 +64,6 @@ export const NewProduct = () => {
 				);
 				return;
 			}
-			console.log(values.cantidad);
 			const productData = {
 				StoreId: 1,
 				Nombre: values.nombre,
@@ -74,15 +73,8 @@ export const NewProduct = () => {
 				Precio: values.precio,
 				Imagen: photoUrl.join(','),
 			};
-			console.log(productData);
 			await createProduct(productData);
-			navigate('/mi-tienda');
-			Swal.fire({
-				icon: 'success',
-				title: 'Producto publicado correctamente!',
-				showConfirmButton: false,
-				timer: 3000,
-			});
+			navigate('/publishedproduct');
 			reset();
 			setPhotos([]);
 			setPhotoUrl([]);
@@ -131,25 +123,26 @@ export const NewProduct = () => {
 								{errors.categoria.message}
 							</span>
 						)}
+						<div className='mt-7'>
+							<label className='text-xl text-[#563300]'>Nombre</label>
+							<input
+								className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'
+								type='text'
+								{...register('nombre', {
+									required: {
+										value: true,
+										message: 'El nombre es requerido',
+									},
+								})}
+							/>
+							{errors.nombre && (
+								<span className='bg-red-500 rounded-xl inline-block px-5 text-center w-full mb-5 text-xl text-white'>
+									{errors.nombre.message}
+								</span>
+							)}
+						</div>
 
-						<label className='text-xl text-[#563300]'>Nombre</label>
-						<input
-							className='ps-4 h-16 mt-3 text-xl border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'
-							type='text'
-							{...register('nombre', {
-								required: {
-									value: true,
-									message: 'El nombre es requerido',
-								},
-							})}
-						/>
-						{errors.nombre && (
-							<span className='bg-red-500 rounded-xl inline-block px-5 text-center w-full mb-5 text-xl text-white'>
-								{errors.nombre.message}
-							</span>
-						)}
-
-						<div className='flex flex-col mr-3 w-full'>
+						<div className='flex flex-col mr-3 w-full mt-7'>
 							<label className='text-xl text-[#563300] mt-3'>
 								Descripcion del producto
 							</label>
@@ -170,65 +163,72 @@ export const NewProduct = () => {
 							)}
 						</div>
 
-						<label className='text-xl text-[#563300]'>
-							Cantidad de Unidades
-						</label>
-						<div className='ms-10 flex flex-row items center justify-start'>
-							<button
-								onClick={decreaseCount}
-								className='text-6xl text-general'>
-								-
-							</button>
-							<input
-								className='ps-4 mt-3 mx-10 h-16 text-xl text-center border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-2/12'
-								readOnly
-								type='number'
-								onChange={(e) => {
-									const value = parseInt(e.target.value);
-									setCount(value);
-								}}
-								value={count}
-								{...register('cantidad', {
-									required: {
-										value: true,
-										message: 'La cantidad de producto es requerida',
-									},
-								})}
-							/>
+						<div className='mt-7'>
+							<label className='text-xl text-[#563300]'>
+								Especificar cantidad de unidades del producto
+							</label>
 
-							<button
-								onClick={increaseCount}
-								className='text-6xl text-general'>
-								+
-							</button>
+							<div className='ms-10 flex flex-row items center justify-start'>
+								<button
+									onClick={decreaseCount}
+									className='text-6xl text-general'>
+									-
+								</button>
+								<input
+									className='ps-4 mt-3 mx-10 h-16 text-xl text-center border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-2/12'
+									readOnly
+									type='number'
+									onChange={(e) => {
+										const value = parseInt(e.target.value);
+										setCount(value);
+									}}
+									value={count}
+									{...register('cantidad', {
+										required: {
+											value: true,
+											message:
+												'La cantidad de producto es requerida',
+										},
+									})}
+								/>
+								<button
+									onClick={increaseCount}
+									className='text-6xl text-general'>
+									+
+								</button>
+							</div>
+							{errors.cantidad && (
+								<span className='bg-red-500 inline-block mb-5 inline; rounded-xl w-full px-5 text-center text-xl text-white'>
+									{errors.cantidad.message}
+								</span>
+							)}
 						</div>
-						{errors.cantidad && (
-							<span className='bg-red-500 inline-block mb-5 inline; rounded-xl w-full px-5 text-center text-xl text-white'>
-								{errors.cantidad.message}
-							</span>
-						)}
 
-						<label className='text-xl text-[#563300]'>
-							Especificar precio del producto
-						</label>
-						<div className='flex flex-row h-16 border-2 border-[#8B5300] mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'>
-							<span className='ps-4 mt-1 text-2xl text-general'>$</span>
-							<input
-								className='ps-4  w-full text-xl focus:outline-none focus:border-transparent '
-								type='number'
-								{...register('precio', {
-									required: {
-										value: true,
-										message: 'El precio es requerido',
-									},
-								})}
-							/>
+						<div className='mt-7'>
+							<label className='text-xl text-[#563300]'>
+								Especificar precio del producto
+							</label>
+							<div className='flex flex-row h-16 border-2 border-[#8B5300] mt-3 mb-1 rounded-xl p-2 w-full focus:border-[#8B5300]'>
+								<span className='ps-4 mt-1 text-2xl text-general'>
+									$
+								</span>
+								<input
+									className='ps-4  w-full text-xl focus:outline-none focus:border-transparent '
+									type='number'
+									{...register('precio', {
+										required: {
+											value: true,
+											message: 'El precio es requerido',
+										},
+									})}
+								/>
+							</div>
+							{errors.precio && (
+								<span className='bg-red-500 inline-block rounded-xl w-full text-center px-5 text-xl mb-5 text-white'>
+									{errors.precio.message}
+								</span>
+							)}
 						</div>
-						{errors.precio && (
-							<span className='bg-red-500 inline-block rounded-xl w-full text-center px-5 text-xl mb-5 text-white'>
-								{errors.precio.message}
-							</span>
-						)}
 
 						<div className='mb-9'>
 							<button

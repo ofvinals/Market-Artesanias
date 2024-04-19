@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getTransactions } from '../../hooks/useTransactions';
+import { getCompras } from '../../hooks/useTransactions';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -10,7 +10,7 @@ export const DataTransactions = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const transactions = await getTransactions();
+				const transactions = await getCompras();
 				setData(transactions);
 			} catch (error) {
 				console.error('Error al obtener las transacciones', error);
