@@ -18,7 +18,7 @@ function validateToken( req, res, next )
                   if( err ) return res.sendStatus(403);
                   req.user = decoded;
                   // console.log( "REQ.USER = DECODE" );
-                  console.log("mensaje", req );
+                  // console.log("mensaje", req );
                   next();
             }
       );
