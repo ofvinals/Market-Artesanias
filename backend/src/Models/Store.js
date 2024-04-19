@@ -19,10 +19,10 @@ module.exports = storeModel = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
-    Contador: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
+    // Contador: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 0,
+    // },
   });
   return Store;
 }
