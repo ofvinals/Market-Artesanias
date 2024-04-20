@@ -36,7 +36,9 @@ module.exports = productoModel = (sequelize) => { //Aquí estamos exportando una
         Genero: {
             type: DataTypes.STRING
         }
-    });
+    },
+        { timestamps: false }
+    );
 
     return Product;//devuelve el modelo de Product que se ha definido.
 };

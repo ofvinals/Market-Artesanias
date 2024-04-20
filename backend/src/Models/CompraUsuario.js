@@ -1,11 +1,13 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = comprasUsuarioModel = (sequelize) => {
-  const ComprasUsuario =  sequelize.define("ComprasUsuario", {
+  const ComprasUsuario = sequelize.define("ComprasUsuario", {
     Cantidad: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }
-  });
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  },
+    { timestamps: false }
+  );
   return ComprasUsuario;
 }
