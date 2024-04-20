@@ -40,9 +40,13 @@ const deleteStoreById = async (Id) => {
       const tienda = await Store.findByPk(Id);
       if (!tienda) throw new Error("El Tienda no existe.");
 
-      await Store.update({ Activo: false }, {where: {Id}});
+      if( tienda.dataValues.Activo ){ // Pregunto si el usuario esta activo -> suspenderlo de serlo, junto con sus tiendas
+            await Store.update({ Activo: false }, {where: {Id}});
+            return "Suspendida!!";
+      }
 
-      return "Listo!!";
+      await Store.update({ Activo: true }, {where: {Id}});
+      return "Re-Activada!!";
 };
 
 module.exports = {

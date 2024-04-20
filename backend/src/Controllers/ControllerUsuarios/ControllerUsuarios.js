@@ -1,5 +1,5 @@
 const { User } = require("../../db");
-const { postAdd, update, get, deleteStoreById } = require("../ControllerTienda/ControllerTienda");
+const { get, deleteStoreById } = require("../ControllerTienda/ControllerTienda");
 
 //GET todas las usuario.
 const getAll = async () => {
@@ -46,22 +46,27 @@ console.log(newUsuario)
 //PUT actualiza la tieda en la DB.
 const deleteUserById = async (Id) => {
       const usuario = await User.findByPk(Id);
+
       if (!usuario) throw new Error("El Tienda no existe.");
 
-      await User.update({ Activo: false }, {where: {Id}});
+      if( usuario.dataValues.Activo ){ // Pregunto si el usuario esta activo -> suspenderlo de serlo, junto con sus tiendas
+            await User.update({ Activo: false }, {where: {Id}});
+            const tiendasUsuario = await get( Id );
+            tiendasUsuario.forEach(element => {
+                  deleteStoreById( element.dataValues.Id );
+            });
 
-      const tiendasUsuario = await get( Id );
-
-
-      // console.log( tiendasUsuario );
-      console.log( tiendasUsuario.length );
+            return "Usuario Suspendido!!";
+      } // Si el usuario no esta Activo, es decir, esta suspendido... Re activarlo junto con todas sus tiendas ↓
+        //                                                                                                     ↓
+        //                                                                                                     ↓
+      await User.update({ Activo: true }, {where: {Id}});
+      const tiendasUsuario = await get( Id ); // Obtengo tiendas por Id de usuario ( get(); devuelve tiendas del usuario );
       tiendasUsuario.forEach(element => {
             deleteStoreById( element.dataValues.Id );
       });
-      // tiendasUsuario
-      // deleteStoreById
 
-      return "Listo!!";
+      return "Usuario Re-Activado!!";
 };
 
 

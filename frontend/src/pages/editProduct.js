@@ -1,18 +1,18 @@
 import React from 'react';
 import '../css/Login.css';
-import NewProduct from '../components/Products/NewProduct.jsx';
+import EditProduct from '../components/Products/EditProduct.jsx';
 import NavBar from '../components/NavBar.jsx';
 
 
-function newProduct  () {
+function editProduct  () {
 	
 
 	return (
 		<>
 			<NavBar />
-			<NewProduct/>
+			<EditProduct/>
 		</>
 	);
 };
 
-export default newProduct;
+export default editProduct;

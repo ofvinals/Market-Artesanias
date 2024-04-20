@@ -34,6 +34,9 @@ export const Table = ({ columns, data, actions }) => {
 		renderRowActions: ({ row }) => (
 			<Box sx={{}}>
 				{actions.map((action, index) => {
+					if (row.original.Admin) {
+						return null;
+					}
 					if (row.original.Activo) {
 						if (action.text === 'Inhabilitar') {
 							return (
@@ -41,7 +44,7 @@ export const Table = ({ columns, data, actions }) => {
 									key={index}
 									className='flex flex-col items-center justify-center'
 									onClick={() => action.onClick(row)}>
-									<span className='bg-red-700 ms-3 text-white text-center rounded-xl border-2 p-3 text-xl hover:opacity-50'>
+									<span className='bg-red-700 ms-3 text-white text-center rounded-xl border-2 p-3 text-2xl hover:opacity-50'>
 										{action.icon}
 									</span>
 								</button>
@@ -54,10 +57,9 @@ export const Table = ({ columns, data, actions }) => {
 									key={index}
 									className='flex items-center justify-center'
 									onClick={() => action.onClick(row)}>
-									<span className='bg-green-700 ms-3 text-center text-white text-2xl border-2 p-3 hover:opacity-50'>
+									<span className='bg-green-700 ms-3 text-center text-white text-2xl rounded-xl border-2 p-3 hover:opacity-50'>
 										{action.icon}
 									</span>
-									{action.text}
 								</button>
 							);
 						}

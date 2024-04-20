@@ -5,10 +5,9 @@ import Swal from 'sweetalert2';
 import {
 	getProduct,
 	updateProduct,
-	deleteProduct,
+	unableProduct,
 } from '../../hooks/useProducts';
 import { getStore } from '../../hooks/useStore.js';
-import NavBar from '../../components/NavBar.jsx';
 import { uploadFile } from '../../firebase/config';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -171,14 +170,8 @@ export const EditProduct = () => {
 				cancelButtonText: 'Cancelar',
 			});
 			if (result.isConfirmed) {
-				await deleteProduct(id);
-				navigate('/mi-tienda');
-				Swal.fire({
-					icon: 'success',
-					title: 'Producto eliminado correctamente',
-					showConfirmButton: false,
-					timer: 1500,
-				});
+				await unableProduct(id);
+				navigate('/deletedProduct');
 			}
 		} catch (error) {
 			console.error('Error al eliminar el usuario:', error);
@@ -187,7 +180,6 @@ export const EditProduct = () => {
 
 	return (
 		<>
-			<NavBar />
 			<section className='container'>
 				<div className='flex flex-col justify-center items-start w-full max-w-[504px]'>
 					<input
