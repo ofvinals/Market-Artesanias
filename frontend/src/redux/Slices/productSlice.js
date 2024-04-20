@@ -4,19 +4,24 @@ import axios from "axios";
 const initialState = {
     allProducts: [],
     filteredProducts: [],
-    product: null,
+    product: {},
     status: 'idle',
     error: null,
 }
+const token = localStorage.getItem('token');
 
 export const getProducts = createAsyncThunk('products/getProducts', async () => {
-    const response = await axios('http://localhost:3001/Producto')
-
+    const response = await axios('http://localhost:3001/Producto', {
+        headers: { Authorization: `Bearer ${token}` },
+    })
     return response.data
 })
 
 export const getProductById = createAsyncThunk('products/getProductById', async (productId) => {
-    const response = await axios(`http://localhost:3001/Producto/${productId}`)
+    const response = await axios(`http://localhost:3001/Producto/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+    })
+    console.log(response.data);
     return response.data
 })
 
@@ -53,7 +58,7 @@ const productsSlice = createSlice({
     }
 })
 
-export const {filterProductsByCategory} = productsSlice.actions
+export const { filterProductsByCategory } = productsSlice.actions
 
 
 export default productsSlice.reducer
