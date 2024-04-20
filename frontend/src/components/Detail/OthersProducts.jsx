@@ -97,7 +97,7 @@ function OthersProducts() {
 
                 {OTROSPRODUCTOS.map((product) => (
                     <SwiperSlide key={product.id} className=''>
-                        <Link key={product.id} to={`/store/${product.id}`}>
+                        <Link key={product.id} to={`/${product.id}`}>
                             <img src={product.image1} alt={product.name} className='rounded-[10px] w-[397px] h-[228px] object-cover' />
                         </Link>
                     </SwiperSlide>
