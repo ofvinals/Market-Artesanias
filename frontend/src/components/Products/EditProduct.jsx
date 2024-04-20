@@ -8,7 +8,6 @@ import {
 	unableProduct,
 } from '../../hooks/useProducts';
 import { getStore } from '../../hooks/useStore.js';
-import NavBar from '../../components/NavBar.jsx';
 import { uploadFile } from '../../firebase/config';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -181,7 +180,6 @@ export const EditProduct = () => {
 
 	return (
 		<>
-			<NavBar />
 			<section className='container'>
 				<div className='flex flex-col justify-center items-start w-full max-w-[504px]'>
 					<input
