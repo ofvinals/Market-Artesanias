@@ -14,15 +14,16 @@ import Swal from 'sweetalert2';
 export const DataProducts = () => {
 	const [data, setData] = useState([]);
 
+	const fetchData = async () => {
+		try {
+			const products = await getProducts();
+			setData(products);
+		} catch (error) {
+			console.error('Error al obtener productos', error);
+		}
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const products = await getProducts();
-				setData(products);
-			} catch (error) {
-				console.error('Error al obtener productos', error);
-			}
-		};
 		fetchData();
 	}, []);
 
@@ -118,6 +119,7 @@ export const DataProducts = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender el producto:', error);
 			}
@@ -143,7 +145,7 @@ export const DataProducts = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender al producto:', error);
 			}

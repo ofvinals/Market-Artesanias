@@ -15,7 +15,7 @@ import Categories from './pages/categories';
 import Dashboard from './pages/dashboard';
 import Discount from './pages/discount';
 import NewProduct from './pages/newProduct';
-import EditProduct from './components/Products/EditProduct';
+import EditProduct from './pages/editProduct';
 import Welcome from './pages/welcome';
 import CheckUser from './pages/checkUser';
 import PublishedProduct from './pages/publishedProduct';
@@ -45,7 +45,6 @@ function App() {
 				<Route path='/checkuser' element={<CheckUser />} />
 				<Route path='/publishedproduct' element={<PublishedProduct />} />
 				<Route path='/deletedproduct' element={<DeletedProduct />} />
-
 			</Routes>
 		</>
 	);

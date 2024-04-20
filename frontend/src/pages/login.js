@@ -17,7 +17,7 @@ function Login() {
 	} = useForm();
 	const [showPassword, setShowPassword] = useState(false);
 	const toggleShowPassword = () => setShowPassword(!showPassword);
-	const { auth, startGoogleAuth, startFacebookAuth } = useAuth();
+	const { auth, startGoogleAuth } = useAuth();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -45,41 +45,11 @@ function Login() {
 		}
 	};
 
-	const handleFacebookAuth = async () => {
-		try {
-			await dispatch(startFacebookAuth());
-			navigate('/mi-tienda');
-			Swal.fire({
-				icon: 'success',
-				title: 'Inicio de sesión exitoso!',
-				showConfirmButton: false,
-				timer: 2000,
-			});
-		} catch (error) {
-			console.error(
-				'Error durante el inicio de sesión con tu cuenta de Facebook:',
-				error
-			);
-			Swal.fire({
-				icon: 'error',
-				title: 'Error durante el inicio de sesión',
-				text: 'Hubo un problema durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.',
-				timer: 2000,
-			});
-		}
-	};
-
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			const res = await auth(values);
-			if (res.status === 401) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Tu usuario esta inhabilitado. Ponte en contacto con el administrador de la pagina!',
-					showConfirmButton: false,
-					timer: 3000,
-				});
-			} else if (res.status === 200) {
+			console.log(res)
+			if (res.status === 200) {
 				const { accesoWJT } = res.data;
 				const decodedToken = jwt_decode(accesoWJT);
 				const { Email, userId, Admin } = decodedToken;
@@ -100,13 +70,13 @@ function Login() {
 				});
 			}
 		} catch (error) {
-			console.log(error);
+			const errorMessage = error.response.data.error;
 			Swal.fire({
 				icon: 'error',
 				title: 'Ingreso rechazado',
-				text: 'El usuario y/o contraseña no son correctos!',
+				text: errorMessage,
 				showConfirmButton: false,
-				timer: 2000,
+				timer: 113000,
 			});
 		}
 	});
@@ -204,11 +174,6 @@ function Login() {
 								className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 mb-9 rounded-xl'
 								onClick={handleGoogleAuth}>
 								GMail
-							</button>
-							<button
-								className='border-2 btnloginsocial border-[#E98C00] text-[#E98C00] text-xl font-bold h-16 rounded-xl'
-								onClick={handleFacebookAuth}>
-								Facebook
 							</button>
 						</div>
 					</form>
