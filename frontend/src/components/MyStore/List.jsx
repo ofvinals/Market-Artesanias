@@ -1,49 +1,50 @@
-import React, { useState } from 'react';
-
-const products = [
-	{
-		nombre: 'Vestido Vintage',
-		category: 'Pasteleria',
-		date: "16/02/2024",
-		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		stok: 0,
-	},
-	{
-		nombre: 'Vestido Vintage',
-		category: 'Muebles',
-		date: "10/02/2024",
-		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		stok: 0,
-	},
-	{
-		nombre: 'Vestido Vintage',
-		category: 'Vestimenta',
-		date: "16/02/2023",
-		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		stok: 0,
-	},
-	{
-		nombre: 'Vestido Vintage',
-		category: 'Pasteleria',
-		date: "16/01/2024",
-		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		stok: 0,
-	},
-	{
-		nombre: 'Vestido Vintage',
-		category: 'Vestimenta',
-		date: "22/02/2024",
-		image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		stok: 0,
-	},
-];
+import React, { useEffect, useState } from 'react';
+import { getCompras, getVentas } from '../../hooks/useTransactions';
 
 export const List = () => {
 	const [showMore, setShowMore] = useState(false);
-	const productsToShow = showMore ? products : products.slice(0, 4);
-	const toggleShowMore = () => {
+	const [compras, setCompras] = useState([]);
+	const [ventas, setVentas] = useState([]);
+
+	const comprasToShow = compras
+		? showMore
+			? compras
+			: compras.slice(0, 4)
+		: [];
+	const toggleShowComprasMore = () => {
 		setShowMore(!showMore);
 	};
+
+	const ventasToShow = ventas ? (showMore ? ventas : ventas.slice(0, 4)) : [];
+	const toggleShowVentasMore = () => {
+		setShowMore(!showMore);
+	};
+
+	useEffect(() => {
+		async function loadCompras() {
+			try {
+				const comprasData = await getCompras();
+				comprasData.sort((a, b) => new Date(a.FechaCompra) - new Date(b.FechaCompra));
+				setCompras(comprasData);
+			} catch (error) {
+				console.error('Error al cargar las compras del usuario', error);
+			}
+		}
+		loadCompras();
+	}, []);
+
+	useEffect(() => {
+		async function loadVentas() {
+			try {
+				const ventasData = await getVentas();
+				ventasData.sort((a, b) => new Date(a.FechaVenta) - new Date(b.FechaVenta));
+				setVentas(ventasData);
+			} catch (error) {
+				console.error('Error al cargar las ventas del usuario', error);
+			}
+		}
+		loadVentas();
+	}, []);
 
 	return (
 		<>
@@ -53,30 +54,30 @@ export const List = () => {
 						Productos Vendidos
 					</h1>
 
-					{products.length > 0 ? (
-						productsToShow.map((product, idx) => (
+					{ventas !== undefined && ventas.length > 0 ? (
+						ventasToShow.map((product, idx) => (
 							<div
 								key={idx}
 								className='bg-white flex flex-col items-start justify-around w-full max-w-[400px] h-[150px] my-5'>
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
-											src={product.image}
-											alt={product.nombre}
+											src={product.Product.Imagen}
+											alt={product.Titulo}
 											className='w-[140px] h-[140px] rounded-full'
 										/>
 									</div>
 									<div className='flex flex-col justify-center '>
 										<h3 className='font-bold text-xl text-general ms-4'>
-											{product.nombre}
+											{product.Titulo}
 										</h3>
 										<p className='text-specific mt-4 ms-4'>
-											Vendido el {product.date}
+											Vendido el {product.FechaVenta}
 										</p>
 									</div>
 									<div>
 										<p className='border-2 rounded-lg bg-transparent text-[#0A3BEC] border-[#0A3BEC] w-[100px] text-center'>
-											{product.category}
+											{product.Category.Nombre}
 										</p>
 									</div>
 								</div>
@@ -88,11 +89,11 @@ export const List = () => {
 							No tienes productos vendidos
 						</p>
 					)}
-					{!showMore && products.length > 4 && (
+					{!showMore && ventas !== undefined && ventas.length > 4 && (
 						<div className='flex justify-end max-w-[400px]'>
 							<a href='/'>
 								<button
-									onClick={toggleShowMore}
+									onClick={toggleShowVentasMore}
 									className='bg-specific text-white px-4 py-2 mt-4 rounded-md w-[120px] h-[48px] ml-auto hover:bg-white hover:text-specific hover:border-specific hover:border-2'>
 									Ver más
 								</button>
@@ -106,32 +107,32 @@ export const List = () => {
 						Productos Comprados
 					</h2>
 
-					{products.length > 0 ? (
-						productsToShow.map((product, idx) => (
+					{compras !== undefined && compras.length > 0 ? (
+						comprasToShow.map((product, idx) => (
 							<div
 								key={idx}
 								className='bg-white flex flex-col items-start justify-around w-full max-w-[400px] h-[150px] my-5'>
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
-											src={product.image}
-											alt={product.nombre}
-											className='w-[140px] h-[140px] rounded-full'
+											src={product.Product.Imagen}
+											alt={product.Titulo}
+											className='w-[150px] h-[110px] rounded-full'
 										/>
 									</div>
 									<div className='flex flex-col justify-center '>
 										<h3 className='font-bold text-xl text-general ms-4'>
-											{product.nombre}
+											{product.Titulo}
 										</h3>
 										<p className='text-specific mt-4 ms-4'>
-											Comprado el {product.date}
+											Comprado el {product.FechaCompra}
 										</p>
 									</div>
-									<div>
+									{/* <div>
 										<p className='border-2 rounded-lg bg-transparent text-[#0A3BEC] border-[#0A3BEC] w-[100px] text-center'>
-											{product.category}
+											{product.Category.Nombre}
 										</p>
-									</div>
+									</div> */}
 								</div>
 								<hr className='border-[#0A3BEC] w-full' />
 							</div>
@@ -141,11 +142,11 @@ export const List = () => {
 							No tienes productos comprados
 						</p>
 					)}
-					{!showMore && products.length > 4 && (
+					{!showMore && compras !== undefined && compras.length > 4 && (
 						<div className='flex justify-end max-w-[400px]'>
 							<a href='/'>
 								<button
-									onClick={toggleShowMore}
+									onClick={toggleShowComprasMore}
 									className='bg-specific text-white  px-4 py-2 mt-4 rounded-md w-[120px] h-[48px] mb-10 ml-auto hover:bg-white hover:text-specific hover:border-specific hover:border-2'>
 									Ver más
 								</button>
