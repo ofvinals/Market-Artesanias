@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 User-Agent: VRC
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzQ4NzUxMCwiZXhwIjoxNzEzNTczOTEwfQ.Sn1Pcy5xDb7tlFAw79bS_gVQdZxaexiAjD-QzbDIlCw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzU3MTcwMSwiZXhwIjoxNzEzNjU4MTAxfQ.dXQMXqFSHkJ214_HrQghP47s8bra7AF8urqWVbQ6MfA
 
 --
 
@@ -94,7 +94,7 @@ GET /Usuario
 
 # Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID) ---> # En esta Request El JWT Debe ir en el header de "Authorization"
 --
-GET /Usuario/2
+GET /Usuario/1
 
 # Editar / Modificar un usuario Por ID ---> # En esta Request El JWT Debe ir en el header de "Authorization"
 --

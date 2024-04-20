@@ -61,15 +61,19 @@ const patchEditUsuario = async (req, res) => {
 
 const getUsuarioById = async (req, res) => {
       const { Id } = req.params;
-      let id = Number( Id );
-      // const idReq = req.user.userId; // id Usuario de la request
-      const isAdmin = req.user.Admin; // Es administrador?
-      // console.log( "JWT DATA: : : : : : >>>>>>> " );
-      // console.log( idReq );
-      // console.log( isAdmin );
-      // console.log( id );
-      // console.log( Id );
+      console.log( "id (hanlder)" );
+      console.log( Id );
 
+      console.log( "HANLDER" );
+      console.log( "HANLDER" );
+      console.log( "HANLDER" );
+      console.log( "HANLDER" );
+      console.log( "req.privateData" );
+      console.log( req.privateData );
+
+      const oscar = true;
+      console.log( "oscar = " );
+      console.log( oscar );
       try {
             const foundUser = await getById(Id);
             // console.log( "getbyid handler", foundUser );
@@ -77,26 +81,23 @@ const getUsuarioById = async (req, res) => {
             // console.log("foundUser", foundUser );
             if( foundUser === null ) return res.sendStatus(404);
 
-            // #1 Primer caso
-            // if( !isAdmin && id !== idReq ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-                  // returnedUser = { 
-                  //       id: foundUser.id,
-                  //       Nombre: foundUser.Nombre,
-                  //       Apellido: foundUser.Apellido,
-                  //       Vendedor: foundUser.Vendedor
-                  // };
+            // #1 Primer caso + Traerme los datos publicos (no privados)
+            if( oscar ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
+            // if( !req.privateData ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
+                  console.log( "#1 Primer caso" )
+                  returnedUser = { 
+                        Id: foundUser.Id,
+                        Nombre: foundUser.Nombre,
+                        Apellido: foundUser.Apellido,
+                        Vendedor: foundUser.Vendedor
+                  };
                   // console.log( foundUser );
-                  // console.log( returnedUser );
-                  // return res.status(200).json(returnedUser); //  <--- Retorno detalle de usuario sin informacion sensible
-            // } 
+                  console.log( returnedUser );
+                  return res.sendStatus(200);
+            } 
 
-            // #2 Segundo caso (no necesario)
-            // if( !isAdmin && id === idReq ){                                             // si el usuario de la request coincide 
-                                                                                           // con el mismo usuario solicitado:
-            // }
-
-            // #2 y 3 Segundo y tercer caso
-            // Si ES administrador o NO es administrador pero el usuario de la request coincide con el mismo usuario solicitado:
+            // #2 Segundo caso = Traerme los datos privados del usuario requisado
+            console.log( "#2 Segundo caso" )
             returnedUser = { 
                   id: foundUser.id,
                   Nombre: foundUser.Nombre,
