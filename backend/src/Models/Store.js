@@ -1,18 +1,18 @@
 const { DataTypes } = require("sequelize")
 
 module.exports = storeModel = (sequelize) => {
-  const Store =  sequelize.define("Store", {
+  const Store = sequelize.define("Store", {
     Id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
     Nombre: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     Imagen: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING
     },
     Activo: {
       type: DataTypes.BOOLEAN,
@@ -23,6 +23,8 @@ module.exports = storeModel = (sequelize) => {
     //   type: DataTypes.INTEGER,
     //   defaultValue: 0,
     // },
-  });
+  },
+    { timestamps: false }
+  );
   return Store;
 }
