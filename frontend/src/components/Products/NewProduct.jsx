@@ -110,9 +110,9 @@ export const NewProduct = () => {
 							})}>
 							<option value=''>Seleccione una opcion...</option>
 							<option value='1'>Vestimenta</option>
-							<option value='2'>Ceramica</option>
+							<option value='2'>Cerámica</option>
 							<option value='3'>Muebles</option>
-							<option value='4'>Pasteleria</option>
+							<option value='4'>Pastelería</option>
 							<option value='5'>Accesorios</option>
 						</select>
 
