@@ -11,8 +11,8 @@ function discount() {
     <>
       <NavBar />
       <div className='px-[106px]'>
-      <Counter />
-      <Detail />
+        <Counter />
+        <Detail />
       </div>
     </>
   )

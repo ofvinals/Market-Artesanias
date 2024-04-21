@@ -10,15 +10,16 @@ import Swal from 'sweetalert2';
 export const DataUsers = () => {
 	const [data, setData] = useState([]);
 
+	const fetchData = async () => {
+		try {
+			const users = await getUsers();
+			setData(users);
+		} catch (error) {
+			console.error('Error al obtener usuarios', error);
+		}
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const users = await getUsers();
-				setData(users);
-			} catch (error) {
-				console.error('Error al obtener usuarios', error);
-			}
-		};
 		fetchData();
 	}, []);
 
@@ -60,12 +61,6 @@ export const DataUsers = () => {
 					return row.original.Activo ? 'Habilitado' : 'Suspendido';
 				},
 			},
-			{
-				header: 'Tienda',
-				accessorKey: 'tienda',
-				enableColumnOrdering: false,
-				size: 50,
-			},
 		],
 		[]
 	);
@@ -99,7 +94,7 @@ export const DataUsers = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				console.log(id)
+				console.log(id);
 				await disableUser(id);
 				Swal.fire({
 					icon: 'success',
@@ -107,7 +102,7 @@ export const DataUsers = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				// setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender al usuario:', error);
 			}
@@ -133,7 +128,7 @@ export const DataUsers = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				// setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender al usuario:', error);
 			}

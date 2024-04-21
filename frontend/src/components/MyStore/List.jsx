@@ -24,7 +24,7 @@ export const List = () => {
 		async function loadCompras() {
 			try {
 				const comprasData = await getCompras();
-				console.log(comprasData);
+				comprasData.sort((a, b) => new Date(a.FechaCompra) - new Date(b.FechaCompra));
 				setCompras(comprasData);
 			} catch (error) {
 				console.error('Error al cargar las compras del usuario', error);
@@ -37,6 +37,7 @@ export const List = () => {
 		async function loadVentas() {
 			try {
 				const ventasData = await getVentas();
+				ventasData.sort((a, b) => new Date(a.FechaVenta) - new Date(b.FechaVenta));
 				setVentas(ventasData);
 			} catch (error) {
 				console.error('Error al cargar las ventas del usuario', error);
@@ -61,17 +62,17 @@ export const List = () => {
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
-											src={product.Imagen}
-											alt={product.Nombre}
+											src={product.Product.Imagen}
+											alt={product.Titulo}
 											className='w-[140px] h-[140px] rounded-full'
 										/>
 									</div>
 									<div className='flex flex-col justify-center '>
 										<h3 className='font-bold text-xl text-general ms-4'>
-											{product.Nombre}
+											{product.Titulo}
 										</h3>
 										<p className='text-specific mt-4 ms-4'>
-											Vendido el {product.date}
+											Vendido el {product.FechaVenta}
 										</p>
 									</div>
 									<div>
@@ -114,24 +115,24 @@ export const List = () => {
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
-											src={product.Imagen}
-											alt={product.Nombre}
-											className='w-[140px] h-[140px] rounded-full'
+											src={product.Product.Imagen}
+											alt={product.Titulo}
+											className='w-[150px] h-[110px] rounded-full'
 										/>
 									</div>
 									<div className='flex flex-col justify-center '>
 										<h3 className='font-bold text-xl text-general ms-4'>
-											{product.Nombre}
+											{product.Titulo}
 										</h3>
 										<p className='text-specific mt-4 ms-4'>
-											Comprado el {product.date}
+											Comprado el {product.FechaCompra}
 										</p>
 									</div>
-									<div>
+									{/* <div>
 										<p className='border-2 rounded-lg bg-transparent text-[#0A3BEC] border-[#0A3BEC] w-[100px] text-center'>
 											{product.Category.Nombre}
 										</p>
-									</div>
+									</div> */}
 								</div>
 								<hr className='border-[#0A3BEC] w-full' />
 							</div>

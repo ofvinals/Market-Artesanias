@@ -9,7 +9,6 @@ const getAll = async () => {
             Disponible: {
                 [Op.gt]: 0 // Filtrar los productos cuya disponibilidad sea mayor que 0
             },
-            Activo: true
         },
         include: [
             {

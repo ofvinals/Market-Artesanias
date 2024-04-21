@@ -6,11 +6,11 @@ import Payment from '../components/Cart/Payment'
 function cart() {
   return (
     <>
-    <NavBar/> 
-    <div className='px-4 md:px-24'>
-    <Card/>
-    <Payment/>
-    </div>
+      <NavBar />
+      <div className='px-4 md:px-24'>
+        <Card />
+        <Payment />
+      </div>
     </>
   )
 }

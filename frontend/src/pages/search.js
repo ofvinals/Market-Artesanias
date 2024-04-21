@@ -12,7 +12,7 @@ function search() {
             type="text"
             className="flex-1 px-4 py-2"
             placeholder="Buscar producto, tienda, categoria..."
-            
+
           />
           <i className="fas fa-search text-gray-700 p-2 cursor-pointer"></i>
         </div>

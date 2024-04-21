@@ -11,8 +11,8 @@ function detail() {
     <>
       <NavBar />
       <div className='px-[106px]'>
-      <Detail />
-      <OthersProducts />
+        <Detail />
+        <OthersProducts />
       </div>
     </>
   )

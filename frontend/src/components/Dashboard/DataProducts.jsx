@@ -4,8 +4,8 @@ import {
 	unableProduct,
 	enableProduct,
 } from '../../hooks/useProducts';
-import { MdOutlineInsertComment } from "react-icons/md";
-import { MdOutlineCommentsDisabled } from "react-icons/md";
+import { MdOutlineInsertComment } from 'react-icons/md';
+import { MdOutlineCommentsDisabled } from 'react-icons/md';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Table } from './Table.jsx';
@@ -14,15 +14,16 @@ import Swal from 'sweetalert2';
 export const DataProducts = () => {
 	const [data, setData] = useState([]);
 
+	const fetchData = async () => {
+		try {
+			const products = await getProducts();
+			setData(products);
+		} catch (error) {
+			console.error('Error al obtener productos', error);
+		}
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const products = await getProducts();
-				setData(products);
-			} catch (error) {
-				console.error('Error al obtener productos', error);
-			}
-		};
 		fetchData();
 	}, []);
 
@@ -39,7 +40,7 @@ export const DataProducts = () => {
 				accessorKey: 'CategoryId',
 				enableColumnOrdering: false,
 				size: 50,
-				Cell: ({ cell: { value }, row: { original } }) => {
+				Cell: ({ row: { original } }) => {
 					const nombreCategoria = original.Category.Nombre || '';
 					return <span>{nombreCategoria}</span>;
 				},
@@ -49,12 +50,25 @@ export const DataProducts = () => {
 				accessorKey: 'Precio',
 				enableColumnOrdering: false,
 				size: 100,
+				Cell: ({ row }) => {
+					const precioTotal = row.original['Precio'];
+					return <span>{`$ ${precioTotal}`}</span>;
+				},
 			},
 			{
 				header: 'Descripcion',
 				accessorKey: 'Descripcion',
 				enableColumnOrdering: false,
 				size: 50,
+			},
+			{
+				header: 'Tienda',
+				accessorKey: 'Tienda',
+				enableColumnOrdering: false,
+				size: 50,
+				Cell: ({ row }) => {
+					return row.original.Store.Nombre;
+				},
 			},
 			{
 				header: 'Activo',
@@ -64,7 +78,7 @@ export const DataProducts = () => {
 				Cell: ({ row }) => {
 					return row.original.Activo ? 'Activo' : 'Inactivo';
 				},
-			}
+			},
 		],
 		[]
 	);
@@ -81,7 +95,7 @@ export const DataProducts = () => {
 			text: 'Habilitar',
 			icon: <MdOutlineInsertComment />,
 			onClick: (row) => {
-				habilitProduct(row.original.id);
+				habilitProduct(row.original.Id);
 			},
 		},
 	];
@@ -105,6 +119,7 @@ export const DataProducts = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender el producto:', error);
 			}
@@ -130,7 +145,7 @@ export const DataProducts = () => {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				setData((prevData) => prevData.filter((turno) => turno._id !== id));
+				fetchData();
 			} catch (error) {
 				console.error('Error al suspender al producto:', error);
 			}
