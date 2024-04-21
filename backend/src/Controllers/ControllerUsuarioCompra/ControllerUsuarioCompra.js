@@ -8,24 +8,13 @@ const {
 
 //GET trae todo las compras de la DB.
 const get = async () => {
-    const compras = await ComprasUsuario.findAll({
-        include:[
-            {
-            model: User,
-            attributes: ["Nombre", "Apellido"]
-            },
-            {
-                model: Category,
-                attributes: ["Id", "Nombre"]
-            } 
-        ]
-    });
+    const compras = await ComprasUsuario.findAll();
 	return compras;
 };
 
 //POST Carga la Compras en la DB.
-const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, PrecioTotal ) => {
-      if ( !Titulo || !UserId || !ProductId || !FechaCompra || !Cantidad || !PrecioTotal ) {
+const postAdd = async ( Titulo, UserId, ProductId, StoreId, FechaCompra, Cantidad, PrecioTotal ) => {
+      if ( !Titulo || !UserId || !ProductId || !StoreId || !FechaCompra || !Cantidad || !PrecioTotal ) {
             throw new Error("All fields are required");
       }
       //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
@@ -40,6 +29,7 @@ const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, Precio
 
       await compra.setUser(UserId);
       await compra.setProduct(ProductId);
+      await compra.setStore(StoreId);
 
       let editProduct = await getById(ProductId);
 
@@ -62,7 +52,19 @@ const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, Precio
       return compra;
 };
 
+const filterTransactionsByUserId = async (Id) => {
+      console.log( "CONTROLLER" );
+      console.log( Id );
+      const compras = await ComprasUsuario.findAll({
+            where: {
+                  UserId: Id,
+            }
+      });
+      return compras;
+};
+
 module.exports = {
     get,
     postAdd,
+    filterTransactionsByUserId,
 }

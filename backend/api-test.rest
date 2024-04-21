@@ -245,14 +245,22 @@ POST /Producto
 --
 POST /Transaccion
 {
-      "Titulo": "Televisor artesanal",
+      "Titulo": "Maceta",
       "UserId": 1,
       "ProductId": 1,
+      "StoreId": 1,
       "FechaCompra": "2024-04-13T22:17:12.837Z",
       "Cantidad": 5,
       "PrecioTotal": 500.0
 }
 
+### Obtener TRANSACCIONES
+--
+GET /Transaccion
+
+### Obtener TODAS las COMPRAS de un usuario {ID}
+--
+GET /Transaccion/Compra/2
 
 
 
