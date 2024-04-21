@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 User-Agent: VRC
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzQ4NzUxMCwiZXhwIjoxNzEzNTczOTEwfQ.Sn1Pcy5xDb7tlFAw79bS_gVQdZxaexiAjD-QzbDIlCw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzY2MzQyNiwiZXhwIjoxNzEzNzQ5ODI2fQ.2OQYc1vOsjAf-VBZonJaH9DPP_8aw182X5xoY-ra3E0
 
 --
 
