@@ -20,10 +20,12 @@ function validateAdminAndUserById( req, res, next )
       if(isAdmin || id === idReq){
             req.privateData = true; // datos privados
             next();
+            return;
       }
 
       req.privateData = false; // datos publicos
       next();
+      return;
 }
 
 module.exports = validateAdminAndUserById;

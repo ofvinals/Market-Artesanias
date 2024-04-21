@@ -60,63 +60,46 @@ const patchEditUsuario = async (req, res) => {
 };
 
 const getUsuarioById = async (req, res) => {
-      // const { Id } = req.params;
-      // console.log( "HANLDER" );
-      // console.log( "HANLDER" );
-      // console.log( "HANLDER" );
-      // console.log( "HANLDER" );
-      // console.log( "id (hanlder)" );
-      // console.log( Id );
-      //
-      // console.log( "req.privateData" );
-      // console.log( req.user );
-      // console.log( req.privateData );
-      //
-      // // const oscar = false;
-      // // console.log( "oscar = " );
-      // // console.log( oscar );
-      try {
+      const { Id } = req.params;
 
-            const foundUser = await getById(1);
+      let foundUser;
+      try {
+            foundUser = await getById(Id);
       } catch (error) {
             return res.sendStatus(500);
       }
-      // console.log( "getbyid handler", foundUser );
-      // console.log("foundUser", foundUser );
-      // if( foundUser === null ) return res.sendStatus(404);
+
+      if( foundUser === null ) return res.sendStatus(404);
 
       // #1 Primer caso + Traerme los datos publicos (no privados)
       if( !req.privateData ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-            console.log( "#1 Primer caso" );
-            // returnedUser = { 
-            //       Id: foundUser.Id,
-            //       Nombre: foundUser.Nombre,
-            //       Apellido: foundUser.Apellido,
-            //       Vendedor: foundUser.Vendedor
-            // };
-            // console.log( foundUser );
-            // console.log( returnedUser );
-            // return res.sendStatus(200);
-            return res.sendStatus(200);
+            returnedUser = { 
+                  Id: foundUser.Id,
+                  Nombre: foundUser.Nombre,
+                  Apellido: foundUser.Apellido,
+                  Vendedor: foundUser.Vendedor
+            };
+            return res.status(200).send( returnedUser );
       }
 
       // #2 Segundo caso = Traerme los datos privados del usuario requisado
       console.log( "#2 Segundo caso" );
-      // returnedUser = { 
-      //       id: foundUser.id,
-      //       Nombre: foundUser.Nombre,
-      //       Apellido: foundUser.Apellido,
-      //       Email: foundUser.Email,
-      //       Ubicacion: foundUser.Ubicacion,
-      //       Genero: foundUser.Genero,
-      //       FechaNacimiento: foundUser.FechaNacimiento,
-      //       Activo: foundUser.Activo,
-      //       Admin: foundUser.Admin,
-      //       Vendedor: foundUser.Vendedor
-      // };
-      // console.log( "foundUser", foundUser );
-      // console.log( "returnuser", returnedUser );
+      returnedUser = { 
+            Id: foundUser.Id,
+            Nombre: foundUser.Nombre,
+            Apellido: foundUser.Apellido,
+            Email: foundUser.Email,
+            Ubicacion: foundUser.Ubicacion,
+            Genero: foundUser.Genero,
+            FechaNacimiento: foundUser.FechaNacimiento,
+            Activo: foundUser.Activo,
+            Admin: foundUser.Admin,
+            Vendedor: foundUser.Vendedor
+      };
+      console.log( "foundUser", foundUser );
+      console.log( "returnuser", returnedUser );
       // Retorno detalle del usuario con informacion sensible
+      return res.status(200).send( returnedUser );
 }
 
 const eliminarUsuario = async (req, res) => {
