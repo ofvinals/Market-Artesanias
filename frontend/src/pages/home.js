@@ -15,9 +15,9 @@ function HomePage() {
             <div className='px-4 md:px-24'>
                 <Categorias />
                 <Descuentos />
-                <Interes/>
+                <Interes />
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }

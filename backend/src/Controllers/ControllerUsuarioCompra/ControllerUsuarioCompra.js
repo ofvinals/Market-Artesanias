@@ -1,17 +1,18 @@
 // const CompraUsuario = require("../../Models/CompraUsuario");
-const { ComprasUsuario, User, Product } = require("../../db");
+const { ComprasUsuario, User, Product,Category } = require("../../db");
 
 //GET trae todo las compras de la DB.
 const get = async () => {
     const compras = await ComprasUsuario.findAll({
-        include: [
+        include:[
             {
-                model: User,
+            model: User,
+            attributes: ["Nombre", "Apellido"]
             },
             {
-                model: Product,
-                attributes: ["Id", "Nombre", "Imagen", "Disponible", "Precio", "Descripcion", "Genero" ]
-            }
+                model: Category,
+                attributes: ["Id", "Nombre"]
+            } 
         ]
     });
 	return compras;

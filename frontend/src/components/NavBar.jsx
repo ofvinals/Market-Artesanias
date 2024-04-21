@@ -37,7 +37,7 @@ function NavBar() {
 						{' '}
 						<li>
 							<Link
-								to='/Store'
+								to='/'
 								className='text-white'
 								style={{ fontSize: '25px' }}>
 								Productos

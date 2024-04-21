@@ -1,17 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { getProductVendedor } from '../../hooks/useProducts';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const Products = ({ Store }) => {
 	const [products, setProducts] = useState([]);
+	const { id } = useParams();
 
 	useEffect(() => {
 		async function loadProducts() {
 			try {
 				const productData = await getProductVendedor();
-				const activeProducts = productData.filter(product => product.Activo);
-            setProducts(activeProducts);
+				const activeProducts = productData.filter(
+					(product) => product.Activo
+				);
+				setProducts(activeProducts);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
 			}
@@ -33,25 +36,10 @@ export const Products = ({ Store }) => {
 
 	return (
 		<>
-			<h1 className='text-[#563300] text-xl font-semibold ms-10 mt-10'>
+			<h1 className='text-[#563300] text-xl font-semibold ms-16 mt-16'>
 				Productos en Venta
 			</h1>
-			<div className='m-10 flex flex-row space-x-3 space-y-3 flex-wrap justify-center'>
-				{currentPage === 1 && (
-					<div className='bg-white rounded-lg shadow-xl border-specific border-2 mt-3 ms-3 flex flex-col justify-between w-full h-full max-w-[296px] max-h-[261px]'>
-						<div className='flex  justify-center w-full h-[261px] font-bold text-specific rounded-lg '>
-							<a
-								href='/newProduct'
-								className='items-center flex flex-col '>
-								<i className='fa-regular fa-plus text-specific text-8xl hover:text-9xl mt-10'></i>
-								<p className='text-center text-xl pt-10'>
-									Subir producto
-								</p>
-							</a>
-						</div>
-					</div>
-				)}
-
+			<div className='m-10 ms-16 flex flex-row space-x-3 space-y-3 flex-wrap justify-start'>
 				{currentProducts.length > 0 &&
 					currentProducts.map((product, idx) => (
 						<div

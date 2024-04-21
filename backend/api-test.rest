@@ -8,7 +8,9 @@ Accept: application/json
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 User-Agent: VRC
+
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzY2NzM5OCwiZXhwIjoxNzEzNzUzNzk4fQ.yQrjdcvYJPaqr0O80rG2Q1aeI3-7KbNXg2n3niKd4E8
+
 
 --
 
@@ -37,6 +39,20 @@ POST /Producto
       # "Activo": true,
       "StoreId": 1,
       "CategoryId": 1
+}
+
+### Quitar suspende un Producto
+--
+PUT /Producto/Suspender
+{
+      "Id": 1,
+}
+
+### Quitar suspension del Producto
+--
+PUT /Producto/QuitarSuspension
+{
+      "Id": 1,
 }
 
 ### Recuperar todas las categorias

@@ -61,45 +61,16 @@ const patchEditUsuario = async (req, res) => {
 
 const getUsuarioById = async (req, res) => {
       const { Id } = req.params;
-
-      let foundUser;
+      
+      const private = req.privateData;
+      
       try {
-            foundUser = await getById(Id);
+            const foundUser = await getById(Id, private);
+            
+            return res.status(200).json(foundUser);
       } catch (error) {
-            return res.sendStatus(500);
+            return res.status(500).json({error: error.message});
       }
-
-      if( foundUser === null ) return res.sendStatus(404);
-
-      // #1 Primer caso + Traerme los datos publicos (no privados)
-      if( !req.privateData ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-            returnedUser = { 
-                  Id: foundUser.Id,
-                  Nombre: foundUser.Nombre,
-                  Apellido: foundUser.Apellido,
-                  Vendedor: foundUser.Vendedor
-            };
-            return res.status(200).send( returnedUser );
-      }
-
-      // #2 Segundo caso = Traerme los datos privados del usuario requisado
-      console.log( "#2 Segundo caso" );
-      returnedUser = { 
-            Id: foundUser.Id,
-            Nombre: foundUser.Nombre,
-            Apellido: foundUser.Apellido,
-            Email: foundUser.Email,
-            Ubicacion: foundUser.Ubicacion,
-            Genero: foundUser.Genero,
-            FechaNacimiento: foundUser.FechaNacimiento,
-            Activo: foundUser.Activo,
-            Admin: foundUser.Admin,
-            Vendedor: foundUser.Vendedor
-      };
-      console.log( "foundUser", foundUser );
-      console.log( "returnuser", returnedUser );
-      // Retorno detalle del usuario con informacion sensible
-      return res.status(200).send( returnedUser );
 }
 
 const eliminarUsuario = async (req, res) => {

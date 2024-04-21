@@ -1,9 +1,9 @@
 import { apiURL } from '../api/apiURL.js';
 
-export const getTransaction = async (id) => {
+export const getCompras = async () => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/Registro/${id}`, {
+		const res = await apiURL.get(`/Compra`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return res.data;
@@ -12,10 +12,10 @@ export const getTransaction = async (id) => {
 	}
 };
 
-export const getTransactions = async () => {
+export const getVentas = async () => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.get(`/Registro`, {
+		const res = await apiURL.get(`/Venta`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return res.data;

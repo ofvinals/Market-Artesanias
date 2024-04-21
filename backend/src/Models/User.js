@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 
 module.exports = storeModel = (sequelize) => {
-      const User =  sequelize.define("User", {
+      const User = sequelize.define("User", {
             Id: {
                   type: DataTypes.INTEGER,
                   primaryKey: true,
@@ -56,6 +56,8 @@ module.exports = storeModel = (sequelize) => {
                   allowNull: true,
                   defaultValue: null
             }
-      });
+      },
+            { timestamps: false }
+      );
       return User;
 }
