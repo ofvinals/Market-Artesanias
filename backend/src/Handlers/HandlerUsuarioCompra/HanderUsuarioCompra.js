@@ -24,8 +24,19 @@ const crearCompra = async (req, res) => {
       }
 };
 
+const obtenerComprasPorUsuario = async ( req, res ) =>
+{
+
+}
+
+const  obtenerVentasPorUsuario = async ( req, res ) => 
+{
+
+}
 
 module.exports = {
 	crearCompra,
-	getAllCompras
+	getAllCompras,
+      obtenerComprasPorUsuario,
+      obtenerVentasPorUsuario,
 };

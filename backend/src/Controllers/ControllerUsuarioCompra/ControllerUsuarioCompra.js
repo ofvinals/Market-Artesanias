@@ -34,6 +34,8 @@ const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, Precio
 
       await compra.setUser(UserId);
       await compra.setProduct(ProductId);
+
+
       return compra;
 };
 
