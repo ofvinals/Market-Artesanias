@@ -1,19 +1,21 @@
-function validateAdminAndUser( req, res, next )
+function validateAdminAndUserById( req, res, next )
 {
       console.log( "VALIDATE ADMIN AND USER" );
       console.log( "VALIDATE ADMIN AND USER" );
       console.log( "VALIDATE ADMIN AND USER" );
       console.log( "VALIDATE ADMIN AND USER" );
-      console.log( req );
+      // console.log( req );
       const { Id } = req.params;
 
-      console.log( Id );
+      // console.log( Id );
 
       let id = Number( Id );
 
 
       const idReq = req.user.userId;
       const isAdmin = req.user.Admin;
+
+      // return res.sendStatus( 200 );
 
       if(isAdmin || id === idReq){
             req.privateData = true; // datos privados
@@ -24,4 +26,4 @@ function validateAdminAndUser( req, res, next )
       next();
 }
 
-module.exports = validateAdminAndUser;
+module.exports = validateAdminAndUserById;

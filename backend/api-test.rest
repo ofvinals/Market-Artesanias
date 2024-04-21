@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 User-Agent: VRC
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzU3MTcwMSwiZXhwIjoxNzEzNjU4MTAxfQ.dXQMXqFSHkJ214_HrQghP47s8bra7AF8urqWVbQ6MfA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIkVtYWlsIjoibWFpbEBnbWFpbC5jb20iLCJBZG1pbiI6ZmFsc2UsImlhdCI6MTcxMzYzOTgxMCwiZXhwIjoxNzEzNzI2MjEwfQ.b4_H8HsnjNkQGBfh53vh5WPGi4MyitdbXxRU9yJn8Cc
 
 --
 
@@ -140,7 +140,7 @@ DELETE /Usuario/1
 
 ### Crear COMPRA
 --
-POST /Compra
+POST /Transacciones
 {
       "Titulo": "Televisor artesanal",
       "UserId": 1,
@@ -149,5 +149,12 @@ POST /Compra
       "Cantidad": 5,
       "PrecioTotal": 500.0
 }
+
+# GET /Compra (cambiar)
+#
+#
+# GET /Transacciones/Compras{id}
+# GET /Transacciones/Ventas/{id}
+
 
 
