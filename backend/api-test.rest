@@ -46,9 +46,9 @@ PUT /Producto/Suspender
       "Id": 1,
 }
 
-### Quitar suspencion del Producto
+### Quitar suspension del Producto
 --
-PUT /Producto/QuitarSuspencion
+PUT /Producto/QuitarSuspension
 {
       "Id": 1,
 }

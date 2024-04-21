@@ -5,7 +5,7 @@ const {
         putUpdate, 
         getAllVendedor,
         putSuspenderP,
-        putQuitarSuspencionP
+        putQuitarSuspensionP
     } = require("../../Controllers/ControllerProductos/ControllerProducto");
     require("dotenv").config();
     const jwt = require("jsonwebtoken");
@@ -107,10 +107,10 @@ const putSuspender = async (req, res) => {
 };
 
 //PUT QUitar Suspencion el producto
-const putQuitarSuspencion = async (req, res) => {
+const putQuitarSuspension = async (req, res) => {
     const { Id } = req.body;
     try {
-        const response = await putQuitarSuspencionP(Id);
+        const response = await putQuitarSuspensionP(Id);
         return res.status(201).json(response);
     } catch (error) {
         return res.status(500).json({error: error.message});
@@ -124,5 +124,5 @@ module.exports = {
     putUpdateProducto,
     getAllProductoVendedor,
     putSuspender,
-    putQuitarSuspencion
+    putQuitarSuspension
 }

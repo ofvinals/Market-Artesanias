@@ -18,6 +18,6 @@ routerProducto.get("/:Id", getByIdProducto);
 routerProducto.post("/", validateToken, postAddProducto);
 routerProducto.put("/", validateToken, putUpdateProducto);
 routerProducto.put("/Suspender", validateToken, putSuspender);
-routerProducto.put("/QuitarSuspencion", validateToken, putQuitarSuspencion);
+routerProducto.put("/QuitarSuspension", validateToken, putQuitarSuspencion);
 
 module.exports = routerProducto;

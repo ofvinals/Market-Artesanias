@@ -120,7 +120,7 @@ const putSuspenderP = async ( Id ) => {
 };
 
 //PUT Suspende el producto
-const putQuitarSuspencionP = async ( Id ) => {
+const putQuitarSuspensionP = async ( Id ) => {
     //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
     const producto = await Product.findByPk(Id);
 
@@ -142,5 +142,5 @@ module.exports = {
     putUpdate,
     getAllVendedor,
     putSuspenderP,
-    putQuitarSuspencionP
+    putQuitarSuspensionP
 }
