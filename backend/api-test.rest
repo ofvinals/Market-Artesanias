@@ -249,6 +249,7 @@ POST /Transaccion
       "UserId": 1,
       "ProductId": 1,
       "StoreId": 1,
+      "CategoryId": 1,
       "FechaCompra": "2024-04-13T22:17:12.837Z",
       "Cantidad": 5,
       "PrecioTotal": 500.0
@@ -260,7 +261,7 @@ GET /Transaccion
 
 ### Obtener TODAS las COMPRAS de un usuario {ID}
 --
-GET /Transaccion/Compra/2
+GET /Transaccion/Compra/1
 
 
 

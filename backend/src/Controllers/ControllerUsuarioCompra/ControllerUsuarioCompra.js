@@ -13,11 +13,11 @@ const get = async () => {
 };
 
 //POST Carga la Compras en la DB.
-const postAdd = async ( Titulo, UserId, ProductId, StoreId, FechaCompra, Cantidad, PrecioTotal ) => {
-      if ( !Titulo || !UserId || !ProductId || !StoreId || !FechaCompra || !Cantidad || !PrecioTotal ) {
+const postAdd = async ( Titulo, UserId, ProductId, StoreId, CategoryId, FechaCompra, Cantidad, PrecioTotal ) =>
+{
+      if ( !Titulo || !UserId || !ProductId || !StoreId || !CategoryId || !FechaCompra || !Cantidad || !PrecioTotal ) {
             throw new Error("All fields are required");
       }
-      //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 
       const compra = await ComprasUsuario.create({
             Titulo, 
@@ -26,14 +26,12 @@ const postAdd = async ( Titulo, UserId, ProductId, StoreId, FechaCompra, Cantida
             PrecioTotal,
       });
 
-
       await compra.setUser(UserId);
       await compra.setProduct(ProductId);
       await compra.setStore(StoreId);
+      await compra.setCategory(CategoryId);
 
       let editProduct = await getById(ProductId);
-
-      // console.log( editProduct.dataValues );
 
       if( editProduct.dataValues.Cantidad - Cantidad < 0 ) throw new Error( "Stock de producto no suficiente" );
 

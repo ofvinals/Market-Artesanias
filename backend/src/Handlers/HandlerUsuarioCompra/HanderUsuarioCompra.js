@@ -14,10 +14,10 @@ const getAllCompras = async (req, res) => {
 
 //POST Carga la compras en la DB.
 const crearCompra = async (req, res) => {
-      const { Titulo, UserId, ProductId, StoreId, FechaCompra, Cantidad, PrecioTotal } = req.body;
+      const { Titulo, UserId, ProductId, StoreId, CategoryId, FechaCompra, Cantidad, PrecioTotal } = req.body;
       // console.log( req.body );
       try {
-            const response = await postAdd( Titulo, UserId, ProductId, StoreId, FechaCompra, Cantidad, PrecioTotal );
+            const response = await postAdd( Titulo, UserId, ProductId, StoreId, CategoryId, FechaCompra, Cantidad, PrecioTotal );
             return res.status(200).json(response);
       } catch (error) {
             return res.status(500).json({error: error.message});
