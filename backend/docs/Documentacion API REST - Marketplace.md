@@ -75,13 +75,13 @@ Authorization: Bearer <JWT>
 GET /Usuario
 ```
 
-```
+```txt
 # Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
 Authorization: Bearer <JWT>
 GET /Usuario/{id}
 ```
 
-```
+```txt
 # Editar / Modificar un usuario Por ID
 Authorization: Bearer <JWT>
 PATCH /Usuario/{id}
@@ -110,13 +110,13 @@ Authorization: Bearer <JWT>
 GET /Producto
 ```
 
-```
+```txt
 # Recuperar un producto por ID
 Authorization: Bearer <JWT>
 GET /Producto/{id}
 ```
 
-```
+```txt
 ### Crear un nuevo Producto (Corregir)
 Authorization: Bearer <JWT>
 POST /Producto
@@ -164,7 +164,7 @@ POST /Tienda
 }
 ```
 
-```
+```txt
 # Recuperar TODAS las tiendas
 Authorization: Bearer <JWT>
 GET /Tienda
@@ -187,7 +187,7 @@ PUT /Tienda
 }
 ```
 
-```
+```txt
 # Eliminar una tienda
 Authorization: Bearer <JWT>
 DELETE /Tienda/{id}
@@ -212,13 +212,13 @@ POST /Transaccion
 }
 ```
 
-```
+```txt
 ### Obtener TRANSACCIONES
 Authorization: Bearer <JWT>
 GET /Transaccion
 ```
 
-```
+```txt
 ### Obtener TODAS las COMPRAS de un usuario {ID}
 Authorization: Bearer <JWT>
 GET /Transaccion/Compra/1
