@@ -73,11 +73,15 @@ POST /Login
 # Obtener todos los usuarios
 Authorization: Bearer <JWT>
 GET /Usuario
+```
 
+```
 # Obtener usuario por id ( un unico usuario ) o Detalle de Usuario (ID)
 Authorization: Bearer <JWT>
 GET /Usuario/{id}
+```
 
+```
 # Editar / Modificar un usuario Por ID
 Authorization: Bearer <JWT>
 PATCH /Usuario/{id}
@@ -102,23 +106,30 @@ DELETE /Usuario/{id}
 
 ```txt
 # Recuperar todos los productos
+Authorization: Bearer <JWT>
 GET /Producto
+```
 
+```
 # Recuperar un producto por ID
+Authorization: Bearer <JWT>
 GET /Producto/{id}
+```
 
-# Crear un nuevo Producto
+```
+### Crear un nuevo Producto (Corregir)
+Authorization: Bearer <JWT>
 POST /Producto
-Content-Type: application/json
 {
       "Nombre": "Maceta",
-      "Imagen": "https://url.com.ar",
       "Disponible": 1,
       "Precio": 13.55,
+      "Cantidad": 50,
+      "Imagen": "https://url.com.ar",
       "Descripcion": "Un recipiente para plantar flores",
-      "Activo": true,
+      "Genero": "Femenino",
       "StoreId": 1,
-      "CategoryId": 1,
+      "CategoryId": 1
 }
 ```
 
@@ -126,7 +137,18 @@ Content-Type: application/json
 ### Operaciones `Categoria` (working on)
 
 ```txt
-{raiz}/Categoria
+### Recuperar todas las categorias
+Authorization: Bearer <JWT>
+GET /Categoria
+```
+
+```txt
+### Crear una nueva categoria (recurso / registro en db)
+Authorization: Bearer <JWT>
+POST /Categoria
+{
+      "Nombre": "Accesorios"
+}
 ```
 
 
@@ -140,13 +162,64 @@ POST /Tienda
       "Nombre": "Almacen de amor",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
+```
 
-# Recuperar una tienda
+```
+# Recuperar TODAS las tiendas
 Authorization: Bearer <JWT>
 GET /Tienda
+```
 
+```txt
+### Recuperar una tienda por ID (el detalle de UNA tienda con TODOS SUS PRODUCTOS)
+Authorization: Bearer <JWT>
+GET /Tienda/{id}
+```
+
+```txt
+### Modificar una tienda
+Authorization: Bearer <JWT>
+PUT /Tienda
+{
+      "Id": "1",
+      "Nombre": "Verduleria de la pasion",
+      "Imagen": "google"
+}
+```
+
+```
 # Eliminar una tienda
 Authorization: Bearer <JWT>
 DELETE /Tienda/{id}
 ```
 
+
+### Operaciones `Transaccion`
+
+```txt
+### Crear Transaccion
+Authorization: Bearer <JWT>
+POST /Transaccion
+{
+      "Titulo": "Maceta",
+      "UserId": 1,
+      "ProductId": 1,
+      "StoreId": 1,
+      "CategoryId": 1,
+      "FechaCompra": "2024-04-13T22:17:12.837Z",
+      "Cantidad": 5,
+      "PrecioTotal": 500.0
+}
+```
+
+```
+### Obtener TRANSACCIONES
+Authorization: Bearer <JWT>
+GET /Transaccion
+```
+
+```
+### Obtener TODAS las COMPRAS de un usuario {ID}
+Authorization: Bearer <JWT>
+GET /Transaccion/Compra/1
+```
