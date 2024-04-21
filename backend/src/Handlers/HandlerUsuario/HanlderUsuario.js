@@ -61,61 +61,15 @@ const patchEditUsuario = async (req, res) => {
 
 const getUsuarioById = async (req, res) => {
       const { Id } = req.params;
-      console.log( "id (hanlder)" );
-      console.log( Id );
-
-      console.log( "HANLDER" );
-      console.log( "HANLDER" );
-      console.log( "HANLDER" );
-      console.log( "HANLDER" );
-      console.log( "req.privateData" );
-      console.log( req.privateData );
-
-      const oscar = true;
-      console.log( "oscar = " );
-      console.log( oscar );
+      
+      const private = req.privateData;
+      
       try {
-            const foundUser = await getById(Id);
-            // console.log( "getbyid handler", foundUser );
-            let returnedUser;
-            // console.log("foundUser", foundUser );
-            if( foundUser === null ) return res.sendStatus(404);
-
-            // #1 Primer caso + Traerme los datos publicos (no privados)
-            if( oscar ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-            // if( !req.privateData ){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
-                  console.log( "#1 Primer caso" )
-                  returnedUser = { 
-                        Id: foundUser.Id,
-                        Nombre: foundUser.Nombre,
-                        Apellido: foundUser.Apellido,
-                        Vendedor: foundUser.Vendedor
-                  };
-                  // console.log( foundUser );
-                  console.log( returnedUser );
-                  return res.sendStatus(200);
-            } 
-
-            // #2 Segundo caso = Traerme los datos privados del usuario requisado
-            console.log( "#2 Segundo caso" )
-            returnedUser = { 
-                  id: foundUser.id,
-                  Nombre: foundUser.Nombre,
-                  Apellido: foundUser.Apellido,
-                  Email: foundUser.Email,
-                  Ubicacion: foundUser.Ubicacion,
-                  Genero: foundUser.Genero,
-                  FechaNacimiento: foundUser.FechaNacimiento,
-                  Activo: foundUser.Activo,
-                  Admin: foundUser.Admin,
-                  Vendedor: foundUser.Vendedor
-            };
-            // console.log( "foundUser", foundUser );
-            // console.log( "returnuser", returnedUser );
-            // Retorno detalle del usuario con informacion sensible
-            return res.status(200).json(returnedUser);
+            const foundUser = await getById(Id, private);
+            
+            return res.status(200).json(foundUser);
       } catch (error) {
-            return res.status(500).json({error: error.mensage});
+            return res.status(500).json({error: error.message});
       }
 };
 

@@ -5,7 +5,8 @@ const {
         postAddProducto, 
         putUpdateProducto, 
         getAllProductoVendedor,
-        putSuspender
+        putSuspender,
+        putQuitarSuspencion,
     } = require("../../Handlers/HandlerProductos/HandlerProductos");
 const validateToken = require("../ValidateToken/ValidateToken");
 
@@ -17,5 +18,6 @@ routerProducto.get("/:Id", getByIdProducto);
 routerProducto.post("/", validateToken, postAddProducto);
 routerProducto.put("/", validateToken, putUpdateProducto);
 routerProducto.put("/Suspender", validateToken, putSuspender);
+routerProducto.put("/QuitarSuspencion", validateToken, putQuitarSuspencion);
 
 module.exports = routerProducto;

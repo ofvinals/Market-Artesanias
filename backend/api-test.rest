@@ -39,6 +39,20 @@ POST /Producto
       "CategoryId": 1
 }
 
+### Quitar suspende un Producto
+--
+PUT /Producto/Suspender
+{
+      "Id": 1,
+}
+
+### Quitar suspencion del Producto
+--
+PUT /Producto/QuitarSuspencion
+{
+      "Id": 1,
+}
+
 ### Recuperar todas las categorias
 --
 GET /Categoria

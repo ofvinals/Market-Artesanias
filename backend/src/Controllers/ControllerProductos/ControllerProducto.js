@@ -119,6 +119,20 @@ const putSuspenderP = async ( Id ) => {
 	return "Listo!!";
 };
 
+//PUT Suspende el producto
+const putQuitarSuspencionP = async ( Id ) => {
+    //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
+    const producto = await Product.findByPk(Id);
+
+	if (!producto) throw new Error("El Producto no existe.");
+    const tienda = await Store.findOne({where:{ UserId: producto.StoreId}});
+
+    const contador =  tienda.Contador - 1;
+    await Product.update({Activo: true},{where: {Id}});
+    await Store.update({Contador: contador},{where: {UserId: producto.StoreId}});
+
+	return "Listo!!";
+};
 
 
 module.exports = {
@@ -127,5 +141,6 @@ module.exports = {
     postAdd,
     putUpdate,
     getAllVendedor,
-    putSuspenderP
+    putSuspenderP,
+    putQuitarSuspencionP
 }

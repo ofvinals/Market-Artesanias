@@ -17,9 +17,38 @@ const controllerByEmailUser = async (Email) => {
 
 const editUsuario = async () => {}
 
-const getById = async (Id) => {
+const getById = async (Id, isAdmin) => {
       const usuario = await User.findByPk(Id);
-      return usuario;
+      let returnedUser;
+      
+      if (usuario === null) throw new Error("El Usuario no existe.");
+
+      // #1 Primer caso + Traerme los datos publicos (no privados)
+      if( isAdmin === false){  // <----------- Si no es admin y el usuario de la req. no es el mismo que el solicitado:
+            returnedUser = { 
+                  Id: usuario.Id,
+                  Nombre: usuario.Nombre,
+                  Apellido: usuario.Apellido,
+                  Vendedor: usuario.Vendedor
+            };
+            // Solo retornar aquí en caso de que no haya necesidad de enviar datos más detallados
+            return returnedUser;
+      }
+
+            // #2 Segundo caso = Traerme los datos privados del usuario requisado
+            returnedUser = { 
+                  Id: usuario.Id,
+                  Nombre: usuario.Nombre,
+                  Apellido: usuario.Apellido,
+                  Email: usuario.Email,
+                  Ubicacion: usuario?.Ubicacion,
+                  Genero: usuario?.Genero,
+                  FechaNacimiento: usuario?.FechaNacimiento,
+                  Activo: usuario.Activo,
+                  Admin: usuario.Admin,
+                  Vendedor: usuario?.Vendedor
+            };
+      return returnedUser;
 };
 
 
