@@ -1,5 +1,10 @@
 // const CompraUsuario = require("../../Models/CompraUsuario");
-const { ComprasUsuario, User, Product,Category } = require("../../db");
+const { getByIdProducto } = require("../../Handlers/HandlerProductos/HandlerProductos.js");
+const { ComprasUsuario, User, Product, Category } = require("../../db");
+const { 
+        getById, 
+        putUpdate, 
+    } = require("../ControllerProductos/ControllerProducto.js");
 
 //GET trae todo las compras de la DB.
 const get = async () => {
@@ -36,6 +41,23 @@ const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, Precio
       await compra.setUser(UserId);
       await compra.setProduct(ProductId);
 
+      let editProduct = await getById(ProductId);
+
+      // console.log( editProduct.dataValues );
+
+      if( editProduct.dataValues.Cantidad - Cantidad < 0 ) throw new Error( "Stock de producto no suficiente" );
+
+      let error = await putUpdate(
+            editProduct.dataValues.Id,
+            editProduct.dataValues.Nombre,
+            editProduct.dataValues.Disponible,
+            editProduct.dataValues.Precio,
+            editProduct.dataValues.Cantidad - Cantidad,
+            editProduct.dataValues.Imagen,
+            editProduct.dataValues.Descripcion,
+            editProduct.dataValues.CategoryId,
+            editProduct.dataValues.Genero,
+      )
 
       return compra;
 };

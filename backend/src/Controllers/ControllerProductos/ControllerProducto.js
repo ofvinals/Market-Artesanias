@@ -63,9 +63,9 @@ const getById = async (Id) => {
 };
 
 //POST Carga el producto en la DB.
-const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId, CategoryId, Genero = null) => {
+const postAdd = async (Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, StoreId, CategoryId, Genero = null) => {
 
-    if (!Nombre || !Imagen || !Disponible || !Precio || !Descripcion ) {
+    if (!Nombre || !Cantidad || !Imagen || !Disponible || !Precio || !Descripcion ) {
         throw new Error("All fields are required");
 	}
     //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
@@ -74,6 +74,7 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
         Nombre, 
         Disponible,
         Precio,
+        Cantidad,
         Imagen,
         Descripcion,
         Genero
@@ -88,13 +89,13 @@ const postAdd = async (Nombre, Disponible, Precio, Imagen, Descripcion, StoreId,
 
 
 //PUT Actualiza el producto
-const putUpdate = async (Id, Nombre, Disponible, Precio, Imagen, Descripcion, CategoryId, Genero = null) => {
+const putUpdate = async (Id, Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, CategoryId, Genero = null) => {
     //console.log(Id, Nombre, Disponible,Precio,Imagen,Descripcion);
     const producto = await Product.findByPk(Id);
 
 	if (!producto) throw new Error("El Producto no existe.");
 
-    await Product.update({Nombre, Disponible, Precio, Imagen, Descripcion, Genero, CategoryId},{where: {Id}});
+    await Product.update({Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, Genero, CategoryId},{where: {Id}});
 
 	return "Listo!!";
 };
