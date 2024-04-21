@@ -2,6 +2,7 @@ const {
 	postAdd,
 	update,
 	get,
+      getStoreById,
 	deleteStoreById,
 } = require('../../Controllers/ControllerTienda/ControllerTienda');
 require('dotenv').config();
@@ -35,6 +36,22 @@ console.log(tienda)
 		return res.status(401).json({ message: 'Token inválido' });
 	}
 };
+
+const detalleTienda = async (req, res) => {
+      const { Id } = req.params;
+
+      let foundStore;
+      try {
+            foundStore = await getStoreById(Id);
+      } catch (error) {
+            return res.sendStatus(500);
+      }
+
+      if( foundStore === null ) return res.sendStatus(404);
+
+      // preprocesado del objeto Store
+      return res.status(200).send( foundStore );
+}
 
 //POST Carga la Tienda en la DB.
 const postAddTienda = async (req, res) => {
@@ -94,4 +111,5 @@ module.exports = {
 	getByStore,
 	putTienda,
 	deleteTienda,
+      detalleTienda,
 };

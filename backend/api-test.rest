@@ -111,12 +111,16 @@ PATCH /Usuario/2
 --
 GET /Tienda
 
+### Recuperar una tienda por ID (el detalle de UNA tienda con TODOS SUS PRODUCTOS)
+--
+GET /Tienda/1
+
 
 ### Crear una tienda
 --
 POST /Tienda
 {
-      "Nombre": "Verduleria de la pasion",
+      "Nombre": "Almacen del amor",
       "Imagen": "http://urlfalsa.ultra.falsa"
 }
 
