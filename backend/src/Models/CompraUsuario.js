@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = comprasUsuarioModel = (sequelize) => {
-      const ComprasUsuario =  sequelize.define("ComprasUsuario", {
+      const ComprasUsuario = sequelize.define("ComprasUsuario", {
             Id: {
                   type: DataTypes.INTEGER,
                   primaryKey: true,
@@ -23,6 +23,8 @@ module.exports = comprasUsuarioModel = (sequelize) => {
                   type: DataTypes.DECIMAL,
                   allowNull: false
             },
-      });
+      },
+            { timestamps: false }
+      );
       return ComprasUsuario;
 }
