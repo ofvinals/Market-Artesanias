@@ -24,7 +24,7 @@ const patchEditUsuario = async (req, res) => {
       // const idReq = req.user.userId; // ID Del usuario de la request
       // const { Id } = req.params;
       // let id = Number( Id );
-      console.log('reqbody' ,req)
+      console.log('reqbody' ,req);
       const { Id, Nombre, Apellido, Genero, FechaNacimiento, Ubicacion } = req.body;
       // console.log( "JWT DATA: : : : : : >>>>>>> " );
       // console.log( idReq );
@@ -71,13 +71,13 @@ const getUsuarioById = async (req, res) => {
       } catch (error) {
             return res.status(500).json({error: error.message});
       }
-};
+}
 
 const eliminarUsuario = async (req, res) => {
       const { Id } = req.params;
       const isAdmin = req.user.Admin; // Es administrador?
-      //
-      // if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
+                                      //
+                                      // if( !isAdmin ) return res.sendStatus(403); // En caso de no ser admin, retorno codigo de error: "Acceso Prohibido"
       try {
             const response = await deleteUserById(Id);
             return res.status(200).json(response);
