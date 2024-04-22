@@ -8,7 +8,19 @@ const {
 
 //GET trae todo las compras de la DB.
 const get = async () => {
-    const compras = await ComprasUsuario.findAll();
+    const compras = await ComprasUsuario.findAll({
+      include: 
+            [{
+                  model: Category,
+                  attributes: ["Id", "Nombre"]
+            },{
+                  model: User,
+                  attributes: ["Id", "Nombre", "Apelido"]
+            },{
+                  model: Store,
+                  attributes: ["Id", "Nombre"]
+            }]
+    });
 	return compras;
 };
 
