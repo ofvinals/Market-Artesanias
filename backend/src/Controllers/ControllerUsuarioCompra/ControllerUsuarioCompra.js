@@ -1,6 +1,6 @@
 // const CompraUsuario = require("../../Models/CompraUsuario");
 const { getByIdProducto } = require("../../Handlers/HandlerProductos/HandlerProductos.js");
-const { ComprasUsuario, User, Product, Category } = require("../../db");
+const { ComprasUsuario, User, Product, Category, Store } = require("../../db");
 const { 
         getById, 
         putUpdate, 
