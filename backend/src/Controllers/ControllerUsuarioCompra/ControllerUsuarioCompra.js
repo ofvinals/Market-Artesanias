@@ -68,7 +68,19 @@ const filterTransactionsByUserId = async (Id) => {
       const compras = await ComprasUsuario.findAll({
             where: {
                   UserId: Id,
-            }
+            },
+            include: [{
+                  model: Store,
+                  attributes: ["Id", "Nombre"]
+            },{
+            
+                  model: Product,
+                  attributes: ["Id", "Imagen"]
+            },{
+            
+                  model: Category,
+                  attributes: ["Id", "Nombre"]
+            }]
       });
       return compras;
 };
