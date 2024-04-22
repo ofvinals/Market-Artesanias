@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { getProductVendedor } from '../../hooks/useProducts';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Products = ({ Store }) => {
 	const [products, setProducts] = useState([]);
-	const { id } = useParams();
 
 	useEffect(() => {
 		async function loadProducts() {
