@@ -1,5 +1,6 @@
-const { get, postAdd, filterTransactionsByUserId } = require('../../Controllers/ControllerUsuarioCompra/ControllerUsuarioCompra');
-
+const { get, postAdd, filterTransactionsByUserId, getAllVentas } = require('../../Controllers/ControllerUsuarioCompra/ControllerUsuarioCompra');
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
 //GET Trae todas las compras en la DB.
 const getAllCompras = async (req, res) => {
@@ -39,7 +40,15 @@ const obtenerComprasPorUsuario = async ( req, res ) =>
 
 const obtenerVentasPorUsuario = async ( req, res ) => 
 {
+      const { Id } = req.params;
+      try {
+            const response = await getAllVentas( Id );
 
+            console.log( response );
+            return res.status(200).json(response);
+      } catch ( error ){
+            return res.status(500).json({ error: error.message });
+      }
 }
 
 const obtenerTransacciones = async ( req, res ) => 
