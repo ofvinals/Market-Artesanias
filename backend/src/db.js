@@ -51,6 +51,11 @@ ComprasUsuario.belongsTo(User);
 Product.hasMany(ComprasUsuario);
 ComprasUsuario.belongsTo(Product);
 
+Store.hasMany(ComprasUsuario);
+ComprasUsuario.belongsTo(Store);
+
+Category.hasMany(ComprasUsuario);
+ComprasUsuario.belongsTo(Category);
 
 // relacion mucho a mucho
 //User.belongsTo(Product, { through: ComprasUsuario });

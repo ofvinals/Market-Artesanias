@@ -76,7 +76,7 @@ export const unableProduct = async (id) => {
 export const enableProduct = async (id) => {
 	try {
 		const token = localStorage.getItem('token');
-		const res = await apiURL.put(`/Suspender`, id, {
+		const res = await apiURL.put(`/QuitarSuspension`, id, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return res.data;

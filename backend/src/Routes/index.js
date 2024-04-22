@@ -16,6 +16,7 @@ routes.use("/Producto", routerProducto);
 routes.use("/Categoria", routerCategoria);
 routes.use("/Usuario", routerUsuario);
 routes.use("/Tienda", routerTienda);
-routes.use("/Compra", routerUsuarioCompra);
+
+routes.use("/Transaccion", routerUsuarioCompra);
 
 module.exports = routes;

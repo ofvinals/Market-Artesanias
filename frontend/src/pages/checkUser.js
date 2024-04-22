@@ -24,7 +24,7 @@ const CheckUser = () => {
 				</Link>
 				<Link
 					type='button'
-					to='/Store'
+					to='/'
 					className='mt-10 bg-white text-center text-specific w-[256px] border-2 border-specific font-semibold  sm:w-[456px] py-4 rounded-xl text-[20px] hover:bg-specific hover:text-white'>
 					{' '}
 					Solo busco comprar productos
