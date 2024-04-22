@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getCompras, getVentas } from '../../hooks/useTransactions';
+import { getComprasById, getVentasById } from '../../hooks/useTransactions';
+import { useSelector } from 'react-redux';
 
 export const List = () => {
 	const [showMore, setShowMore] = useState(false);
 	const [compras, setCompras] = useState([]);
 	const [ventas, setVentas] = useState([]);
-
+	const { id } = useSelector((state) => state.auth);
 	const comprasToShow = compras
 		? showMore
 			? compras
@@ -23,7 +24,7 @@ export const List = () => {
 	useEffect(() => {
 		async function loadCompras() {
 			try {
-				const comprasData = await getCompras();
+				const comprasData = await getComprasById(id);
 				comprasData.sort((a, b) => new Date(a.FechaCompra) - new Date(b.FechaCompra));
 				setCompras(comprasData);
 			} catch (error) {
@@ -31,12 +32,13 @@ export const List = () => {
 			}
 		}
 		loadCompras();
-	}, []);
+	}, [id]);
+	console.log(compras)
 
 	useEffect(() => {
 		async function loadVentas() {
 			try {
-				const ventasData = await getVentas();
+				const ventasData = await getVentasById(id);
 				ventasData.sort((a, b) => new Date(a.FechaVenta) - new Date(b.FechaVenta));
 				setVentas(ventasData);
 			} catch (error) {
@@ -44,7 +46,7 @@ export const List = () => {
 			}
 		}
 		loadVentas();
-	}, []);
+	}, [id]);
 
 	return (
 		<>
@@ -115,7 +117,7 @@ export const List = () => {
 								<div className='flex flex-row h-[261px]'>
 									<div>
 										<img
-											src={product.Product.Imagen}
+											src={product.Imagen}
 											alt={product.Titulo}
 											className='w-[150px] h-[110px] rounded-full'
 										/>
@@ -128,11 +130,11 @@ export const List = () => {
 											Comprado el {product.FechaCompra}
 										</p>
 									</div>
-									{/* <div>
+									<div>
 										<p className='border-2 rounded-lg bg-transparent text-[#0A3BEC] border-[#0A3BEC] w-[100px] text-center'>
-											{product.Category.Nombre}
+											{product.Category}
 										</p>
-									</div> */}
+									</div>
 								</div>
 								<hr className='border-[#0A3BEC] w-full' />
 							</div>
