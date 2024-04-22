@@ -15,7 +15,7 @@ const get = async () => {
                   attributes: ["Id", "Nombre"]
             },{
                   model: User,
-                  attributes: ["Id", "Nombre", "Apelido"]
+                  attributes: ["Id", "Nombre", "Apellido"]
             },{
                   model: Store,
                   attributes: ["Id", "Nombre"]
