@@ -73,8 +73,32 @@ const filterTransactionsByUserId = async (Id) => {
       return compras;
 };
 
+const getAllVentas = async (Id) => {
+      console.log("-->", Id );
+      const compras = await ComprasUsuario.findAll({
+            where: {
+                  StoreId: Id,
+            },
+            include: [{
+                  model: Store,
+                  attributes: ["Id", "Nombre"]
+            },{
+            
+                  model: Product,
+                  attributes: ["Imagen"]
+            },{
+            
+                  model: Category,
+                  attributes: ["Id", "Nombre"]
+            }]
+      });
+
+      return compras;
+};
+
 module.exports = {
     get,
     postAdd,
     filterTransactionsByUserId,
+    getAllVentas
 }
