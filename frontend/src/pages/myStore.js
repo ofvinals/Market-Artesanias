@@ -66,7 +66,7 @@ function MyStore() {
 						showConfirmButton: false,
 						timer: 2000,
 					});
-					navigate('/store');
+					navigate('/');
 					return;
 				}
 			}

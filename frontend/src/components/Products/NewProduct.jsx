@@ -69,6 +69,7 @@ export const NewProduct = () => {
 				CategoryId: categoryId,
 				Descripcion: values.descripcion,
 				Disponible: count,
+				Cantidad: count,
 				Precio: values.precio,
 				Imagen: photoUrl.join(','),
 			};

@@ -34,7 +34,6 @@ export const EditProduct = () => {
 			if (file) {
 				const newPhotos = [...photos, file];
 				setPhotos(newPhotos);
-				console.log(photos);
 				await handleUpChange(newPhotos);
 				Swal.fire({
 					icon: 'info',
@@ -97,7 +96,6 @@ export const EditProduct = () => {
 				const store = await getStore();
 				setImgStore(store[0].Imagen);
 				setNombreStore(store[0].Nombre);
-				console.log(product);
 				setValue('Id', product.Id);
 				setValue('nombre', product.Nombre);
 				setValue('categoria', product.CategoryId);
@@ -107,7 +105,6 @@ export const EditProduct = () => {
 				setValue('photos', product.Imagen);
 				setCount(product.Disponible);
 				setPhotos([product.Imagen]);
-				console.log(photos);
 			} catch (error) {
 				console.error('Error al obtener datos del producto', error);
 			}
@@ -118,8 +115,6 @@ export const EditProduct = () => {
 	const onSubmit = handleSubmit(async (values) => {
 		try {
 			let newImageUrls = [];
-			console.log(photos);
-			console.log(photoUrl);
 			if (photoUrl.length < 0) {
 				newImageUrls = photos;
 			} else {
@@ -136,7 +131,6 @@ export const EditProduct = () => {
 				Precio: values.precio,
 				Imagen: photos.join(','),
 			};
-			console.log(productData);
 			await updateProduct(productData);
 			Swal.fire({
 				icon: 'success',

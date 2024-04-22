@@ -1,28 +1,35 @@
 // const CompraUsuario = require("../../Models/CompraUsuario");
-const { ComprasUsuario, User, Product } = require("../../db");
+const { getByIdProducto } = require("../../Handlers/HandlerProductos/HandlerProductos.js");
+const { ComprasUsuario, User, Product, Category, Store } = require("../../db");
+const { 
+        getById, 
+        putUpdate, 
+    } = require("../ControllerProductos/ControllerProducto.js");
 
 //GET trae todo las compras de la DB.
 const get = async () => {
     const compras = await ComprasUsuario.findAll({
-        include: [
-            {
-                model: User,
-            },
-            {
-                model: Product,
-                attributes: ["Id", "Nombre", "Imagen", "Disponible", "Precio", "Descripcion", "Genero" ]
-            }
-        ]
+      include: 
+            [{
+                  model: Category,
+                  attributes: ["Id", "Nombre"]
+            },{
+                  model: User,
+                  attributes: ["Id", "Nombre", "Apellido"]
+            },{
+                  model: Store,
+                  attributes: ["Id", "Nombre"]
+            }]
     });
 	return compras;
 };
 
 //POST Carga la Compras en la DB.
-const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, PrecioTotal ) => {
-      if ( !Titulo || !UserId || !ProductId || !FechaCompra || !Cantidad || !PrecioTotal ) {
+const postAdd = async ( Titulo, UserId, ProductId, StoreId, CategoryId, FechaCompra, Cantidad, PrecioTotal ) =>
+{
+      if ( !Titulo || !UserId || !ProductId || !StoreId || !CategoryId || !FechaCompra || !Cantidad || !PrecioTotal ) {
             throw new Error("All fields are required");
       }
-      //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 
       const compra = await ComprasUsuario.create({
             Titulo, 
@@ -31,13 +38,43 @@ const postAdd = async ( Titulo, UserId, ProductId, FechaCompra, Cantidad, Precio
             PrecioTotal,
       });
 
-
       await compra.setUser(UserId);
       await compra.setProduct(ProductId);
+      await compra.setStore(StoreId);
+      await compra.setCategory(CategoryId);
+
+      let editProduct = await getById(ProductId);
+
+      if( editProduct.dataValues.Cantidad - Cantidad < 0 ) throw new Error( "Stock de producto no suficiente" );
+
+      let error = await putUpdate(
+            editProduct.dataValues.Id,
+            editProduct.dataValues.Nombre,
+            editProduct.dataValues.Disponible,
+            editProduct.dataValues.Precio,
+            editProduct.dataValues.Cantidad - Cantidad,
+            editProduct.dataValues.Imagen,
+            editProduct.dataValues.Descripcion,
+            editProduct.dataValues.CategoryId,
+            editProduct.dataValues.Genero,
+      )
+
       return compra;
+};
+
+const filterTransactionsByUserId = async (Id) => {
+      console.log( "CONTROLLER" );
+      console.log( Id );
+      const compras = await ComprasUsuario.findAll({
+            where: {
+                  UserId: Id,
+            }
+      });
+      return compras;
 };
 
 module.exports = {
     get,
     postAdd,
+    filterTransactionsByUserId,
 }
