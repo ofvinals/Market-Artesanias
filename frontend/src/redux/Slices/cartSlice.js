@@ -11,7 +11,7 @@ const initialState = {
 const token = localStorage.getItem('token');
 
 export const addPurchase = createAsyncThunk('purchase/addPurchase', async (item) => {
-    const response = await axios.post(' http://localhost:3001/Compra', item, {
+    const response = await axios.post(' http://localhost:3001/Transaccion', item, {
         headers: { Authorization: `Bearer ${token}` },
     })
     return response.data
@@ -32,6 +32,7 @@ const cartSlice = createSlice({
             } else {
                 state.items.push({ ...action.payload, cantidad: 1 });
             }
+            console.log('productos agregados:',state.items);
         },
         removeItem(state, action) {
             state.items = state.items.filter(item => item.Id !== action.payload)
