@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function Card() {
     const dispatch = useDispatch()
     const cartItems = useSelector((state) => state.cart.items)
+    const userId = useSelector((state)=> state.auth.id)
 
     const removeFromCart = (item) => {
         dispatch(removeItem(item))
@@ -24,6 +25,7 @@ function Card() {
 
     const onCheckoutPurchase = async () => {
         console.log(cartItems);
+        console.log(userId);
         let totalCompra = 0;
 
         cartItems.forEach(producto => {
@@ -33,7 +35,7 @@ function Card() {
         for (let item of cartItems) {
             const purchaseData = {
                 Titulo: item.Nombre,
-                UserId: item.StoreId,
+                UserId: userId,
                 ProductId: item.Id,
                 StoreId: item.StoreId,
                 CategoryId: item.CategoryId,
