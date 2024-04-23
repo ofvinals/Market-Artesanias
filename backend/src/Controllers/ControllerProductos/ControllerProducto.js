@@ -72,13 +72,13 @@ const getById = async (Id) => {
 const postAdd = async (Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, UserId, CategoryId, Genero = null) => {
 
     if (!Nombre || !Cantidad || !Imagen || !Disponible || !Precio || !Descripcion ) {
-        throw new Error("All fields are required");
+        throw new Error("Todos los campos son obligatorios.");
 	}
 
     const tienda = await Store.findOne({
         where: { UserId}
     });
-    
+
     if(tienda === null){
         throw new Error("No tiene una tienda");
     }
