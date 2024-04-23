@@ -28,7 +28,7 @@ function Search() {
 		<main>
 			<NavBar />
 			<header className='bg-cover bg-center bg-[#E98C00] py-2 '>
-				<div className='flex justify-center items-center max-w-3xl mx-auto bg-white  overflow-hidden rounded-lg'>
+				<div className='flex justify-center items-center max-w-3xl mx-auto bg-white w-9/12 overflow-hidden rounded-lg'>
 					<input
 						type='text'
 						className='flex-1 px-4 py-2'
