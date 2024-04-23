@@ -29,11 +29,17 @@ const getAll = async () => {
 };
 
 //GET todo los productos del vendedor.
-const getAllVendedor = async (StoreId) => {
-    console.log(StoreId)
+const getAllVendedor = async (UserId) => {
+    console.log(UserId)
+    const tienda = await Store.findOne({
+        where: { UserId}
+    });
+    if(tienda === null){
+        throw new Error("No tiene una tienda");
+    }
     const productos = await Product.findAll({
         where: {
-            StoreId
+            StoreId: tienda.Id
         },
         include: 
             {
