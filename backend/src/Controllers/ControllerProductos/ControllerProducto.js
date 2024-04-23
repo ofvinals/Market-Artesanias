@@ -69,11 +69,20 @@ const getById = async (Id) => {
 };
 
 //POST Carga el producto en la DB.
-const postAdd = async (Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, StoreId, CategoryId, Genero = null) => {
+const postAdd = async (Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion, UserId, CategoryId, Genero = null) => {
 
     if (!Nombre || !Cantidad || !Imagen || !Disponible || !Precio || !Descripcion ) {
         throw new Error("All fields are required");
 	}
+
+    const tienda = await Store.findOne({
+        where: { UserId}
+    });
+    
+    if(tienda === null){
+        throw new Error("No tiene una tienda");
+    }
+
     //console.log("-----<", Nombre, Disponible,Precio,Imagen,Descripcion, StoreId, CategoryId)
 
 	const producto = await Product.create({
@@ -83,11 +92,10 @@ const postAdd = async (Nombre, Disponible, Precio, Cantidad, Imagen, Descripcion
         Cantidad,
         Imagen,
         Descripcion,
-        Genero
+        Genero,
+        StoreId: tienda.Id
 	});
     
-    
-	await producto.setStore(StoreId);
     //console.log(producto)
 	await producto.setCategory(CategoryId);
 	return producto;
