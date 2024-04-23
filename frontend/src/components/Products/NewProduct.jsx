@@ -113,7 +113,7 @@ export const NewProduct = () => {
 							<option value='1'>Vestimenta</option>
 							<option value='2'>Cerámica</option>
 							<option value='3'>Muebles</option>
-							<option value='4'>Pastelería</option>
+							<option value='4'>Cuadros</option>
 							<option value='5'>Accesorios</option>
 						</select>
 
