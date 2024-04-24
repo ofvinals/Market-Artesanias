@@ -20,6 +20,7 @@ import Welcome from './pages/welcome';
 import CheckUser from './pages/checkUser';
 import PublishedProduct from './pages/publishedProduct';
 import DeletedProduct from './pages/deletedProduct';
+import TransactionsList from './pages/transactionsList';
 
 function App() {
 	return (
@@ -45,6 +46,7 @@ function App() {
 				<Route path='/checkuser' element={<CheckUser />} />
 				<Route path='/publishedproduct' element={<PublishedProduct />} />
 				<Route path='/deletedproduct' element={<DeletedProduct />} />
+				<Route path='/transactionslist' element={<TransactionsList />} />
 			</Routes>
 		</>
 	);

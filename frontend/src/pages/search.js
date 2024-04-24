@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar.jsx';
-import Itemcard from '../components/ItemCard';
+import Itemcard from '../components/SearchCard';
 import { searchItemsInDatabase } from '../hooks/useSearch.js';
 
 function Search() {
