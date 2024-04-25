@@ -32,6 +32,7 @@ server.use(
 			'*',
 			'https://market-artesanias.onrender.com',
 		],
+            credentials: true,
 	})
 );
 
