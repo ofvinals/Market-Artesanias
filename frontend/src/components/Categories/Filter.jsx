@@ -6,7 +6,7 @@ const categorias = [
     'Vestimenta',
     'Cerámica',
     'Muebles',
-    'Pastelería',
+    'Cuadros',
     'Accesorios'
 ];
 

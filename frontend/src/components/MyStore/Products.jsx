@@ -63,7 +63,7 @@ export const Products = ({ Store }) => {
 										<img
 											src={product.Imagen}
 											alt={product.Nombre}
-											className='w-[296px] h-[157px] rounded-md hover:opacity-50'
+											className='w-[296px] h-[157px] rounded-md hover:opacity-50 object-cover'
 										/>
 									</Link>
 								</div>

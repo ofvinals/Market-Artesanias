@@ -1,73 +1,124 @@
 import { useState } from 'react'
 import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-
-const products = [
-    {
-        nombre: 'Vestido Vintage',
-        description: 'Talla L',
-        price: 16.42,
-        image: 'https://images.unsplash.com/photo-1565462905097-5e701c31dcfb?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        stok: 0
-    },
-    {
-        nombre: 'Botas Vintage',
-        description: 'Talla 6',
-        price: 66.99,
-        image: 'https://plus.unsplash.com/premium_photo-1674719144437-d1c253a8b775?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        stok: 2
-    },
-    {
-        nombre: 'Sombrero Vintage',
-        description: 'Talla 14',
-        price: 20.50,
-        image: 'https://images.unsplash.com/photo-1678705385245-ee7b75e35c80?q=80&w=2107&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        stok: 3
-    }
-
-]
+import { removeItem, increment, decrement, addPurchase, clearCart, } from '../../redux/Slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 function Card() {
-    const [count, setCount] = useState(products.stok)
+    const dispatch = useDispatch()
+    const cartItems = useSelector((state) => state.cart.items)
+    const userId = useSelector((state) => state.auth.id)
 
-    const plus = () => {
-        setCount(count + 1)
+    const removeFromCart = (item) => {
+        dispatch(removeItem(item))
+        console.log(cartItems);
     }
-    const minus = () => {
-        setCount(count - 1)
+
+
+    const incrementCount = (item) => {
+        dispatch(increment(item));
     }
-    console.log(count);
+    const decrementCount = (item) => {
+        dispatch(decrement(item));
+    }
+
+    const onCheckoutPurchase = async () => {
+        console.log(cartItems);
+        console.log(userId);
+        let totalCompra = 0;
+
+        cartItems.forEach(producto => {
+            totalCompra += producto.Precio * producto.cantidad;
+        });
+
+        for (let item of cartItems) {
+            const purchaseData = {
+                Titulo: item.Nombre,
+                UserId: userId,
+                ProductId: item.Id,
+                StoreId: item.StoreId,
+                CategoryId: item.CategoryId,
+                FechaCompra: new Date().toISOString(),
+                Cantidad: item.cantidad,
+                PrecioTotal: totalCompra
+            };
+            await dispatch(addPurchase(purchaseData));
+        }
+        dispatch(clearCart())
+    }
+
+
+    console.log(cartItems);
 
     return (
         <section className='flex flex-col mt-[49px]'>
             <h1 className=' text-3tl mb-4 text-general'>Confirmación de compra</h1>
-            <div className='flex flex-wrap gap-8'>
+            <div className='flex flex-row justify-between'>
 
-                {
-                    products.map((product, idx) => (
-                        <div key={idx} className='bg-secondary border rounded-lg flex flex-row md:p-4 justify-between md:w-[504px] md:h-[198px]'>
-                            <div className='flex flex-row '>
-                                <div className='flex flex-col '>
-                                    <h3 className='font-bold text-xl text-general'>{product.nombre}</h3>
-                                    <p className='mb-4 text-general'>{product.description}</p>
-                                    <p className='font-bold text-xl text-specific'>${product.price}</p>
-                                    <MdDelete className='text-general size-8  cursor-pointer hover:text-red-500 mt-8' />
-                                </div>
-                                <div className='flex flex-row gap-6 items-end '>
-                                    <AiOutlineMinus onClick={minus} className='text-general cursor-pointer size-6' />
-                                    <input type="text" placeholder={product.stok} className='text-general font-bold border border-general rounded-lg w-[49px] h-[36px] pl-4' />
-                                    
-                                    <AiOutlinePlus onClick={plus} className='text-general cursor-pointer size-6' />
-                                </div>
-                            </div>
-                            <div>
-                                <img src={product.image} alt={product.nombre} className='md:w-[145px] md:h-[160px] md:object-cover rounded-md' />
-                            </div>
+                <div className='flex flex-col gap-8'>
 
-                        </div>
-                    ))
-                }
+                    {
+                        cartItems.map((product) => (
+                            <div key={product.Id} className='bg-gradient-to-t from-[#FEEACC] to-[#FCC062] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)] rounded-lg flex flex-row md:p-4 justify-between md:w-[504px] md:h-[198px]'>
+                                <div className='flex flex-col w-[340px]'>
+                                    <div className='flex flex-col '>
+                                        <h3 className='font-bold text-2xl text-general mb-2'>{product.Nombre}</h3>
+                                        <p className='mb-[18px] text-general'>{product.Descripcion}</p>
+                                        <p className='font-bold text-xl text-specific'>${product.Precio}</p>
+                                    </div>
+                                    <div className='flex flex-row gap-6 items-end mt-4'>
+                                        <MdDelete className='text-general size-8  cursor-pointer hover:text-red-500' onClick={() => removeFromCart(product.Id)} />
+                                        <button onClick={() => decrementCount(product.Id)} disabled={product.cantidad <= 0}>
+                                            <AiOutlineMinus className='text-general cursor-pointer size-6' />
+                                        </button>
+                                        <input type="text" value={product.cantidad} disabled className='text-general font-bold border border-general bg-white rounded-lg w-[49px] h-[36px] pl-[17px]' />
+                                        <button onClick={() => incrementCount(product.Id)} disabled={product.cantidad >= product.Disponible}>
+                                            <AiOutlinePlus className='text-general cursor-pointer size-6' />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src={product.Imagen} alt={product.Nombre} className='md:w-[115px] md:h-[160px] md:object-cover rounded-md' />
+                                </div>
+
+                            </div>
+                        ))
+                    }
+                </div>
+                <div>
+
+                    <h2 className='text-tlv text-general mb-[31px]'>Seleccionar método de pago</h2>
+                    {/* <p>{totalCompra}</p> */}
+                    {
+                        cartItems.map((item) => (
+                            <div key={item.Id}>
+                                <p>{item.Nombre}</p>
+                                <p>{item.UserId}</p>
+                                <p>{item.cantidad}</p>
+                                <p>Precio total:{item.Precio * item.cantidad}</p>
+                            </div>
+                        ))
+                    }
+                    <div className='flex flex-col gap-6'>
+                        <Link to='/tarjeta'>
+                            <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                                Pagar con tarjeta
+                            </button>
+
+                        </Link>
+                        <Link to='/paypal'>
+                            <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                                Pagar con Paypal
+                            </button>
+                        </Link>
+                        <button className='h-16 w-[504px] bg-primary rounded-[10px] hover:bg-[#0739EB] font-bold text-xl text-white' type='submit' onClick={onCheckoutPurchase}>
+                            Comprar
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </section>
     )

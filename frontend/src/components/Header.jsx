@@ -10,7 +10,7 @@ function Header() {
           </div>
           <div className="flex-grow ml-6">
             <h1 className="text-3xl font-thin text-white mb-8">
-              El espacio ideal para artistas que quieran comercializar sus productos de manera fácil y eficaz.
+            El espacio ideal para comprar y vender productos únicos de manera facil y eficaz.
             </h1><br></br>
             <div className="flex justify-center items-center max-w-3xl mx-auto bg-white  overflow-hidden rounded-lg mb-5 -mt-5">
               <input

@@ -8,7 +8,7 @@ import CreateStore from './pages/createStore';
 import Detail from './pages/detail';
 import MyStore from './pages/myStore';
 import Profile from './pages/profile';
-import AboutUs from './pages/aboutUs';
+import AboutUs from './pages/AboutUs';
 import Cart from './pages/cart';
 import Search from './pages/search';
 import Categories from './pages/categories';
@@ -20,6 +20,8 @@ import Welcome from './pages/welcome';
 import CheckUser from './pages/checkUser';
 import PublishedProduct from './pages/publishedProduct';
 import DeletedProduct from './pages/deletedProduct';
+import Tarjeta from './pages/Tarjeta';
+import PayPal from './pages/PayPal'
 import TransactionsList from './pages/transactionsList';
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
 				<Route path='/checkuser' element={<CheckUser />} />
 				<Route path='/publishedproduct' element={<PublishedProduct />} />
 				<Route path='/deletedproduct' element={<DeletedProduct />} />
+				<Route path='/tarjeta' element={<Tarjeta />} />
+				<Route path='/paypal' element={<PayPal />} />
 				<Route path='/transactionslist' element={<TransactionsList />} />
 			</Routes>
 		</>
