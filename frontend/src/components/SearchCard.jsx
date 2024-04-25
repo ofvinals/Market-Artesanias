@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function SearchCard({ items }) {
-	console.log(items);
 	if (!items || items.length === 0) {
 		return (
 			<div className='flex items-center justify-center w-full mt-20'>
@@ -13,7 +12,6 @@ function SearchCard({ items }) {
 			</div>
 		);
 	}
-	console.log(items);
 
 	return (
 		<div className='flex mx-10 my-10 flex-row'>

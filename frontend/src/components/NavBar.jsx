@@ -6,6 +6,7 @@ import { logout } from '../redux/Actions/auth';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar() {
 	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
