@@ -29,6 +29,7 @@ server.use(
 		origin: [
 			'*',
 			'http://localhost:3001',
+                  'https://dashboard.render.com/d/dpg-col7ql8cmk4c73bna030-a'
 		],
 		credentials: true,
 	})
