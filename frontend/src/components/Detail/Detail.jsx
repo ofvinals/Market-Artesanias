@@ -12,7 +12,8 @@ function Detail() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const productDetail = useSelector((state) => state.products.product)
-
+    const allProducts = useSelector((state) => state.products.allProducts)
+    console.log(productDetail);
 
     useEffect(() => {
         dispatch(getProductById(id))
@@ -21,7 +22,7 @@ function Detail() {
     const handleAddandNavigateToCart = () => {
         if (productDetail) {
             dispatch(addItem(productDetail))
-            
+
         }
         navigate('/cart')
     }
@@ -29,7 +30,7 @@ function Detail() {
     const handleAddToCart = () => {
         if (productDetail) {
             dispatch(addItem(productDetail))
-            
+
         }
     }
 
@@ -45,18 +46,17 @@ function Detail() {
             </div>
             <div className=' '>
                 <h2 className='text-3tl text-general mb-4 2xl:mb-8'>{productDetail.Nombre}</h2>
-                <Link to='/'>
-                    <div className='flex flex-row items-center gap-7 mb-6 2xl:mb-8'>
-                        {/* <img src={productDetail.Store.Imagen} alt={productDetail.Store.Nombre} className=' size-[71px] rounded-full' /> */}
-                        {/* <p className='text-xl font-bold text-specific'>{productDetail.Store.Nombre}</p> */}
-                    </div>
-                </Link>
+
+                <div className='flex flex-row items-center gap-7 mb-6 2xl:mb-8'>
+                    {/* <img src={productDetail.Store.Imagen} alt={productDetail.Store.Nombre} className=' size-[71px] rounded-full' /> */}
+                    {/* <p className='text-xl font-bold text-specific'>{productDetail.Store.Nombre}</p> */}
+                </div>
+
                 <p className='text-general text-xl mb-2 2xl:mb-4'>{productDetail.Descripcion}</p>
                 <p className='text-general text-2xl font-bold'>$ {productDetail.Precio}</p>
                 <div className='mt-6 flex flex-row gap-8'>
-
                     <div className='flex flex-row gap-[65px]'>
-                    <p className='text-general text-2xl font-bold'>Disponible: {productDetail.Disponible}</p>
+                        <p className='text-general text-2xl font-bold'>Disponible: {productDetail.Disponible}</p>
                     </div>
                 </div>
                 <div className='flex flex-row gap-[14px] mt-[31px]'>
