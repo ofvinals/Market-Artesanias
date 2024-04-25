@@ -17,16 +17,22 @@ function OthersProducts() {
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.products.allProducts)
     const productos = useSelector((state) => state.products.product)
+    const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const productData = allProducts.filter(product => product.Activo && product.Id !== numericId && product.StoreId === productos.StoreId);
         setProducts(productData);
-    }, [allProducts, id])
+        setLoading(false)
+    }, [allProducts, numericId, productos.StoreId])
+
+    if (loading) {
+        return <h2 className='mt-6 text-general text-xl font-bold mb-3'>Cargando...</h2>;
+    }
 
     if (products.length === 0) {
         return (
-            <h2 className='text-general text-xl font-bold mb-3'>No hay productos diferentes en la tienda</h2>
+            <h2 className='mt-6 text-general text-xl font-bold mb-3'>No hay productos diferentes en la tienda</h2>
         )
     }
 
