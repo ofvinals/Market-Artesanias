@@ -3,12 +3,13 @@ import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { removeItem, increment, decrement, addPurchase, clearCart, } from '../../redux/Slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 function Card() {
     const dispatch = useDispatch()
     const cartItems = useSelector((state) => state.cart.items)
-    const userId = useSelector((state)=> state.auth.id)
+    const userId = useSelector((state) => state.auth.id)
 
     const removeFromCart = (item) => {
         dispatch(removeItem(item))
@@ -101,13 +102,18 @@ function Card() {
                         ))
                     }
                     <div className='flex flex-col gap-6'>
-                        {/* <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific'>
-          Pagar con tarjeta
-        </button>
-        <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific'>
-          Pagar con Mercado Pago
-        </button> */}
-                        <button className='h-16 w-[504px] bg-primary rounded-[10px] font-bold text-xl text-white' type='submit' onClick={onCheckoutPurchase}>
+                        <Link to='/tarjeta'>
+                            <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                                Pagar con tarjeta
+                            </button>
+
+                        </Link>
+                        <Link to='/paypal'>
+                            <button className='h-16 w-[504px]  border-primary border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                                Pagar con Paypal
+                            </button>
+                        </Link>
+                        <button className='h-16 w-[504px] bg-primary rounded-[10px] hover:bg-[#0739EB] font-bold text-xl text-white' type='submit' onClick={onCheckoutPurchase}>
                             Comprar
                         </button>
                     </div>
