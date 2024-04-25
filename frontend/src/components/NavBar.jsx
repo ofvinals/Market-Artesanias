@@ -6,6 +6,7 @@ import { logout } from '../redux/Actions/auth';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar() {
 	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -37,7 +38,7 @@ function NavBar() {
 					/>
 					<Navbar.Brand href='/'>
 						<img
-							className='ms-3 md:hidden'
+							className='ms-3'
 							src='/logo.jpg'
 							width={100}
 							alt='logoestudio'
@@ -54,7 +55,7 @@ function NavBar() {
 						placement='end'>
 						<Offcanvas.Header closeButton></Offcanvas.Header>
 						<Offcanvas.Body className='flex md:flex-row-reverse w-full'>
-							<Nav className='flex flex-col text-xl items-center justify-around md:mr-5 w-full'>
+							<Nav className='flex flex-col text-xl items-center justify-around md:justify-between md:mx-10 w-full'>
 								<Link
 									className='my-3 font-bold'
 									to='/aboutus'
@@ -63,7 +64,7 @@ function NavBar() {
 									Nuestro equipo
 								</Link>
 								<Link
-									className='my-3 md:invisible font-bold'
+									className='my-3 md:hidden font-bold'
 									to='/mi-tienda'
 									onClick={handleNavCollapse}>
 									<i class='fa-solid fa-briefcase mr-3'></i>
@@ -78,7 +79,7 @@ function NavBar() {
 										Panel de Administracion
 									</Link>
 								) : null}
-								<div className='flex md:flex-row flex-col items-center'>
+								<div className='flex md:flex-row flex-col items-center justify-end'>
 									{isLoggedIn ? (
 										<button
 											onClick={(e) => {
@@ -101,7 +102,7 @@ function NavBar() {
 									<Link
 										to='/register'
 										className={`my-3 font-bold border-2 py-1 px-3 ${
-											isLoggedIn ? 'invisible' : ''
+											isLoggedIn ? 'hidden' : ''
 										}`}
 										onClick={(e) => {
 											handleNavCollapse(e);

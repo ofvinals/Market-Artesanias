@@ -112,7 +112,7 @@ function Card() {
                                 Pagar con Paypal
                             </button>
                         </Link>
-                        <button className='h-16 w-[504px] bg-primary rounded-[10px] hover:bg-[#0739EB] font-bold text-xl text-white' type='submit' onClick={onCheckoutPurchase}>
+                        <button className='h-16 w-[504px] bg-specific rounded-[10px] hover:bg-[#0739EB] font-bold text-xl text-white' type='submit' onClick={onCheckoutPurchase}>
                             Comprar
                         </button>
                     </div>
