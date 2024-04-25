@@ -87,26 +87,59 @@ const filterTransactionsByUserId = async (Id) => {
 
 const getAllVentas = async (Id) => {
       console.log("-->", Id );
-      const compras = await ComprasUsuario.findAll({
-            where: {
-                  StoreId: Id,
-            },
-            include: [{
+      /*const compras = await ComprasUsuario.findAll({
+          include: [
+              {
                   model: Store,
-                  attributes: ["Id", "Nombre"]
-            },{
-            
+                  attributes: ["Id", "Nombre"],
+                  include: [
+                      {
+                          model: User,
+                          where: {
+                              Id: Id,
+                              Vendedor: true
+                          }
+                      }
+                  ]
+              },
+              {
                   model: Product,
+                  include: [
+                      {
+                          model: Category,
+                          attributes: ["Id", "Nombre"]
+                      }
+                  ],
                   attributes: ["Imagen"]
-            },{
-            
-                  model: Category,
-                  attributes: ["Id", "Nombre"]
-            }]
+              }
+          ]
+      });*/
+      const tienda = await Store.findOne({
+            where: {UserId: Id}
       });
-
+      if (tienda === null) {
+            throw new Error("Este Usuario no tiene tienda.");
+      }
+      const compras = await ComprasUsuario.findAll({
+            where: { StoreId: tienda.Id},
+            include: [
+                  {
+                      model: Store,
+                      attributes: ["Id", "Nombre"],
+                  },
+                  {
+                      model: Product,
+                      attributes: ["Imagen"]
+                  },
+                  {
+                        model: Category,
+                        attributes: ["Id", "Nombre"]
+                  }
+              ]
+      });
       return compras;
-};
+  };
+  
 
 module.exports = {
     get,

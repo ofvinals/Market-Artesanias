@@ -64,7 +64,6 @@ export const NewProduct = () => {
 				return;
 			}
 			const productData = {
-				StoreId: 1,
 				Nombre: values.nombre,
 				CategoryId: categoryId,
 				Descripcion: values.descripcion,

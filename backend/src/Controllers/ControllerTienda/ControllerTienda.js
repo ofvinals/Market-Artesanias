@@ -27,7 +27,12 @@ const postAdd = async (UserId, Nombre, Imagen) => {
       if (!Nombre ) {
             throw new Error("Todos los campos son obligatorios");
       }
-
+      const tiendaUsuario = await Store.findOne({
+            where: {UserId}});
+            
+            if (tiendaUsuario) {
+                  throw new Error("Ya tiene una Tienda");
+            }
       console.log("entra")
             const tienda = await Store.create({Nombre, Imagen, UserId});
       await User.update({Vendedor: true},{where: {Id: UserId}});

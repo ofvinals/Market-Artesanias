@@ -22,6 +22,8 @@ import PublishedProduct from './pages/publishedProduct';
 import DeletedProduct from './pages/deletedProduct';
 import Tarjeta from './pages/Tarjeta';
 import PayPal from './pages/PayPal'
+import TransactionsList from './pages/transactionsList';
+
 function App() {
 	return (
 		<>
@@ -48,7 +50,7 @@ function App() {
 				<Route path='/deletedproduct' element={<DeletedProduct />} />
 				<Route path='/tarjeta' element={<Tarjeta />} />
 				<Route path='/paypal' element={<PayPal />} />
-
+				<Route path='/transactionslist' element={<TransactionsList />} />
 			</Routes>
 		</>
 	);
