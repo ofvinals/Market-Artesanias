@@ -9,7 +9,7 @@ const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 console.log(`${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`);
 const sequelize = new Sequelize(
-	`postgres://marketplace_vtls_user:pNNYjuGMfWpo62JgO2zngYmqap7Io5wy@dpg-col7ql8cmk4c73bna030-a.oregon-postgres.render.com/marketplace_vtls`,
+	`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
 	{
 		dialect: 'postgres',
 		logging: false,

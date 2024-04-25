@@ -30,7 +30,6 @@ server.use(
 	cors({
 		origin: [
 			'*',
-			'http://localhost:3001',
 			'https://market-artesanias.onrender.com',
 		],
 	})
