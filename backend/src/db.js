@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
 		dialectOptions: {
 			ssl: {
 				require: true,
-				rejectUnauthorized: false, // Opción para aceptar certificados autofirmados, úsalo solo en entornos de desarrollo
+				rejectUnauthorized: false, 
 			},
 		},
 	}

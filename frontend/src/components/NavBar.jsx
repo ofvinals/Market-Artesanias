@@ -54,7 +54,7 @@ function NavBar() {
 						placement='end'>
 						<Offcanvas.Header closeButton></Offcanvas.Header>
 						<Offcanvas.Body className='flex md:flex-row-reverse w-full'>
-							<Nav className='flex flex-col items-center justify-around md:mr-5 w-full'>
+							<Nav className='flex flex-col text-xl items-center justify-around md:mr-5 w-full'>
 								<Link
 									className='my-3 font-bold'
 									to='/aboutus'

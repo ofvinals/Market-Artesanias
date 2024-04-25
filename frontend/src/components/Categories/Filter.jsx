@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategory } from '../../redux/Slices/categoriesSlice'; // Asegúrate de que la ruta sea correcta
 

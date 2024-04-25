@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { removeItem, increment, decrement, addPurchase, clearCart, } from '../../redux/Slices/cartSlice';
