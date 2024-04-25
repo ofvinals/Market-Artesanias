@@ -114,7 +114,7 @@ export const Detail = ({ Store }) => {
 				<form
 					className='flex flex-row text-white'
 					onSubmit={handleSaveClick}>
-					<div className='flex flex-row w-fit bg-transparent items-start justify-start ms-10 mt-5'>
+					<div className='flex flex-row w-fit bg-transparent items-start justify-start ms-10 my-3'>
 						<input
 							id='nombre'
 							readOnly={!editing}
