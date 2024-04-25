@@ -16,11 +16,11 @@ function SearchCard({ items }) {
 	console.log(items);
 
 	return (
-		<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+		<div className='flex mx-10 my-10 flex-row'>
 			{items.map((item) => (
 				<article
 					key={item.Id}
-					className='flex flex-col border w-[296px] h-[261px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)] hover:scale-110 hover:transition-all'>
+					className='flex mr-3 flex-col border w-[296px] h-[261px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)] hover:scale-110 hover:transition-all'>
 					<Link to={`/${item.Id}`}>
 						<div>
 							<img

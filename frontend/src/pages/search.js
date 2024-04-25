@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar.jsx';
-import Itemcard from '../components/SearchCard';
+import SearchCard from '../components/SearchCard';
 import { searchItemsInDatabase } from '../hooks/useSearch.js';
 
 function Search() {
@@ -39,7 +39,7 @@ function Search() {
 					<i className='fas fa-search text-gray-700 p-2 cursor-pointer'></i>
 				</div>
 			</header>
-			<Itemcard items={searchResults} />
+			<SearchCard items={searchResults} />
 		</main>
 	);
 }
