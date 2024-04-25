@@ -5,43 +5,28 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../redux/Slices/productSlice";
 
 
-const PRODUCTOS = [
-  {
-    id: 1,
-    nombre: 'Bandolera con doble cierre',
-    description: 'Bandolera don doble cierre de cremallera, y correa larga regulable.',
-    precio: 20.75,
-    imagen: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb6%2F76%2Fb6767ccc55f4038639ad2cc8cc8056714c3e0bef.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]',
-    imagen2: 'https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Fb8%2Fa5%2Fb8a5c2a8cb2213e04047a5115841b6f8a33bf6de.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVEDETAIL%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D'
-  },
-  {
-    id: 2,
-    nombre: 'Triciclo de 2da mano',
-    description: 'Bandolera don doble cierre de cremallera, y correa larga regulable. Color ceniza',
-    precio: 12.99,
-    imagen: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb6%2F76%2Fb6767ccc55f4038639ad2cc8cc8056714c3e0bef.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]',
-    imagen2: 'https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Fb8%2Fa5%2Fb8a5c2a8cb2213e04047a5115841b6f8a33bf6de.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVEDETAIL%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D'
-  },
-  {
-    id: 3,
-    nombre: 'Tetera de cristal',
-    description: 'Bandolera don doble cierre de cremallera, y correa larga regulable. Color ceniza',
-    precio: 27.99,
-    imagen: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb6%2F76%2Fb6767ccc55f4038639ad2cc8cc8056714c3e0bef.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]',
-    imagen2: 'https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Fb8%2Fa5%2Fb8a5c2a8cb2213e04047a5115841b6f8a33bf6de.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_accessories_bags_shouldercrossbags%5D%2Ctype%5BDESCRIPTIVEDETAIL%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D'
-  },
 
-]
 
 function Descuentos() {
+  const dispatch = useDispatch()
+  const productDetail = useSelector((state) => state.products.allProducts.slice(0, 3))
+  console.log(productDetail);
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
+
+
 
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   return (
-    <section className='flex bg-gradient-to-t from-[#FFE1B5] to-[#FFC062] rounded-xl '>
+    <section className='flex bg-gradient-to-t from-[#FFE1B5] to-[#FFC062] rounded-xl shadow-[0_4px_3px_0_rgba(0,0,0,0.25)]'>
       <div className="flex flex-row md:p-8">
         <div className="flex flex-col md:mr-8 2xl:mr-0 2xl:p-0 2xl:w-[1081px] ">
           <h2 className=' text-3xl mb-4 md:mb-0  md:text-5xl font-bold text-general md:w-[420px] 2xl:w-full '>No te pierdas estos descuentos increibles</h2>
@@ -55,16 +40,16 @@ function Descuentos() {
 
           >
             {
-              PRODUCTOS.map((producto) => (
+              productDetail.map((producto) => (
 
-                <SwiperSlide key={producto.id} >
-                  <Link key={producto.id} to={`/discount/${producto.id}`}>
+                <SwiperSlide key={producto.Id} >
+                  <Link key={producto.Id} to={`/${producto.Id}`}>
                     <div className="flex flex-col mt-9 ">
-                      <h3 className="text-2xl text-general">{producto.nombre}</h3>
+                      <h3 className="text-2xl text-general">{producto.Nombre}</h3>
                       <div className="md:h-[120px] 2xl:h-[200px] ">
-                        <p className="text-general font-light text-lg  mt-9">{producto.description}</p>
+                        <p className="text-general font-light text-lg  mt-9">{producto.Descripcion}</p>
                       </div>
-                      <p className="text-2xl text-specific font-bold pt-9">${producto.precio}</p>
+                      <p className="text-2xl text-specific font-bold pt-9">${producto.Precio - (producto.Precio*0.2)}</p>
                     </div>
                   </Link>
 
@@ -81,19 +66,16 @@ function Descuentos() {
           onSwiper={setSecondSwiper}
           controller={{ control: firstSwiper }}
           modules={[Pagination, Navigation, Controller]}
-          className="md:w-[726px] 2xl:w-[564px] h-[409px]"
+          className="md:w-[726px] 2xl:w-[564px] h-[409px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)]"
 
 
         >
           {
-            PRODUCTOS.map((producto) => (
+            productDetail.map((producto) => (
 
-              <SwiperSlide key={producto.id} >
-                <Link key={producto.id} to={`/discount/${producto.id}`}>
-                  <div className="flex flex-row gap-5 ">
-                    <img src={producto.imagen} alt={producto.nombre} className='rounded-[10px] md:w-[363px] 2xl:w-[282px] h-[409px] object-cover' />
-                    <img src={producto.imagen2} alt={producto.nombre} className='rounded-[10px] md:w-[363px] 2xl:w-[282px] h-[409px] object-cover' />
-                  </div>
+              <SwiperSlide key={producto.Id} className="">
+                <Link key={producto.Id} to={`/discount/${producto.Id}`}>
+                  <img src={producto.Imagen} alt={producto.Nombre} className='rounded-[10px] md:w-[726px] 2xl:w-[564px] h-[409px] object-cover ' />
                 </Link>
               </SwiperSlide>
             ))
