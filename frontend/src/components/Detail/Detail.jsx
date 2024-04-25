@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from '../../redux/Slices/productSlice';
+import { deleteDetail, getProductById } from '../../redux/Slices/productSlice';
 import { addItem } from '../../redux/Slices/cartSlice';
 
 
@@ -17,6 +17,7 @@ function Detail() {
 
     useEffect(() => {
         dispatch(getProductById(id))
+        return(()=> dispatch(deleteDetail()))
     }, [id, dispatch])
 
     const handleAddandNavigateToCart = () => {
