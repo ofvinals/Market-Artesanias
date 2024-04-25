@@ -36,7 +36,7 @@ export default function Categorias() {
   return (
     <section className='w-full py-12 flex flex-col'>
       <h1 className='text-tlv font-light text-general'>Categorías</h1>
-      <div className='flex flex-wrap md:flex-row justify-evenly md:justify-between mt-4'>
+      <div className='flex flex-wrap md:flex-row justify-evenly md:justify-between 2xl:justify-evenly mt-4'>
         {
           CATEGORIAS.map((categoria) => (
             <Link key={categoria.nombre} to='/categories' onClick={handleCategory(categoria.nombre)}>
