@@ -36,6 +36,9 @@ const productsSlice = createSlice({
             } else {
                 state.filteredProducts = state.allProducts.filter(product => product.Category.Nombre.toLowerCase() === action.payload.toLowerCase())
             }
+        },
+        deleteDetail: (state, action) => {
+            state.product = {}
         }
     },
     extraReducers(builder) {
@@ -58,7 +61,7 @@ const productsSlice = createSlice({
     }
 })
 
-export const { filterProductsByCategory } = productsSlice.actions
+export const { filterProductsByCategory, deleteDetail } = productsSlice.actions
 
 
 export default productsSlice.reducer
