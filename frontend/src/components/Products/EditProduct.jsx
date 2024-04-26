@@ -288,6 +288,7 @@ export const EditProduct = () => {
 							</button>
 							<button
 								className='bg-white w-full sm:w-5/12 font-bold text-xl h-16 mt-7 text-[#E98C00] border-2 border-[#E98C00] rounded-xl hover:text-white hover:bg-specific'
+								type='button'
 								onClick={delProduct}>
 								Eliminar
 							</button>

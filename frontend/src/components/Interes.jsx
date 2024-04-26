@@ -1,41 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import '../css/Interes.css'
-const PRODUCTOS = [
-	{
-		nombre: 'Taza de cafe 1',
-		precio: 7.99,
-		imagen: 'https://picsum.photos/id/30/566/290',
-	},
-	{
-		nombre: 'Triciclo de 1da mano',
-		precio: 12.99,
-		imagen: 'https://picsum.photos/id/146/566/290',
-	},
-	{
-		nombre: 'Tetera de cristal',
-		precio: 27.99,
-		imagen: 'https://picsum.photos/id/225/566/290',
-	},
-	{
-		nombre: 'Tetera de cristal nueva',
-		precio: 27.99,
-		imagen: 'https://picsum.photos/id/225/566/290',
-	},
-	{
-		nombre: 'Taza de cafe nueva',
-		precio: 7.99,
-		imagen: 'https://picsum.photos/id/30/566/290',
-	},
-	{
-		nombre: 'Triciclo de 3da mano',
-		precio: 12.99,
-		imagen: 'https://picsum.photos/id/146/566/290',
-	},
-];
+import '../css/Interes.css';
+import { searchItemsInDatabase } from '../hooks/useSearch.js';
 
 function Interes() {
+	const [productos, setProductos] = useState([]);
+
+	useEffect(() => {
+		const loadResults = async () => {
+			const results = await searchItemsInDatabase();
+			setProductos(results);
+		};
+		loadResults();
+	}, []);
+
 	return (
 		<section className='py-16'>
 			<h2 className='w-full text-4xl my-10 font-semibold text-[#8B5300]'>
@@ -51,9 +30,8 @@ function Interes() {
 					emulateTouch={true}
 					showThumbs={false}
 					centerMode={true}
-					centerSlidePercentage={100 / 4}
-					>
-					{PRODUCTOS.map((producto, idx) => (
+					centerSlidePercentage={100 / 4}>
+					{productos.map((producto, idx) => (
 						<div key={idx} className='containerprodint'>
 							<img
 								src={producto.imagen}
