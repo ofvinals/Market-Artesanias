@@ -30,13 +30,13 @@ function OthersProducts() {
 
     if (products.length === 0) {
         return (
-            <h2 className='mt-6 text-general text-xl font-bold mb-3'>No hay productos diferentes en la tienda</h2>
+            <h2 className='mt-6 text-general text-xl font-bold mb-3'>Esta tienda no tiene más productos</h2>
         )
     }
 
     return (
         <section className='  mt-6 '>
-            <h2 className='text-general text-2xl font-bold mb-3'>Más productos de esta tienda</h2>
+            <h2 className='text-general md:text-2xl font-bold mb-3'>Más productos de esta tienda</h2>
             <Swiper
                 breakpoints={{
                     1441: {
