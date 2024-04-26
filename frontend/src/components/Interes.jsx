@@ -36,7 +36,6 @@ function Interes() {
 				<Carousel
 					showArrows={true}
 					infiniteLoop={true}
-					emulateTouch={true}
 					showThumbs={false}
 					centerMode={true}
 					centerSlidePercentage={100 / 3}
