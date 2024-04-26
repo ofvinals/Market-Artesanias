@@ -8,12 +8,14 @@ function Interes() {
 	const [productos, setProductos] = useState([]);
 
 	useEffect(() => {
-		const loadResults = async () => {
-			const results = await searchItemsInDatabase();
+		const loadResults = async (camisa) => {
+			const results = await searchItemsInDatabase(camisa);
+			
 			setProductos(results);
 		};
 		loadResults();
 	}, []);
+	console.log(productos)
 
 	return (
 		<section className='py-16'>
@@ -30,19 +32,19 @@ function Interes() {
 					emulateTouch={true}
 					showThumbs={false}
 					centerMode={true}
-					centerSlidePercentage={100 / 4}>
+					centerSlidePercentage={100 / 3}>
 					{productos.map((producto, idx) => (
-						<div key={idx} className='containerprodint'>
+						<div key={idx} className='containerprodint md:mr-10'>
 							<img
-								src={producto.imagen}
-								alt={producto.nombre}
+								src={producto.Imagen}
+								alt={producto.Nombre}
 								className='imginteres'
 							/>
 							<h3 className='text-xl textinteres text-[#563300]'>
-								{producto.nombre}
+								{producto.Nombre}
 							</h3>
 							<p className='text-2xl textinteres font-semibold text-[#E98C00]'>
-								${producto.precio}
+								${producto.Precio}
 							</p>
 						</div>
 					))}
