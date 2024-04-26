@@ -9,8 +9,10 @@ function Search() {
 
 	useEffect(() => {
 		const loadSearchResults = async () => {
+			console.log(searchTerm)
 			const results = await searchItemsInDatabase(searchTerm);
 			setSearchResults(results);
+			console.log(results)
 		};
 
 		if (searchTerm !== '') {
@@ -31,7 +33,7 @@ function Search() {
 				<div className='flex justify-center items-center max-w-3xl mx-auto bg-white w-9/12 overflow-hidden rounded-lg'>
 					<input
 						type='text'
-						className='flex-1 px-4 py-2'
+						className='flex-1 px-2 py-2 hover:outline-none w-9/12'
 						placeholder='Buscar producto, tienda, categoria...'
 						value={searchTerm}
 						onChange={handleSearchChange}

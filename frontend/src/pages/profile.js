@@ -81,7 +81,7 @@ const [user, setUser] = useState();
 					<form id='loginForm' className='formlogin' onSubmit={onSubmit}>
 						<label className='text-xl text-[#563300]'>Nombre</label>
 						<input
-							className='ps-4 h-16 mt-5  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+							className='ps-4 h-16 mt-1  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
 							type='text'
 							id='nombre'
 							name='nombre'
@@ -100,7 +100,7 @@ const [user, setUser] = useState();
 
 						<label className='text-xl text-[#563300]'>Apellido</label>
 						<input
-							className='ps-4 h-16 mt-5 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
+							className='ps-4 h-16 mt-1 text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
 							type='text'
 							{...register('apellido', {
 								required: {
@@ -115,12 +115,12 @@ const [user, setUser] = useState();
 							</span>
 						)}
 
-						<div className='flex flex-row justify-between w-full'>
-							<div className='w-5/12 flex flex-col '>
+						<div className='flex sm:flex-row flex-col items-center justify-between w-full'>
+							<div className='sm:w-5/12 w-full flex flex-col '>
 							<div className='flex flex-col mr-3 w-full'>
 								<label className='text-xl text-[#563300]'>Genero</label>
 								<select
-									className='ps-4 h-16 mt-1 text-xl border-2 border-[#8B5300] mb-2 rounded-xl w-full'
+									className='ps-4 h-16 mt-1 text-xl border-2 border-[#8B5300] mb-7 rounded-xl w-full'
 									aria-label='Default select'
 									{...register('genero', {
 										required: {
@@ -139,12 +139,12 @@ const [user, setUser] = useState();
 								</span>
 							)}</div>
 
-							<div className='flex flex-col w-5/12'>
+							<div className='flex flex-col sm:w-5/12 w-full'>
 								<label className='text-xl text-[#563300] text-nowrap'>
 									Fecha de Nacimiento
 								</label>
 								<input
-									className='ps-4 h-16 mt-1  text-xl border-2 border-[#8B5300] mb-2 rounded-xl p-2 w-full'
+									className='ps-4 h-16 mt-1  text-xl border-2 border-[#8B5300] mb-7 rounded-xl p-2 w-full'
 									type='date'
 									{...register('fechanac', {
 										required: {

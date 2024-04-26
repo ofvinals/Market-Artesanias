@@ -16,7 +16,6 @@ export const useAuth = () => {
 	const auth = async (values) => {
 		try {
 			const user = await apiURL.post('/Login', values);
-			console.log(user)
 			if (user.status === 200) {
 				const userData = user.data;
 				await setCurrentUser(userData);
@@ -37,7 +36,6 @@ export const useAuth = () => {
 				const provider = new GoogleAuthProvider();
 				const { user } = await signInWithPopup(authFire, provider);
 				const userEmail = user.email;
-				console.log(userEmail);
 				const userExists = await checkIfUserExists(userEmail);
 				if (!userExists) {
 					createUserInDatabase(userEmail);
