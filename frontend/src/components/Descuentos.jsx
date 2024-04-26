@@ -67,7 +67,7 @@ function Descuentos() {
             onSwiper={setSecondSwiper}
             controller={{ control: firstSwiper }}
             modules={[Pagination, Navigation, Controller]}
-            className="w-[350px] h-[308px] xl:w-[565px] 2xl:w-[880px] xl:h-[409px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)]"
+            className="w-[350px] h-[308px] 2lg:w-[565px] xl:w-[460px] 2xl:w-[880px] xl:h-[409px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)]"
 
 
           >

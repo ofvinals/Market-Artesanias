@@ -11,7 +11,7 @@ export const Products = ({ Store }) => {
 			try {
 				const productData = await getProductVendedor();
 				const activeProducts = productData.filter(product => product.Activo);
-            setProducts(activeProducts);
+				setProducts(activeProducts);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
 			}
@@ -63,15 +63,15 @@ export const Products = ({ Store }) => {
 										<img
 											src={product.Imagen}
 											alt={product.Nombre}
-											className=' rounded-md hover:opacity-50 object-cover'
+											className=' rounded-md hover:opacity-50 object-cover max-h-[150px] w-full'
 										/>
 									</Link>
 								</div>
 								<div className='flex flex-col ms-2 '>
-									<h3 className='font-bold text-xl text-general mt-2'>
+									<h3 className='font-bold text-xl text-general mt-2 truncate'>
 										{product.Nombre}
 									</h3>
-									<p className='mb-1 w-full text-general text-wrap truncate ...'>
+									<p className='mb-1 w-full text-general truncate'>
 										{product.Descripcion}
 									</p>
 									<p className='font-bold text-xl text-specific '>
@@ -89,9 +89,8 @@ export const Products = ({ Store }) => {
 					<button
 						key={index}
 						onClick={() => paginate(index + 1)}
-						className={`bg-secondary text-general mx-1 py-2 px-4 border border-gray-300 ${
-							currentPage === index + 1 ? 'bg-specific' : ''
-						}`}>
+						className={`bg-secondary text-general mx-1 py-2 px-4 border border-gray-300 ${currentPage === index + 1 ? 'bg-specific' : ''
+							}`}>
 						{index + 1}
 					</button>
 				))}
