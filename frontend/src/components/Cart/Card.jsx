@@ -2,11 +2,13 @@ import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { removeItem, increment, decrement, addPurchase, clearCart, } from '../../redux/Slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 function Card() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const cartItems = useSelector((state) => state.cart.items)
     const userId = useSelector((state) => state.auth.id)
 
@@ -31,8 +33,6 @@ function Card() {
         totalProducto += producto.cantidad
     });
     const onCheckoutPurchase = async () => {
-        console.log(cartItems);
-        console.log(userId);
 
         for (let item of cartItems) {
             const purchaseData = {
@@ -48,6 +48,14 @@ function Card() {
             await dispatch(addPurchase(purchaseData));
         }
         dispatch(clearCart())
+        Swal.fire({
+            title: 'Excelente!',
+            text: 'Compra realizada',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000,
+        })
+        navigate('/');
     }
 
 
