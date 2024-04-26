@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect} from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDetail, getProductById } from '../../redux/Slices/productSlice';

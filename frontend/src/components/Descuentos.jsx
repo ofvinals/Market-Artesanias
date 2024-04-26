@@ -10,12 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/Slices/productSlice";
 
 
-
-
 function Descuentos() {
   const dispatch = useDispatch()
   const productDetail = useSelector((state) => state.products.allProducts.slice(0, 3))
-  console.log(productDetail);
 
   useEffect(() => {
     dispatch(getProducts())

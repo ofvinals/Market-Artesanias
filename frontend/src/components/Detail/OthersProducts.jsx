@@ -6,15 +6,11 @@ import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/Slices/productSlice';
-
-
+import {  useSelector } from 'react-redux';
 
 function OthersProducts() {
     const { id } = useParams()
     const numericId = parseInt(id)
-    const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.products.allProducts)
     const productos = useSelector((state) => state.products.product)
     const [loading, setLoading] = useState(true)

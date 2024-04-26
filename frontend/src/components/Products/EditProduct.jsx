@@ -30,7 +30,6 @@ export const EditProduct = () => {
 	const handleFileChange = async (e) => {
 		try {
 			const file = e.target.files[0];
-			console.log(file);
 			if (file) {
 				const newPhotos = [...photos, file];
 				setPhotos(newPhotos);
@@ -54,14 +53,12 @@ export const EditProduct = () => {
 				(photo) => !photoUrl.includes(photo)
 			);
 			if (filteredPhotos.length === 0) {
-				console.log('No hay fotos nuevas para cargar.');
 				return photoUrl;
 			}
 			const fileDownloadUrls = await Promise.all(newPhotos.map(uploadFile));
 			const newPhotoUrls = [...photoUrl, ...fileDownloadUrls];
 			setPhotoUrl(newPhotoUrls);
 			setPhotos(newPhotoUrls);
-			console.log(photoUrl);
 			return newPhotoUrls;
 		} catch (error) {
 			console.error('Error al cargar el archivo de foto:', error);
@@ -288,6 +285,7 @@ export const EditProduct = () => {
 							</button>
 							<button
 								className='bg-white w-full sm:w-5/12 font-bold text-xl h-16 mt-7 text-[#E98C00] border-2 border-[#E98C00] rounded-xl hover:text-white hover:bg-specific'
+								type='button'
 								onClick={delProduct}>
 								Eliminar
 							</button>

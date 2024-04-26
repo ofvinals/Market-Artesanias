@@ -30,7 +30,6 @@ export default function Categorias() {
 
   const handleCategory = (categoria) => () => {
     dispatch(setCategory(categoria))
-    console.log(categoria);
   }
 
   return (

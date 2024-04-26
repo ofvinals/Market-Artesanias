@@ -61,18 +61,18 @@ export const DataTransactions = () => {
 					return <span>{nombreCompleto}</span>;
 				},
 			},
-			{
-				header: 'Nombre Comprador',
-				accessorKey: 'Comprador',
-				enableColumnOrdering: false,
-				size: 50,
-				Cell: ({ cell: { value }, row: { original } }) => {
-					const nombre = original.User.Nombre || '';
-					const apellido = original.User.Apellido || '';
-					const nombreCompleto = `${nombre} ${apellido}`.trim();
-					return <span>{nombreCompleto}</span>;
-				},
-			},
+			// {
+			// 	header: 'Nombre Comprador',
+			// 	accessorKey: 'Comprador',
+			// 	enableColumnOrdering: false,
+			// 	size: 50,
+			// 	Cell: ({ cell: { value }, row: { original } }) => {
+			// 		const nombre = original.User.Nombre || '';
+			// 		const apellido = original.User.Apellido || '';
+			// 		const nombreCompleto = `${nombre} ${apellido}`.trim();
+			// 		return <span>{nombreCompleto}</span>;
+			// 	},
+			// },
 		],
 		[]
 	);

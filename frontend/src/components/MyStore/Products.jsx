@@ -57,13 +57,13 @@ export const Products = ({ Store }) => {
 						<div
 							key={idx}
 							className='bg-white shadow-xl rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
-							<div className='flex flex-col h-[261px] flex-nowrap'>
+							<div className='flex flex-col h-[261px]  flex-nowrap w-full max-w-[296px] '>
 								<div>
 									<Link to={`/EditProduct/${product.Id}`}>
 										<img
 											src={product.Imagen}
 											alt={product.Nombre}
-											className='w-[296px] h-[157px] rounded-md hover:opacity-50 object-cover'
+											className=' rounded-md hover:opacity-50 object-cover'
 										/>
 									</Link>
 								</div>
@@ -71,10 +71,10 @@ export const Products = ({ Store }) => {
 									<h3 className='font-bold text-xl text-general mt-2'>
 										{product.Nombre}
 									</h3>
-									<p className='mb-2 w-[270px] text-general truncate ...'>
+									<p className='mb-1 w-full text-general text-wrap truncate ...'>
 										{product.Descripcion}
 									</p>
-									<p className='font-bold text-xl text-specific mb-2'>
+									<p className='font-bold text-xl text-specific '>
 										$ {product.Precio}
 									</p>
 								</div>
