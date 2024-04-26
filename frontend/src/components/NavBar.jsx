@@ -41,7 +41,7 @@ function NavBar() {
 							className='ms-3'
 							src='/Logo.jpg'
 							width={100}
-							alt='logoestudio'
+							alt='logo'
 						/>
 					</Navbar.Brand>
 
