@@ -25,16 +25,28 @@ function Card() {
         dispatch(decrement(item));
     }
 
-    let totalCompra = 0;
+    let totalCompra = 0
     let totalProducto = 0
+    
 
-    cartItems.forEach(producto => {
-        totalCompra += producto.Precio * producto.cantidad;
+    const mapeoCartItems = cartItems.map((producto) => {
+        totalCompra += producto.Precio * producto.cantidad
         totalProducto += producto.cantidad
+        const cartsCompletadas = {
+            Nombre: producto.Nombre,
+            Id: producto.Id,
+            StoreId: producto.StoreId,
+            CategoryId: producto.CategoryId,
+            cantidad: producto.cantidad,
+            totalIndividual: producto.Precio * producto.cantidad,
+        }
+        return cartsCompletadas
     });
+    
     const onClickPayment = async () => {
 
-        for (let item of cartItems) {
+
+        for (let item of mapeoCartItems) {
             const purchaseData = {
                 Titulo: item.Nombre,
                 UserId: userId,
@@ -43,7 +55,7 @@ function Card() {
                 CategoryId: item.CategoryId,
                 FechaCompra: new Date().toISOString(),
                 Cantidad: item.cantidad,
-                PrecioTotal: totalCompra
+                PrecioTotal: item.totalIndividual
             };
             await dispatch(addPurchase(purchaseData));
         }
@@ -51,8 +63,8 @@ function Card() {
     }
 
     const onCheckoutPurchase = async () => {
-
-        for (let item of cartItems) {
+        
+        for (let item of mapeoCartItems) {
             const purchaseData = {
                 Titulo: item.Nombre,
                 UserId: userId,
@@ -61,7 +73,7 @@ function Card() {
                 CategoryId: item.CategoryId,
                 FechaCompra: new Date().toISOString(),
                 Cantidad: item.cantidad,
-                PrecioTotal: totalCompra
+                PrecioTotal: item.totalIndividual
             };
             await dispatch(addPurchase(purchaseData));
         }
