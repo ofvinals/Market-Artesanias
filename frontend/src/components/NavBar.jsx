@@ -64,7 +64,7 @@ function NavBar() {
 									Nuestro equipo
 								</Link>
 								<Link
-									className='my-3 md:hidden font-bold'
+									className='my-3 font-bold'
 									to='/mi-tienda'
 									onClick={handleNavCollapse}>
 									<i class='fa-solid fa-briefcase mr-3'></i>
