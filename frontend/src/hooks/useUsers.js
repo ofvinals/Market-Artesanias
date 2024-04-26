@@ -30,7 +30,6 @@ export const updateUser = async (id, values) => {
 		const res = await apiURL.patch(`/Usuario/${id}`, values, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
-		console.log(res);
 		return res.data;
 	} catch (error) {
 		console.error(error);
@@ -50,7 +49,6 @@ export const deleteUser = async (id) => {
 };
 
 export const disableUser = async (id) => {
-	console.log(id)
 	try {
 		const token = localStorage.getItem('token');
 		const res = await apiURL.delete(

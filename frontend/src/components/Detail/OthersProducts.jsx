@@ -8,8 +8,6 @@ import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
 import {  useSelector } from 'react-redux';
 
-
-
 function OthersProducts() {
     const { id } = useParams()
     const numericId = parseInt(id)

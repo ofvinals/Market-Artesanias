@@ -18,7 +18,6 @@ export const getVentasById = async (Id) => {
 		const res = await apiURL.get(`/Transaccion/Venta/${Id}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
-		console.log(res)
 		return res.data;
 	} catch (error) {
 		console.error(error);
@@ -31,7 +30,6 @@ export const getComprasById = async (Id) => {
 		const res = await apiURL.get(`/Transaccion/Compra/${Id}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
-		console.log(res)
 		return res.data;
 	} catch (error) {
 		console.error(error);

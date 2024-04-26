@@ -10,12 +10,10 @@ function Interes() {
 	useEffect(() => {
 		const loadResults = async (camisa) => {
 			const results = await searchItemsInDatabase(camisa);
-			
 			setProductos(results);
 		};
 		loadResults();
 	}, []);
-	console.log(productos)
 
 	return (
 		<section className='py-16'>
@@ -23,18 +21,17 @@ function Interes() {
 				Te puede interesar
 			</h2>
 
-			<div className='containterinteres'>
+			<div className='w-full mx-5'>
 				<Carousel
 					showArrows={true}
-					showStatus={false}
-					showIndicators={true}
 					infiniteLoop={true}
 					emulateTouch={true}
 					showThumbs={false}
 					centerMode={true}
-					centerSlidePercentage={100 / 3}>
+					centerSlidePercentage={100 / 3}
+					dynamicHeight={false}	>
 					{productos.map((producto, idx) => (
-						<div key={idx} className='containerprodint md:mr-10'>
+						<div key={idx} className='flex flex-col justify-center md:mr-10 '>
 							<img
 								src={producto.Imagen}
 								alt={producto.Nombre}

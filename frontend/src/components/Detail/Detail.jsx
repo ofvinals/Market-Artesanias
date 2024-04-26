@@ -6,8 +6,6 @@ import { deleteDetail, getProductById } from '../../redux/Slices/productSlice';
 import { addItem } from '../../redux/Slices/cartSlice';
 import Swal from 'sweetalert2';
 
-
-
 function Detail() {
     const { id } = useParams()
     const navigate = useNavigate()
