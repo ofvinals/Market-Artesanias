@@ -8,7 +8,6 @@ import { setCategory } from '../redux/Slices/categoriesSlice'
 function Categories() {
   const dispatch = useDispatch()
   const filteredProducts = useSelector((state) => state.products.filteredProducts)
-
   const categoriaSeleccionada = useSelector((state) => state.categoria.categoriaSeleccionada);
 
 
@@ -28,8 +27,18 @@ function Categories() {
       <NavBar />
       <div>
         <Filter onCategoryChange={handleCategoryChange} />
-        <section className="mx-[104px] mt-8">
-          <Cards allProducts={filteredProducts} />
+        <section className="mx-5 md:mx-[104px] mt-8">
+          {filteredProducts.length === 0 ? (
+            <div className='flex flex-col items-center justify-center w-full mt-20'>
+              <h2 className='text-general text-lg font-semibold mb-2'>No hay productos en esta categoría</h2>
+              <img
+                src='/blue magnifying glass with resume sheet.svg'
+                alt='Imagen Buscar'
+              />
+            </div>
+          ) : (
+            <Cards allProducts={filteredProducts} />
+          )}
         </section>
       </div>
     </>
