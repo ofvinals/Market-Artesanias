@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { createStore } from '../../hooks/useStore';
-import NavBar from '../../components/NavBar.jsx';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { uploadFile } from '../../firebase/config';
@@ -71,7 +70,6 @@ export const CreateStore = () => {
 
 	return (
 		<>
-			<NavBar />
 			<section className='container'>
 				<div className='container-login'>
 					<h2 className='text-5xl font-semibold text-[#8B5300] mb-20'>
