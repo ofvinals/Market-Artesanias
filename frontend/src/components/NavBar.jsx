@@ -67,7 +67,7 @@ function NavBar() {
 									className='my-3 font-bold'
 									to='/mi-tienda'
 									onClick={handleNavCollapse}>
-									<i class='fa-solid fa-briefcase mr-3'></i>
+									<i class='fa-solid fa-briefcase mr-3 md:hidden'></i>
 									Mi Tienda
 								</Link>
 								{admin ? (
@@ -116,12 +116,12 @@ function NavBar() {
 					</Navbar.Offcanvas>
 
 					<div className='mr-10'>
-						{isLoggedIn ? (
+						{!isLoggedIn ? (
 							<Link to='/search' className='text-white text-xl mr-4'>
 								<i className='fa-solid fa-magnifying-glass'></i>{' '}
 							</Link>
 						) : (
-							<Link to='/login' className='text-white text-xl mr-4'>
+							<Link to='/profile' className='text-white text-xl mr-4'>
 								<i className='fa-solid fa-user'></i>
 							</Link>
 						)}
