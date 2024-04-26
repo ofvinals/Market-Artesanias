@@ -32,6 +32,24 @@ function Card() {
         totalCompra += producto.Precio * producto.cantidad;
         totalProducto += producto.cantidad
     });
+    const onClickPayment = async () => {
+
+        for (let item of cartItems) {
+            const purchaseData = {
+                Titulo: item.Nombre,
+                UserId: userId,
+                ProductId: item.Id,
+                StoreId: item.StoreId,
+                CategoryId: item.CategoryId,
+                FechaCompra: new Date().toISOString(),
+                Cantidad: item.cantidad,
+                PrecioTotal: totalCompra
+            };
+            await dispatch(addPurchase(purchaseData));
+        }
+        dispatch(clearCart())
+    }
+
     const onCheckoutPurchase = async () => {
 
         for (let item of cartItems) {
@@ -131,13 +149,13 @@ function Card() {
                     <h2 className='text-xl font-semibold md:font-normal mt-5 md:mt-0 md:text-tlv text-general mb-4'>Seleccionar método de pago</h2>
                     <div className='flex flex-col gap-6'>
                         <Link to='/tarjeta'>
-                            <button className='h-12 w-[340px] md:h-16 md:w-[504px]  border-specific border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                            <button className='h-12 w-[340px] md:h-16 md:w-[504px]  border-specific border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onClickPayment}>
                                 Pagar con tarjeta
                             </button>
 
                         </Link>
                         <Link to='/paypal'>
-                            <button className='h-12 w-[340px] md:h-16 md:w-[504px]  border-specific border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onCheckoutPurchase}>
+                            <button className='h-12 w-[340px] md:h-16 md:w-[504px]  border-specific border-2 rounded-[10px] font-bold text-xl text-specific hover:border-[#0739EB] hover:text-[#0739EB]' onClick={onClickPayment}>
                                 Pagar con Paypal
                             </button>
                         </Link>

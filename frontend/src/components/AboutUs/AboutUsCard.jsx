@@ -9,7 +9,7 @@ function AboutUsCard({ id, name, role, image, description, linkedin, email }) {
 
             <img src={image} alt={name} className='flex justify-center items-center w-full md:w-[141px] md:h-[178px] rounded-t-lg md:rounded-[10px] object-cover md:shadow-[0_4px_3px_0_rgba(0,0,0,0.25)]' />
             <div>
-                <div className='flex flex-row justify-between px-2 md:px-0'>
+                <div className='flex flex-row justify-between px-3 md:px-0'>
                     <h3 className='font-bold text-2xl text-specific'>{name}</h3>
                     <div className='flex flex-row items-center gap-7 '>
 
@@ -21,8 +21,8 @@ function AboutUsCard({ id, name, role, image, description, linkedin, email }) {
                         </a>
                     </div>
                 </div>
-                <p className='text-xl font-normal text-general px-2 md:px-0 mb-2'>{role}</p>
-                <p className='text-general text-xs md:text-sm text-balance px-2 mb-2 md:mb-0 md:px-0'>{description}</p>
+                <p className='text-xl font-normal text-general px-3 md:px-0 mb-2'>{role}</p>
+                <p className='text-general text-xs md:text-sm text-balance px-3 mb-3 md:mb-0 md:px-0'>{description}</p>
             </div>
         </article>
     )

@@ -30,7 +30,7 @@ function SearchCard({ items }) {
 					items.map((item) => (
 						<article
 							key={item.Id}
-							className='flex mr-3 mt-3 flex-col flex-wrap border w-[296px] h-[261px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)] hover:scale-110 hover:transition-all'>
+							className='flex mr-3 mt-3 flex-col flex-wrap border w-[296px] h-[261px] rounded-[10px] shadow-[0_4px_3px_0_rgba(0,0,0,0.25)] hover:transition-all'>
 							<Link to={`/${item.Id}`}>
 								<div>
 									<img
@@ -39,11 +39,11 @@ function SearchCard({ items }) {
 										className='w-[296px] h-[157px] object-cover rounded-t-[10px]'
 									/>
 								</div>
-								<div className='pl-5 pt-3 pb-3 bg-[#D9D9D94A]'>
-									<h2 className='text-xl font-bold text-general '>
+								<div className='pl-5 pt-3 pb-3 bg-[#D9D9D94A] flex flex-col'>
+									<h2 className='text-xl font-bold text-general truncate w-[270px]'>
 										{item.Nombre}
 									</h2>
-									<p className='text-general'>{item.Description}</p>
+									<p className='text-general truncate w-[270px]'>{item.Descripcion}</p>
 									<p className='text-specific  font-bold'>
 										$ {item.Precio}
 									</p>

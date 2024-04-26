@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { apiURL } from "../../api/apiURL";
 
 const initialState = {
     items: [],
@@ -11,7 +11,7 @@ const initialState = {
 const token = localStorage.getItem('token');
 
 export const addPurchase = createAsyncThunk('purchase/addPurchase', async (item) => {
-    const response = await axios.post(' http://localhost:3001/Transaccion', item, {
+    const response = await apiURL.post('/Transaccion', item, {
         headers: { Authorization: `Bearer ${token}` },
     })
     return response.data
