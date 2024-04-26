@@ -1,28 +1,34 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
-const userModel = require("./Models/User");
-const storeModel = require("./Models/Store");
-const productoModel = require("./Models/Product");
-const categoryModel = require("./Models/Category");
-const comprasUsuarioModel = require("./Models/CompraUsuario");
+require('dotenv').config();
+const { Sequelize } = require('sequelize');
+const userModel = require('./Models/User');
+const storeModel = require('./Models/Store');
+const productoModel = require('./Models/Product');
+const categoryModel = require('./Models/Category');
+const comprasUsuarioModel = require('./Models/CompraUsuario');
 const { PGDATABASE, PGHOST, PGPASSWORD, PGUSER, PGPORT } = process.env;
 
 console.log(`${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`);
 const sequelize = new Sequelize(
-      `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
-      {
-            logging: false,
-            native: false
-      }
+	`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
+	{
+		dialect: 'postgres',
+		logging: false,
+		native: false,
+		dialectOptions: {
+			ssl: {
+				require: true,
+				rejectUnauthorized: false, 
+			},
+		},
+	}
 );
 
 try {
-      sequelize.authenticate();
-      console.log('Connection has been established successfully.');
+	sequelize.authenticate();
+	console.log('Connection has been established successfully.');
 } catch (error) {
-      console.error('Unable to connect to the database:', error);
+	console.error('Unable to connect to the database:', error);
 }
-
 
 userModel(sequelize);
 productoModel(sequelize);
@@ -35,7 +41,7 @@ const { User, Product, Store, Category, ComprasUsuario } = sequelize.models;
 
 //relaciones con los modelos
 
-// relacion uno a mucho 
+// relacion uno a mucho
 User.hasMany(Store);
 Store.belongsTo(User);
 
@@ -61,9 +67,7 @@ ComprasUsuario.belongsTo(Category);
 //User.belongsTo(Product, { through: ComprasUsuario });
 //Product.belongsTo(User, { through: ComprasUsuario });
 
-
 module.exports = {
-      sequelize: sequelize,
-      ...sequelize.models,
+	sequelize: sequelize,
+	...sequelize.models,
 };
-

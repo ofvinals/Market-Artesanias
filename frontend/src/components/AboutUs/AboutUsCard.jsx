@@ -13,7 +13,7 @@ function AboutUsCard({ id, name, role, image, description, linkedin, email }) {
                     <h3 className='font-bold text-2xl text-specific'>{name}</h3>
                     <div className='flex flex-row items-center gap-7 '>
 
-                        <a href={linkedin} target='_blank'>
+                        <a href={linkedin} target='_blank'rel="noreferrer">
                             <FaLinkedin className='text-specific size-6 hover:text-[#0739EB] hover:scale-110' />
                         </a>
                         <a href={`mailto:${email}`}>

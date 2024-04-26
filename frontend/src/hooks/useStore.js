@@ -42,7 +42,6 @@ export const updateStore = async (id, values) => {
 		const res = await apiURL.patch(`/Tienda/${id}`, values, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
-		console.log(res);
 		return res.data;
 	} catch (error) {
 		console.error(error);
@@ -50,13 +49,11 @@ export const updateStore = async (id, values) => {
 };
 
 export const updateNameStore = async (values) => {
-	console.log(values)
 	try {
 		const token = localStorage.getItem('token');
 		const res = await apiURL.put(`/Tienda`, values, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
-		console.log(res);
 		return res.data;
 	} catch (error) {
 		console.error(error);
