@@ -193,7 +193,7 @@ export const EditProduct = () => {
 						<img
 							src={imgStore}
 							alt=''
-							className='w-[70px] h-[70px] rounded-full'
+							className='w-[70px] h-[70px] rounded-full object-cover'
 						/>
 						<p className='text-2xl text-specific ms-16 font-semibold'>
 							{nombreStore}

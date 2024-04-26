@@ -90,7 +90,7 @@ export const Detail = ({ Store }) => {
 							<img
 								src={photoUrl}
 								alt='Uploaded'
-								className='w-[192px] h-48 rounded-full sm:ms-16'
+								className='w-[192px] h-48 rounded-full sm:ms-16 object-cover'
 								onClick={uploadPhoto}
 							/>
 							<p className='text-center text-general sm:ms-16 text-[12px]'>
