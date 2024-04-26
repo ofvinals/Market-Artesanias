@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import '../css/Interes.css';
-import { searchItemsInDatabase } from '../hooks/useSearch.js';
+import { searchItemsInteres } from '../hooks/useSearch.js';
 
 function Interes() {
 	const [productos, setProductos] = useState([]);
 
 	useEffect(() => {
-		const loadResults = async (camisa) => {
-			const results = await searchItemsInDatabase(camisa);
+		const loadResults = async () => {
+			const results = await searchItemsInteres();
 			setProductos(results);
 		};
 		loadResults();
