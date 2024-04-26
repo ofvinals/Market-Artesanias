@@ -12,12 +12,13 @@ function Detail() {
     const dispatch = useDispatch()
     const productDetail = useSelector((state) => state.products.product)
     // const allProducts = useSelector((state) => state.products.allProducts)
-    
+    console.log(productDetail);
 
     useEffect(() => {
         dispatch(getProductById(id))
         return (() => dispatch(deleteDetail()))
     }, [id, dispatch])
+
     const handleAddandNavigateToCart = () => {
         if (productDetail) {
             dispatch(addItem(productDetail))
