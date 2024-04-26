@@ -2,7 +2,7 @@ FROM postgres
 
 WORKDIR /app
 
-COPY .env /app/.env
+# COPY .env /app/.env
 
 ENV POSTGRES_USER=admin
 ENV POSTGRES_PASSWORD=asd123
