@@ -39,7 +39,7 @@ function NavBar() {
 					<Navbar.Brand href='/'>
 						<img
 							className='ms-3'
-							src='/logo.jpg'
+							src='/Logo.jpg'
 							width={100}
 							alt='logoestudio'
 						/>
