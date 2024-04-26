@@ -31,7 +31,7 @@ function NavBar() {
 	return (
 		<>
 			<Navbar data-bs-theme='dark' expand='md' className='bg-specific '>
-				<div className='flex flex-row items-center justify-around w-full'>
+				<div className='flex flex-row items-center justify-around w-full md:px-16'>
 					<Navbar.Toggle
 						aria-controls={`offcanvasNavbar-expand-md`}
 						onClick={handleNavCollapseToggle}
