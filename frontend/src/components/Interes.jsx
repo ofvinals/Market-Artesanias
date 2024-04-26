@@ -11,10 +11,20 @@ function Interes() {
 	useEffect(() => {
 		const loadResults = async () => {
 			const results = await searchItemsInteres();
-			setProductos(results);
+			const resultadosBarajados = shuffleArray(results);
+			const productosAleatorios = resultadosBarajados.slice(0, 5);
+			setProductos(productosAleatorios);
 		};
 		loadResults();
 	}, []);
+
+	const shuffleArray = (array) => {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+		return array;
+	};
 
 	return (
 		<section className='py-16'>
@@ -30,9 +40,11 @@ function Interes() {
 					showThumbs={false}
 					centerMode={true}
 					centerSlidePercentage={100 / 3}
-					dynamicHeight={false}	>
+					dynamicHeight={false}>
 					{productos.map((producto, idx) => (
-						<div key={idx} className='flex flex-col justify-center md:mr-10 '>
+						<div
+							key={idx}
+							className='flex flex-col justify-center md:mr-10 '>
 							<img
 								src={producto.Imagen}
 								alt={producto.Nombre}
