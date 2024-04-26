@@ -88,7 +88,7 @@ export const Products = ({ Store }) => {
 					<button
 						key={index}
 						onClick={() => paginate(index + 1)}
-						className={`bg-secondary text-general mx-1 py-2 px-4 border border-gray-300 ${currentPage === index + 1 ? 'bg-specific' : ''
+						className={`bg-specific text-general mx-1 py-2 px-4 border border-gray-300 ${currentPage === index + 1 ? 'bg-specific' : ''
 							}`}>
 						{index + 1}
 					</button>
