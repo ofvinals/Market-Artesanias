@@ -56,22 +56,22 @@ export const Products = ({ Store }) => {
 					currentProducts.map((product, idx) => (
 						<div
 							key={idx}
-							className='bg-white shadow-xl rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] h-[261px]'>
-							<div className='flex flex-col h-[261px]  flex-nowrap w-full max-w-[296px] '>
+							className='bg-white shadow-xl rounded-xl border-[#D9D9D9] border-2 flex flex-col mt-3 items-center justify-between w-full max-w-[296px] '>
+							<div className='flex flex-col  max-h-[500px]  flex-nowrap w-full max-w-[296px] '>
 								<div>
 									<Link to={`/EditProduct/${product.Id}`}>
 										<img
 											src={product.Imagen}
 											alt={product.Nombre}
-											className=' rounded-md hover:opacity-50 object-cover max-h-[150px] w-full'
+											className=' rounded-xl h-[150px]  w-[292px] hover:opacity-50 '
 										/>
 									</Link>
 								</div>
 								<div className='flex flex-col ms-2 '>
-									<h3 className='font-bold text-xl text-general mt-2 truncate'>
+									<h3 className='font-bold text-xl text-general mt-2 max-w-[280px] truncate ...'>
 										{product.Nombre}
 									</h3>
-									<p className='mb-1 w-full text-general truncate'>
+									<p className='mb-1 w-full text-general max-w-[280px] truncate ...'>
 										{product.Descripcion}
 									</p>
 									<p className='font-bold text-xl text-specific '>
@@ -82,9 +82,8 @@ export const Products = ({ Store }) => {
 						</div>
 					))}
 			</div>
-
 			{/* Paginación */}
-			<div className='flex justify-center'>
+			<div className='flex justify-center '>
 				{Array.from({ length: totalPages }, (_, index) => (
 					<button
 						key={index}
