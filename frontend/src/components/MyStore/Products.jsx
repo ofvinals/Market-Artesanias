@@ -11,7 +11,7 @@ export const Products = ({ Store }) => {
 			try {
 				const productData = await getProductVendedor();
 				const activeProducts = productData.filter(product => product.Activo);
-            setProducts(activeProducts);
+				setProducts(activeProducts);
 			} catch (error) {
 				console.error('Error al cargar los productos de la tienda', error);
 			}
@@ -88,9 +88,8 @@ export const Products = ({ Store }) => {
 					<button
 						key={index}
 						onClick={() => paginate(index + 1)}
-						className={`bg-secondary text-general mx-1 py-2 px-4 border border-gray-300 ${
-							currentPage === index + 1 ? 'bg-specific' : ''
-						}`}>
+						className={`bg-secondary text-general mx-1 py-2 px-4 border border-gray-300 ${currentPage === index + 1 ? 'bg-specific' : ''
+							}`}>
 						{index + 1}
 					</button>
 				))}

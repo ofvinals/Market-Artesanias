@@ -102,7 +102,7 @@ export const CreateStore = () => {
 								<img
 									src={photoUrl}
 									alt='Uploaded'
-									className='w-[192px] h-48 mx-12 rounded-full my-5 '
+									className='w-[192px] h-48 mx-12 rounded-full my-5 object-cover'
 									onClick={uploadPhoto}
 								/>
 							</div>

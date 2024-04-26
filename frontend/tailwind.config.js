@@ -11,14 +11,17 @@ module.exports = {
 				specific: '#E98C00',
 			},
 			fontSize: {
-				'1tl':'125px',
-				'2tl':'70px',
+				'1tl': '125px',
+				'2tl': '70px',
 				'3tl': '40px',
 				'tlv': '32px',
 			},
 			backgroundImage: {
 				'portada': "url('/public/fotoportada.jpg')",
-			 }
+			},
+			screens: {
+				'2lg': '1440px'
+			}
 		},
 	},
 	plugins: [],
