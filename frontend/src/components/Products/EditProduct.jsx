@@ -297,7 +297,7 @@ export const EditProduct = () => {
 					{photos.map((photo, index) => (
 						<div
 							key={index}
-							className='mx-5 flex flex-row flex-nowrap justify-center  sm:w-4/12 sm:h-5/12 '>
+							className='mx-5 flex flex-row flex-nowrap justify-center sm:w-4/12 sm:h-5/12 '>
 							<img
 								src={
 									photo
@@ -320,7 +320,7 @@ export const EditProduct = () => {
 							type='button'
 							className='me-10 mb-10 text-xl w-[192px]  bg-white border-2 h-16 rounded-lg border-[#E98C00] text-[#E98C00] hover:bg-[#E98C00] hover:text-white'
 							onClick={uploadPhoto}>
-							<i className='fa-solid fa-circle-plus pe-5'></i>Cargar
+							<i className='fa-solid fa-circle-plus pe-2'></i>Cargar
 							Fotos
 							<input
 								id='fileInput'
