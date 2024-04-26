@@ -7,7 +7,7 @@ function Footer() {
 		<>
 			<div className='container-footer bg-[#E98C00] min-h-96 rounded-tl-3xl rounded-tr-3xl'>
 				<Link className='mt-10' to='/home'>
-					<img className='imglogo' src='Logo.jpg' alt='Logo' />
+					<img className='imglogo' src='/Logo.jpg' alt='Logo' />
 				</Link>
 				<div className='container-link'>
 					<div className='flex flex-col text-center'>
