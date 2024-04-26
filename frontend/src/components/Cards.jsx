@@ -2,7 +2,7 @@ import ItemCard from './ItemCard'
 
 function Cards({ allProducts }) {
     return (
-        <div className='flex flex-wrap justify-between gap-x-5 gap-y-8'>
+        <div className='flex flex-wrap md:justify-around gap-x-5 gap-y-8'>
             {
                 allProducts.map(({ Id, Nombre, Imagen, Precio, Descripcion, Category }) => {
                     return (
