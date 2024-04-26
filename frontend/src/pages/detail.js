@@ -10,7 +10,7 @@ function detail() {
   return (
     <>
       <NavBar />
-      <div className='px-[106px]'>
+      <div className='px-4 mb-4 md:mx-24 md:mb-10'>
         <Detail />
         <OthersProducts />
       </div>
