@@ -19,7 +19,7 @@ function AboutUs() {
       name: "Lucas Bernaola",
       role: "Frontend Developer",
       image: './aboutUs/lucasbernaola2.webp',
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget tellus vel nulla fermentum interdum.",
+      description: "Como desarrollador frontend, mi pasión radica en crear experiencias digitales cautivadoras y funcionales. Me encanta traducir ideas y diseños en interfaces de usuario dinámicas y atractivas.",
       linkedin: 'https://www.linkedin.com/in/lucas-bernaola-b58b3720a/',
       email: 'bernadev7@gmail.com'
     },
