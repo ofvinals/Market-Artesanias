@@ -10,9 +10,11 @@ function discount() {
   return (
     <>
       <NavBar />
-      <div className='px-[106px]'>
+      <div className='md:px-[106px]'>
         <Counter />
-        <Detail />
+        <div className='mx-4 md:mx-0'>
+          <Detail />
+        </div>
       </div>
     </>
   )

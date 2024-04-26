@@ -3,7 +3,7 @@ import AboutUsCard from './AboutUsCard'
 
 function AboutUsCards({ teamMembers }) {
     return (
-        <div className='flex flex-wrap md:gap-[29px] 2xl:justify-evenly'>
+        <div className='flex flex-wrap gap-3 md:justify-between 2xl:justify-evenly'>
             {
                 teamMembers.map(({ id, name, role, image, description, linkedin, email }) => {
                     return (

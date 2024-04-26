@@ -12,7 +12,7 @@ function HomePage() {
         <>
             <NavBar />
             <Header />
-            <div className='px-4 md:px-24'>
+            <div className=' md:px-[70px]'>
                 <Categorias />
                 <Descuentos />
                 <Interes />

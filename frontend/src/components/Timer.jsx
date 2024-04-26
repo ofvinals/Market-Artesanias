@@ -29,14 +29,14 @@ function Timer({ duration }) {
   return (
     <div className="flex flex-row gap-2">
       {days > 0 && (
-        <p className="text-general text-3tl font-bold bg-white rounded-[10px] flex w-[87px] h-20 justify-center items-center">{days}</p>
+        <p className="text-general text-3tl font-bold bg-white rounded-[10px] flex w-[74px] h-[65px] md:w-[87px] md:h-20 justify-center items-center">{days}</p>
       )}
       {days > 0 && <p className="text-general text-3tl font-bold flex justify-center items-center ">:</p>}
-      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[87px] h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{hours.toString().padStart(2, '0')}</p>
+      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[74px] h-[65px] md:w-[87px] md:h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{hours.toString().padStart(2, '0')}</p>
       <p className="text-general text-3tl font-bold flex justify-center items-center ">:</p>
-      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[87px] h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{minutes.toString().padStart(2, '0')}</p>
+      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[74px] h-[65px] md:w-[87px] md:h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{minutes.toString().padStart(2, '0')}</p>
       <p className="text-general text-3tl font-bold flex justify-center items-center ">:</p>
-      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[87px] h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{seconds.toString().padStart(2, '0')}</p>
+      <p className={`text-general text-3tl font-bold bg-white rounded-[10px] flex w-[74px] h-[65px] md:w-[87px] md:h-20 justify-center items-center ${hasTimeElapsed ? 'text-red-500' : ''}`}>{seconds.toString().padStart(2, '0')}</p>
     </div>
   );
 }

@@ -9,8 +9,8 @@ function AboutUs() {
       id: 1,
       name: "Daniel Aguledo",
       role: "Frontend Developer",
-      image: "./aboutUs/danielagudelo.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget tellus vel nulla fermentum interdum.",
+      image: "./aboutUs/danielAgudelo.webp",
+      description: "Apasionado por crear experiencias web excepcionales. Soy una persona autónoma que sabe trabajar en equipo, sé que la clave del éxito es la comunicación. Si buscas un desarrollador front-end apasionado, confiable y con un fuerte espíritu de equipo, no dudes en contactarme.",
       linkedin: 'https://www.linkedin.com/in/dan-agud/',
       email: 'daniel.agudelo185@gmail.com'
     },
@@ -18,19 +18,19 @@ function AboutUs() {
       id: 2,
       name: "Lucas Bernaola",
       role: "Frontend Developer",
-      image: './aboutUs/lucasbernaola.jpg',
+      image: './aboutUs/lucasbernaola2.webp',
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget tellus vel nulla fermentum interdum.",
-      linkedin: 'https://www.linkedin.com/in/javier-gonzalo-pignataro/',
-      email: 'jgp.workmail@gmail.com'
+      linkedin: 'https://www.linkedin.com/in/lucas-bernaola-b58b3720a/',
+      email: 'bernadev7@gmail.com'
     },
     {
       id: 3,
       name: "Oscar Frías Viñals",
       role: "Frontend Developer",
       image: "./aboutUs/oscarfriasviñals.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget tellus vel nulla fermentum interdum.",
+      description: "Soy un firme creyente en la importancia del trabajo en equipo y la colaboración, y me encanta enfrentar desafíos complejos y encontrar soluciones creativas junto con mis compañeros de equipo. Siempre abierto a nuevas oportunidades y colaboraciones!",
       linkedin: 'https://www.linkedin.com/in/javier-gonzalo-pignataro/',
-      email: 'jgp.workmail@gmail.com'
+      email: 'ofvinals@gmail.com'
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ function AboutUs() {
       id: 5,
       name: "Ricardo Díaz",
       role: "Backend Developer",
-      image: "./aboutUs/ricardodiaz.jpg",
+      image: "./aboutUs/ricardodiaz3.webp",
       description: "Enfocado en el desarrollo de software, estoy siempre dispuesto a aprender nuevas tecnologías y mejorar continuamente. Disfruto trabajando en equipo y compartiendo mis conocimientos para alcanzar los objetivos del proyecto.",
       linkedin: 'https://www.linkedin.com/in/ricardo-dionel-diaz-1b6802236',
       email: 'Franco.miguel.ramirez.96@gmail.com'
@@ -64,9 +64,9 @@ function AboutUs() {
       name: "Federico Fernández",
       role: "Dev Ops",
       image: "./aboutUs/FedericoFernandez.webp",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget tellus vel nulla fermentum interdum.",
-      linkedin: 'https://www.linkedin.com/in/javier-gonzalo-pignataro/',
-      email: 'jgp.workmail@gmail.com'
+      description: "Seguro de mis capacidades, y capaz de aprender cualquier cosa. Desde pequeño siempre me intereso la tecnología y a día de hoy lo sigue haciendo. Decidí convertir algo que era un hobby en mi profesión. Comence hace 4 años estudiando Desarrollo de Software, para luego dedicarme a la cultura DevOps hace ya un año y medio. ",
+      linkedin: 'https://www.linkedin.com/in/fernandezbarriosfederico/',
+      email: 'federicofernandezcontacto@gmail.com'
     },
     {
       id: 8,
@@ -82,8 +82,8 @@ function AboutUs() {
   return (
     <>
       <NavBar />
-      <div className='mt-10 px-[91px] mb-10'>
-        <h2 className='text-general text-tlv mb-9'>Nuestro equipo</h2>
+      <div className='mt-10 mx-4 md:px-[30px] 2xl:px-[91px] mb-10'>
+        <h2 className='text-general text-tlv mb-9 2xl:ml-[150px]'>Nuestro equipo</h2>
         <AboutUsCards teamMembers={teamMembers} />
       </div>
 
