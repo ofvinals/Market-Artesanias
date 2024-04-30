@@ -23,7 +23,7 @@ services:
 
   node-backend:
     container_name: node-backend
-    # restart: always
+    restart: always
     image: node-backend
     build:
       context: ./backend/
