@@ -52,14 +52,24 @@ npm run start
 ## FrontEnd
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
--> Descripcion y funcionalidades
+## Descripcion y funcionalidades
+
+- Desarrollo de vistas mediante componentes dinámicos con Javascript y React.
+- Agregar estilos con Material UI y TailwindCSS
+- Creación de las rutas enlazadas de la página usando React router
+- Axios y Redux para controlar la información de base de datos
+- Subir imagenes de los productos y/o tiendas usando Firebase
+- PopUps atractivos y animados usando SweetAlert
+- Deploy con Vercel
 
 ### Developers
 
-|                  |                      |
-| :--------------: | :------------------: |
-| **Ricardo Díaz** | **Javier Pignataro** |
-|                  |                      |
+|     <img src="./frontend/public/aboutUs/danielAgudelo.webp" align="center" style="width: 100px; border-radius: 999px" />              |         <img src="./frontend/public/aboutUs/oscarfriasviñals.jpg" align="center" style="width: 100px; border-radius: 999px" />                |
+|  :--------------:  |  :------------------:  |
+| **Daniel Agudelo** | **Oscar Frias Viñals** |
+|  ![https://github.com/daniel-agudelo21](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![https://www.linkedin.com/in/dan-agud/](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)                 |   ![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)                      |
+
+
 
 
 
