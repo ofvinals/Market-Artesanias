@@ -1,10 +1,8 @@
 # Artesanías Marketplace
----
 
 Artesanías Market is the ideal e-commerce for entrepreneurs who want to market their handicraft products in an easy and effective way.
 
 # Build
----
 ### Dependencies
 
 - node.js > v20.12.2
@@ -38,7 +36,6 @@ npm run start
 ```
 
 # Proyect summary
----
 ## BackEnd
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
@@ -94,7 +91,11 @@ npm run start
 ![](https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white)![](https://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white)
 
 ---
+
+
 ---
+
+
 ---
 
 El readme antiguo:
