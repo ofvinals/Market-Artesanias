@@ -47,10 +47,10 @@ Development of a custom API REST app in express.js:
 
 ## Developers
 
-| <img src="./frontend/public/aboutUs/ricardodiaz.jpg" align="center" style="width: 100px; border-radius: 999px" /> | <img src="./frontend/public/aboutUs/JavierPignataro.webp" align="center" style="width: 100px; border-radius: 999px" /> |
+|              <img src="./frontend/public/aboutUs/ricardodiaz.jpg" align="center" style="width: 100px; border-radius: 999px" />              |              <img src="./frontend/public/aboutUs/JavierPignataro.webp" align="center" style="width: 100px; border-radius: 999px" />              |
 | :--------------: | :------------------: |
 | **Ricardo Díaz** | **Javier Pignataro** |
-| <a href="https://github.com/Dionel22" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/ricardo-dionel-diaz-1b6802236/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>                 |   <a href="https://github.com/javier-pignataro" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/javier-gonzalo-pignataro/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>                      |
+|   <a href="https://github.com/Dionel22" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/ricardo-dionel-diaz-1b6802236/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>   |   <a href="https://github.com/javier-pignataro" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/javier-gonzalo-pignataro/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>   |
 
 
 ## FrontEnd
@@ -68,17 +68,17 @@ Development of a custom API REST app in express.js:
 
 ### Developers
 
-|     <img src="./frontend/public/aboutUs/danielAgudelo.webp" align="center" style="width: 100px; border-radius: 999px" />              |         <img src="./frontend/public/aboutUs/oscarfriasviñals.jpg" align="center" style="width: 100px; border-radius: 999px" />                |
-|  :--------------:  |  :------------------:  |
-| **Daniel Agudelo** | **Oscar Frias Viñals** |
-| <a href="https://github.com/daniel-agudelo21" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/dan-agud/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>                 |   <a href="https://github.com" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>                      |
+|              <img src="./frontend/public/aboutUs/danielAgudelo.webp" align="center" style="width: 100px; border-radius: 999px" />              |         <img src="./frontend/public/aboutUs/oscarfriasviñals.jpg" align="center" style="width: 100px; border-radius: 999px" />                |                <img src="./frontend/public/aboutUs/lucasbernaola2.webp" align="center" style="width: 100px; border-radius: 999px" />              |
+|  :--------------:  |  :------------------:  |  :--------------:  |
+| **Daniel Agudelo** | **Oscar Frias Viñals** | **Lucas Bernaola** |
+|   <a href="https://github.com/daniel-agudelo21" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/dan-agud/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>   |   <a href="https://github.com/ofvinals" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/ofvinals/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>   |   <a href="https://www.linkedin.com/in/lucas-bernaola-b58b3720a/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://github.com/LucasBernaola" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a>   |
 
 
 ## Tests
 
 ### Tester
 
-| <img src="./frontend/public/aboutUs/FrancoRamirez.webp" align="center" style="width: 100px; border-radius: 999px" /> |
+|              <img src="./frontend/public/aboutUs/FrancoRamirez.webp" align="center" style="width: 100px; border-radius: 999px" />              |
 | :-------------: |
 | **Franco Ramírez** |
 | <a href="https://www.linkedin.com/in/francoramirez96/?originalSubdomain=ar" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a> |     |
@@ -87,7 +87,7 @@ Development of a custom API REST app in express.js:
 
 ### Infraestructure Manager
 
-| <img src="./frontend/public/aboutUs/FedericoFernandez.webp" align="center" style="width: 100px; border-radius: 999px" /> |
+|              <img src="./frontend/public/aboutUs/FedericoFernandez.webp" align="center" style="width: 100px; border-radius: 999px" />              |
 | :-------------: |
 | **Federico Fernández** |
 | <a href="https://github.com/federicogfb" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="30" /></a> <a href="https://www.linkedin.com/in/fernandezbarriosfederico/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a> |     |
@@ -99,7 +99,7 @@ Development of a custom API REST app in express.js:
 
 ### Designer
 
-| <img src="./frontend/public/aboutUs/justinacid.jpg" align="center" style="width: 100px; border-radius: 999px" /> |
+|              <img src="./frontend/public/aboutUs/justinacid.jpg" align="center" style="width: 100px; border-radius: 999px" />              |
 | :-------------: |
 | **Justina Cid** |
 | <a href="https://www.linkedin.com/in/justinacid/" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" /></a> <a href="https://www.behance.net/justinacid" target="_blank"><img style="margin: 10px" src="https://img.shields.io/badge/Behance-1769ff?style=for-the-badge&logo=behance&logoColor=white" alt="LinkedIn" height="30" /></a> |
@@ -109,14 +109,13 @@ Development of a custom API REST app in express.js:
 ## Team Leader
 
 
-| <img src="./frontend/public/aboutUs/rene-silva.jpeg" align="center" style="width: 100px; border-radius: 999px" /> |
-| :------------: | --- |
-| **René Silva** |     |
-|                |     |
+|              <img src="./frontend/public/aboutUs/rene-silva.jpeg" align="center" style="width: 100px; border-radius: 999px" />              |
+| :------------: |
+| **René Silva** |
 
 ## Communication
 
-![](https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white)![](https://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
 
 ---
 
