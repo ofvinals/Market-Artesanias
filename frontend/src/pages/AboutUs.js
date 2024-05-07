@@ -7,7 +7,7 @@ function AboutUs() {
     {
 
       id: 1,
-      name: "Daniel Aguledo",
+      name: "Daniel Agudelo",
       role: "Frontend Developer",
       image: "./aboutUs/danielAgudelo.webp",
       description: "Apasionado por crear experiencias web excepcionales. Soy una persona autónoma que sabe trabajar en equipo, sé que la clave del éxito es la comunicación. Si buscas un desarrollador front-end apasionado, confiable y con un fuerte espíritu de equipo, no dudes en contactarme.",
